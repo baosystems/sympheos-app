@@ -13,7 +13,7 @@ import { padWithZeros } from '../../../../capture-core-utils/date';
  * @returns {string}
  */
 
-export function convertIsoToLocalCalendar(isoDate: ?string): string {
+export function convertIsoToLocalCalendar(isoDate: ?string, withTime: boolean = false): string {
     if (!isoDate) {
         return '';
     }
@@ -38,5 +38,8 @@ export function convertIsoToLocalCalendar(isoDate: ?string): string {
         ? `${padWithZeros(day, 2)}-${padWithZeros(month, 2)}-${padWithZeros(localYear, 4)}`
         : `${padWithZeros(localYear, 4)}-${padWithZeros(month, 2)}-${padWithZeros(day, 2)}`;
 
+    if (!withTime) {
+        return resultDate;
+    }
     return `${resultDate}T${time}`;
 }

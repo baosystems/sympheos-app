@@ -11,13 +11,13 @@ import { MinimalCoordinates, PolygonCoordinates } from '../components/Coordinate
 import { TooltipOrgUnit } from '../components/Tooltips/TooltipOrgUnit';
 
 function convertDateForListDisplay(rawValue: string): string {
-    return convertIsoToLocalCalendar(rawValue).split('T').join(' ');
+    return convertIsoToLocalCalendar(rawValue, true).split('T').join(' ');
 }
 
 function convertDateTimeForListDisplay(rawValue: string): string {
     const momentDate = moment(rawValue).locale('en');
     const timeString = momentDate.format('HH:mm:ss');
-    const localDate = convertIsoToLocalCalendar(rawValue).split('T')[0];
+    const localDate = convertIsoToLocalCalendar(rawValue);
     return `${localDate} ${timeString}`;
 }
 
