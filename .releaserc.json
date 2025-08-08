@@ -5,7 +5,7 @@
         "main",
         {
             "name": "release/*",
-            "prerelease": "rc"
+            "prerelease": true
         }
     ],
     "plugins": [
