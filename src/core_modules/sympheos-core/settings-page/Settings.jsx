@@ -1,6 +1,7 @@
 // @flow
 import React, { useState, useEffect } from 'react';
 import { Button, Card, IconSave24, InputField, SingleSelectField, SingleSelectOption } from '@dhis2/ui';
+import { FiBox, FiCpu } from 'react-icons/fi';
 import { useDataQuery } from '@dhis2/app-runtime';
 import i18n from '@dhis2/d2-i18n';
 import { useSnackbar } from 'commons/Snackbar/SnackbarContext';
@@ -8,8 +9,14 @@ import PluginsRestorer from 'sympheos-core/settings-page/PluginsRestorer';
 
 import 'sympheos-core/settings-page/settings-page.css';
 
+import {
+    INSTANCE_TYPE_ID,
+} from 'capture-core/components/WorkingLists/TeiWorkingLists/TrackedEntityBulkActions/Actions/shared/constants';
+
+import baseDeviceSettings from './devicePluginSettings';
+import baseStockSettings from './stockPluginSettings';
+
 import { useDataStore } from '../../../hooks/useDataStore';
-import { INSTANCE_TYPE_ID } from 'capture-core/components/WorkingLists/TeiWorkingLists/TrackedEntityBulkActions/Actions/shared/constants';
 
 const optionSetsQuery = {
     results: {
@@ -171,7 +178,26 @@ export const Settings = () => {
                     >{i18n.t('Save changes')}</Button>
 
                     <h2>{i18n.t('Plugin Settings')}</h2>
-                    <PluginsRestorer />
+                    <PluginsRestorer
+                        basePluginSettings={baseDeviceSettings}
+                        buttonIcon={<FiCpu />}
+                        buttonText="Device Programs: Overwrite plugins configuration"
+                        warningText={
+                            'Are you sure that you want to overwrite plugins configuration for all Device Programs?'
+                            + ' This action cannot be undone and the current configuration will be lost.'
+                        }
+                        prefixFilter="DV"
+                    />
+                    <PluginsRestorer
+                        basePluginSettings={baseStockSettings}
+                        buttonIcon={<FiBox />}
+                        buttonText="Stock Programs: Overwrite plugins configuration"
+                        warningText={
+                            'Are you sure that you want to overwrite plugins configuration for all Stock Programs?'
+                            + ' This action cannot be undone and the current configuration will be lost.'
+                        }
+                        prefixFilter="STK"
+                    />
                 </div>
             </Card>
         </div >

@@ -14,21 +14,28 @@ import i18n from '@dhis2/d2-i18n';
 import { FiAlertTriangle, FiEdit } from 'react-icons/fi';
 import { useSnackbar, SnackbarSeverity } from 'commons/Snackbar/SnackbarContext';
 
-import basePluginSettings from './pluginSettings';
+import type { Node } from 'react';
 
-const updateQuery = {
+const updatePluginsLayoutQuery = {
     resource: 'dataStore/capture/enrollmentOverviewLayout',
     type: 'update',
     data: ({ data }) => data,
 };
 
+const fetchPluginsLayoutQuery = {
+    results: {
+        resource: 'dataStore/capture/enrollmentOverviewLayout',
+    },
+};
+
 const programsQuery = {
     results: {
         resource: 'programs',
-        params: {
+        params: ({ prefix }) => ({
             fields: 'id',
+            filter: `name:$like:${prefix}`,
             paging: false,
-        },
+        }),
     },
 };
 
@@ -41,7 +48,7 @@ const baseUrlQuery = {
     },
 };
 
-const setPluginsAppUrl = (pluginSettings: any, appUrl: string) => {
+const setPluginsAppUrl = (pluginSettings: Object, appUrl: string) => {
     pluginSettings.leftColumn.forEach((setting) => {
         if (setting.type === 'plugin') {
             setting.source = `${appUrl}${setting.source}`;
@@ -54,7 +61,21 @@ const setPluginsAppUrl = (pluginSettings: any, appUrl: string) => {
     });
 };
 
-const PluginsRestorer = () => {
+type PluginsRestorerProps = {
+    basePluginSettings: Object,
+    buttonIcon: Node,
+    buttonText: string,
+    warningText: string,
+    prefixFilter: string
+};
+
+const PluginsRestorer = ({
+    basePluginSettings,
+    buttonIcon,
+    buttonText,
+    warningText,
+    prefixFilter,
+}: PluginsRestorerProps) => {
     const { showSnackbar } = useSnackbar();
     const [isLoading, setIsLoading] = useState(false);
     const [hide, setHide] = useState(true);
@@ -64,13 +85,14 @@ const PluginsRestorer = () => {
         {
             loading: loadingUpdate,
         },
-    ] = useDataMutation(updateQuery, {
+    ] = useDataMutation(updatePluginsLayoutQuery, {
         // eslint-disable-next-line no-console
         onError: err => console.error(err),
         lazy: true,
     });
 
     const { data: baseUrlData, loading: baseUrlLoading } = useDataQuery(baseUrlQuery);
+    const { refetch: pluginsLayoutRefetch } = useDataQuery(fetchPluginsLayoutQuery);
 
     const {
         loading: loadingPrograms,
@@ -96,7 +118,7 @@ const PluginsRestorer = () => {
 
         setPluginsAppUrl(pluginSettings, appUrl);
 
-        const programsResults = await refetchPrograms();
+        const programsResults = await refetchPrograms({ prefix: prefixFilter });
         const programIds: string[] = programsResults?.results?.programs?.map(program => program.id) || [];
 
         if (programIds.length === 0) {
@@ -109,12 +131,17 @@ const PluginsRestorer = () => {
             return;
         }
 
+        const currentPluginsLayout = await pluginsLayoutRefetch();
+
+        console.log('layout', currentPluginsLayout);
+
         const enrollmentOverviewLayout = programIds.reduce(
             (acc: any, programId: string) => {
+                console.log('programId Changed', programId);
                 acc[programId] = pluginSettings;
                 return acc;
             },
-            {},
+            currentPluginsLayout?.results || {},
         );
 
         mutateEnrollmentOverviewLayout({ data: enrollmentOverviewLayout })
@@ -143,7 +170,7 @@ const PluginsRestorer = () => {
             <ModalTitle>{i18n.t('Confirmation')}</ModalTitle>
             <ModalContent>
                 <Box>
-                    {i18n.t('Are you sure that you want to overwrite plugins configuration for all Programs? This action cannot be undone and will remove the current plugins configuration.')}
+                    {i18n.t(warningText)}
                 </Box>
             </ModalContent>
             <ModalActions>
@@ -172,9 +199,9 @@ const PluginsRestorer = () => {
             onClick={() => setHide(false)}
             loading={isLoading}
             disabled={loadingUpdate || loadingPrograms || baseUrlLoading}
-            icon={<FiEdit />}
+            icon={buttonIcon || <FiEdit />}
         >
-            {i18n.t('Overwrite plugins configuration for all Programs')}
+            {i18n.t(buttonText)}
         </Button>
     </>);
 };
