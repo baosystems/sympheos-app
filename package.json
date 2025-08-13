@@ -1,6 +1,6 @@
 {
     "name": "sympheos",
-    "homepage": "./dashboard/overview",
+    "homepage": "/dashboard/overview",
     "version": "1.1.0-SNAPSHOT",
     "cacheVersion": "1",
     "license": "BSD-3-Clause",
