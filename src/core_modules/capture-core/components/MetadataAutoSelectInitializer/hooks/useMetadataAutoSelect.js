@@ -48,7 +48,7 @@ export const useMetadataAutoSelect = () => {
         if (Object.keys(paramsToAdd).length) {
             navigate(`?${buildUrlQueryString({ ...paramsToAdd })}`);
         }
-    }, [navigate, programs, searchOrgUnits]);
+    }, [navigate]);
 
     useEffect(() => {
         if (mounted) return;
