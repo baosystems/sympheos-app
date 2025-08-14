@@ -265,18 +265,6 @@
         {
             "children": [
                 {
-                    "id": "admin_overview",
-                    "link": "/dashboard/adminOverview",
-                    "title": {
-                        "default": "Overview",
-                        "fr": "Vue d'ensemble"
-                    },
-                    "type": "SUPERSET",
-                    "userGroups": [
-                        "O36vdYF6D5d"
-                    ]
-                },
-                {
                     "id": "admin_settings",
                     "link": "/settings",
                     "title": {
@@ -284,50 +272,6 @@
                         "fr": "Paramètres"
                     },
                     "type": "NAVIGATE",
-                    "userGroups": [
-                        "O36vdYF6D5d"
-                    ]
-                },
-                {
-                    "id": "admin_accounts",
-                    "key": "accounts",
-                    "title": {
-                        "default": "Accounts",
-                        "fr": "Comptes"
-                    },
-                    "userGroups": [
-                        "O36vdYF6D5d"
-                    ]
-                },
-                {
-                    "id": "admin_profiles",
-                    "key": "profiles",
-                    "title": {
-                        "default": "Profiles",
-                        "fr": "Profils"
-                    },
-                    "userGroups": [
-                        "O36vdYF6D5d"
-                    ]
-                },
-                {
-                    "id": "admin_locations",
-                    "key": "locations",
-                    "title": {
-                        "default": "Locations",
-                        "fr": "Sites"
-                    },
-                    "userGroups": [
-                        "O36vdYF6D5d"
-                    ]
-                },
-                {
-                    "id": "admin_users",
-                    "key": "users",
-                    "title": {
-                        "default": "Users",
-                        "fr": "Utilisateurs"
-                    },
                     "userGroups": [
                         "O36vdYF6D5d"
                     ]

@@ -1,6 +1,12 @@
 // @flow
 import { createContext, useContext } from 'react';
 
+export const SnackbarSeverity = Object.freeze({
+    CRITICAL: 'critical',
+    WARNING: 'warning',
+    SUCCESS: 'success',
+});
+
 export type Snackbar = {
     key: string;
     message: string;

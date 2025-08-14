@@ -1,0 +1,48 @@
+{
+    "leftColumn": [
+        {
+            "source": "Stock-Management-Stock-Transaction-Plugin/plugin.html",
+            "type": "plugin"
+        }
+    ],
+    "rightColumn": [
+        {
+            "name": "ProfileWidget",
+            "settings": {
+                "readOnlyMode": false
+            },
+            "type": "component"
+        },
+        {
+            "source": "Stock-Management-Stock-at-Hand-Plugin/plugin.html",
+            "type": "plugin"
+        },
+        {
+            "name": "ErrorWidget",
+            "type": "component"
+        },
+        {
+            "name": "WarningWidget",
+            "type": "component"
+        },
+        {
+            "name": "FeedbackWidget",
+            "type": "component"
+        },
+        {
+            "name": "IndicatorWidget",
+            "type": "component"
+        },
+        {
+            "name": "EnrollmentWidget",
+            "settings": {
+                "readOnlyMode": false
+            },
+            "type": "component"
+        },
+        {
+            "name": "EnrollmentNote",
+            "type": "component"
+        }
+    ]
+}

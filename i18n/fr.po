@@ -1,4 +1,4 @@
-# 
+#
 # Translators:
 # tx_e2f_fr r25 <tx_e2f_fr_r25@ate2f.com>, 2022
 # Edem Kossi <ekossi@hispwca.org>, 2024
@@ -11,19 +11,21 @@
 # Viktor Varland <viktor@dhis2.org>, 2025
 # Yao Selom SAKA (HISP WCA) <ysaka@hispwca.org>, 2025
 # Philip Larsen Donnelly, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2025-04-09T14:11:50.346Z\n"
-"PO-Revision-Date: 2019-06-27 07:31+0000\n"
+"POT-Creation-Date: 2025-08-14T06:03:28.121Z\n"
+"PO-Revision-Date: 2025-08-14 00:20-0600\n"
 "Last-Translator: Philip Larsen Donnelly, 2025\n"
 "Language-Team: French (https://app.transifex.com/hisp-uio/teams/100509/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
+"1000000 == 0 ? 1 : 2;\n"
+"X-Generator: Poedit 3.6\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choisir une ou plusieurs dates..."
@@ -38,8 +40,8 @@ msgid ""
 "A possible reason for this is that the browser or mode (e.g. privacy mode) "
 "is not supported. See log for details."
 msgstr ""
-"Cela peut s'expliquer par le fait que le navigateur ou le mode (par exemple,"
-" le mode privé) n'est pas pris en charge. Voir le journal pour plus de "
+"Cela peut s'expliquer par le fait que le navigateur ou le mode (par exemple, "
+"le mode privé) n'est pas pris en charge. Voir le journal pour plus de "
 "détails."
 
 msgid "Please refresh the page (Either the server or the app version changed)"
@@ -221,8 +223,7 @@ msgid "Saving to {{programName}} in {{orgUnitName}}"
 msgstr "Sauvegarde dans {{programName}} dans {{orgUnitName}}"
 
 msgid ""
-"This is not an event program or the metadata is corrupt. See log for "
-"details."
+"This is not an event program or the metadata is corrupt. See log for details."
 msgstr ""
 "Il ne s'agit pas d'un programme d'événement ou les métadonnées sont "
 "corrompues. Voir le journal pour plus de détails."
@@ -292,8 +293,7 @@ msgid "Discard unsaved changes?"
 msgstr "Abandonner les modifications non enregistrées?"
 
 msgid ""
-"Leaving this page will discard the selections you made for a new "
-"relationship"
+"Leaving this page will discard the selections you made for a new relationship"
 msgstr ""
 "En quittant cette page, les choix effectués dans le cadre d'une nouvelle "
 "relation seront rejetés"
@@ -322,8 +322,8 @@ msgstr "Enrôlement"
 
 msgid "Enroll in a program by selecting a program from the top bar."
 msgstr ""
-"Inscrivez-vous dans un programme en sélectionnant un programme dans la barre"
-" supérieure."
+"Inscrivez-vous dans un programme en sélectionnant un programme dans la barre "
+"supérieure."
 
 msgid "An error has occurred. See log for details"
 msgstr "Une erreur s'est produite. Voir le journal pour plus de détails"
@@ -362,15 +362,14 @@ msgid ""
 "An item with this {{attributeName}} is already registered, but you don't "
 "have access to it"
 msgstr ""
-"Un élément est déjà enregistré avec ce {{attributeName}}, mais vous n'y avez"
-" pas accès"
+"Un élément est déjà enregistré avec ce {{attributeName}}, mais vous n'y avez "
+"pas accès"
 
 msgid "You have already registered this {{attributeName}}"
 msgstr "Vous avez déjà enregistré ce {{attributeName}}"
 
 msgid ""
-"A {{trackedEntityTypeName}} with this {{attributeName}} is already "
-"registered"
+"A {{trackedEntityTypeName}} with this {{attributeName}} is already registered"
 msgstr ""
 "Un {{trackedEntityTypeName}} ayant ce {{attributeName}} est déjà enregistré"
 
@@ -699,8 +698,7 @@ msgid "Enroll a new {{selectedTetName}} in this program."
 msgstr "Inscrire un nouveau {{selectedTetName}} à ce programme"
 
 msgid "{{programName}} is an event program and does not have enrollments."
-msgstr ""
-"{{programName}} est un programme d'événement et n'a pas d'inscription."
+msgstr "{{programName}} est un programme d'événement et n'a pas d'inscription."
 
 msgid "Create a new event in this program."
 msgstr "Créez un nouvel événement dans ce programme."
@@ -717,8 +715,7 @@ msgstr "L'entité suivie avec id \"{{teiId}}\" n'existe pas"
 msgid "Program with id \"{{programId}}\" does not exist"
 msgstr ""
 
-msgid ""
-"An error occurred while fetching enrollments. Please enter a valid url."
+msgid "An error occurred while fetching enrollments. Please enter a valid url."
 msgstr ""
 
 msgid "Page is missing required values from URL"
@@ -821,8 +818,8 @@ msgstr "Créer pour"
 msgid ""
 "You can also choose a program from the top bar and create in that program"
 msgstr ""
-"Vous pouvez également choisir un programme dans la barre supérieure et créer"
-" dans ce programme"
+"Vous pouvez également choisir un programme dans la barre supérieure et créer "
+"dans ce programme"
 
 msgid "New Enrollment in program{{escape}} {{programName}}"
 msgstr "Nouvelle inscription au programme {{escape}} {{programName}}"
@@ -900,8 +897,7 @@ msgid "Event details"
 msgstr "Détails de l'évènement"
 
 msgid ""
-"Leaving this page will discard any selections you made for a new "
-"relationship"
+"Leaving this page will discard any selections you made for a new relationship"
 msgstr ""
 "En quittant cette page, vous ne pourrez plus choisir une nouvelle relation"
 
@@ -1045,8 +1041,8 @@ msgstr "Créer nouveau"
 
 msgid "Fill in these fields to search{{escape}} {{ searchableAttributes }}"
 msgstr ""
-"Renseigner ces champs pour effectuer une recherche {{escape}} {{ "
-"searchableAttributes }}"
+"Renseigner ces champs pour effectuer une recherche {{escape}} "
+"{{ searchableAttributes }}"
 
 msgid ""
 "Fill in at least {{minAttributesRequiredToSearch}} of these fields to "
@@ -1222,8 +1218,8 @@ msgid "Set area"
 msgstr "Définir l'aire"
 
 msgid ""
-"Transferring enrollment ownership from {{ownerOrgUnit}} to "
-"{{newOrgUnit}}{{escape}}"
+"Transferring enrollment ownership from {{ownerOrgUnit}} to {{newOrgUnit}}"
+"{{escape}}"
 msgstr ""
 
 msgid ""
@@ -1313,8 +1309,8 @@ msgstr "Allez dans l'onglet \"Planificateur\" pour reprogrammer cet événement"
 
 msgid "Scheduled date cannot be changed for {{ eventStatus }} events"
 msgstr ""
-"La date prévue ne peut pas être modifiée pour les événements {{ eventStatus "
-"}}"
+"La date prévue ne peut pas être modifiée pour les événements "
+"{{ eventStatus }}"
 
 msgid "Geometry (Area)"
 msgstr ""
@@ -1599,11 +1595,6 @@ msgstr ""
 msgid "An error occurred while loading the widget."
 msgstr ""
 
-msgid ""
-"This {{stageName}} event is linked to a {{linkedStageName}} event. Review "
-"the linked event details before entering data below"
-msgstr ""
-
 msgid "Scheduled"
 msgstr "Programmé"
 
@@ -1832,67 +1823,149 @@ msgstr ""
 msgid "An unknown error occurred when completing enrollments"
 msgstr ""
 
-msgid "You do not have access to delete enrollments"
+msgid "OK"
 msgstr ""
 
-msgid "Delete enrollments"
+msgid "Confirm"
+msgstr "Confirmer"
+
+msgid "Are you sure you want to proceed?"
 msgstr ""
 
-msgid "Delete selected enrollments"
+msgid "Are you sure you want to proceed with this operation?"
 msgstr ""
 
-msgid ""
-"An error occurred while loading the selected enrollments. Please try again."
+msgid "Send Info"
 msgstr ""
 
-msgid ""
-"This action will permanently delete the selected enrollments, including all "
-"associated data and events."
+msgid "Request Log Files"
 msgstr ""
 
-msgid "Active enrollments ({{count}})"
-msgid_plural "Active enrollments ({{count}})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "Completed enrollments ({{count}})"
-msgid_plural "Completed enrollments ({{count}})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "Cancelled enrollments ({{count}})"
-msgid_plural "Cancelled enrollments ({{count}})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "Delete {{count}} enrollment"
-msgid_plural "Delete {{count}} enrollment"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "An error occurred when deleting enrollments"
+msgid "Device reboot"
 msgstr ""
 
-msgid "Delete {{ trackedEntityName }} with all enrollments"
+#, fuzzy
+#| msgid "Update view"
+msgid "Update Instance"
+msgstr "Mettre à jour la vue"
+
+#, fuzzy
+#| msgid "From"
+msgid "From URL"
+msgstr "A partir de"
+
+msgid "To URL"
 msgstr ""
 
-msgid "Delete {{count}} {{ trackedEntityName }}"
-msgid_plural "Delete {{count}} {{ trackedEntityName }}"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+#, fuzzy
+#| msgid "Update view"
+msgid "Update Profile"
+msgstr "Mettre à jour la vue"
 
-msgid ""
-"Deleting records will also delete any associated enrollments and events. "
-"This cannot be undone. Are you sure you want to delete?"
+msgid "Overwrite Profile"
 msgstr ""
 
-msgid "An error occurred while deleting the records"
+#, fuzzy
+#| msgid "Profile"
+msgid "Profiles"
+msgstr "Profil"
+
+msgid "Overwrite Status"
 msgstr ""
+
+msgid "Overwrite Firmware"
+msgstr ""
+
+msgid "Firmware"
+msgstr ""
+
+#, fuzzy
+#| msgid "Update view"
+msgid "Update Firmware"
+msgstr "Mettre à jour la vue"
+
+msgid "Clear Requested Firmware"
+msgstr ""
+
+#, fuzzy
+#| msgid "Update"
+msgid "Update APN"
+msgstr "Mettre à jour"
+
+msgid "APN"
+msgstr ""
+
+msgid "Update Band Priority"
+msgstr ""
+
+msgid "Band Priority"
+msgstr ""
+
+msgid "Auth Key"
+msgstr ""
+
+#, fuzzy
+#| msgid "Please select a valid event"
+msgid "Please insert a valid Auth Key"
+msgstr "Veuillez sélectionner un événement valide"
+
+msgid "Resend SSH Key"
+msgstr ""
+
+msgid "SSH Key"
+msgstr ""
+
+#, fuzzy
+#| msgid "Please select a valid event"
+msgid "Please insert a valid SSH Key"
+msgstr "Veuillez sélectionner un événement valide"
+
+msgid "Requests"
+msgstr ""
+
+#, fuzzy
+#| msgid "Schedule info"
+msgid "Send info"
+msgstr "Informations sur la programmation"
+
+#, fuzzy
+#| msgid "Reset filter"
+msgid "Request log files"
+msgstr "Réinitialiser le filtre"
+
+#, fuzzy
+#| msgid "Reset filter"
+msgid "Reset Modem"
+msgstr "Réinitialiser le filtre"
+
+#, fuzzy
+#| msgid "Update"
+msgid "Updates"
+msgstr "Mettre à jour"
+
+msgid "Security"
+msgstr ""
+
+msgid "Resend Auth Key"
+msgstr ""
+
+#, fuzzy
+#| msgid "No match found"
+msgid "No data found"
+msgstr "Pas de résultat trouvé"
+
+#, fuzzy
+#| msgid "Loading"
+msgid "Loading options"
+msgstr "Chargement"
+
+msgid "The operation was successful"
+msgstr ""
+
+#, fuzzy
+#| msgid "There was a problem saving changes"
+msgid "There was a problem running the selected operation"
+msgstr "Un problème est survenu lors de l'enregistrement des modifications"
 
 msgid "Working list could not be updated"
 msgstr "La liste de travail n'a pas pu être mise à jour"
@@ -1931,9 +2004,6 @@ msgstr "Partager une vue..."
 
 msgid "Do you really want to delete the '{{templateName}}' view?"
 msgstr "Souhaitez-vous vraiment supprimer la vue '{{nom du modèle}' ?"
-
-msgid "Confirm"
-msgstr "Confirmer"
 
 msgid "Save As view"
 msgstr "Enregistrer en tant que Vue"
@@ -2101,6 +2171,112 @@ msgstr "Page {{currentPage}}"
 
 msgid "Area on map saved"
 msgstr "Zone sur la carte sauvegardée"
+
+msgid "About"
+msgstr ""
+
+msgid "DHIS2 Core"
+msgstr ""
+
+msgid "The DHIS2 version running in this instance."
+msgstr ""
+
+msgid "Sympheos App"
+msgstr ""
+
+msgid "The Sympheos application running in this DHIS2 instance."
+msgstr ""
+
+msgid "Device Gateway API"
+msgstr ""
+
+msgid "Sympheos Plugins and Dependencies"
+msgstr ""
+
+#, fuzzy
+#| msgid "Complete"
+msgid "Component"
+msgstr "Terminer"
+
+msgid "Version"
+msgstr ""
+
+#, fuzzy
+#| msgid "Event details"
+msgid "Details"
+msgstr "Détails de l'évènement"
+
+#, fuzzy
+#| msgid "No items to display"
+msgid "No active dashboard to display"
+msgstr "Aucun élément à afficher"
+
+#, fuzzy
+#| msgid "Program not found"
+msgid "Dashboard not found"
+msgstr "Programme introuvable"
+
+msgid "Failed to fetch dashboard data"
+msgstr ""
+
+msgid "Load dashboard failed"
+msgstr ""
+
+#, fuzzy
+#| msgid "Profile widget could not be loaded. Please try again later"
+msgid "This dashboard could not be loaded. Please try again later."
+msgstr ""
+"Le widget du profil n'a pas pu être chargé. Veuillez réessayer plus tard"
+
+#, fuzzy
+#| msgid "No programs available."
+msgid "No Programs available."
+msgstr "Aucun programme disponible"
+
+msgid "Plugins configuration restored successfully."
+msgstr ""
+
+msgid "Error updating Data Store."
+msgstr ""
+
+#, fuzzy
+#| msgid "Confirm"
+msgid "Confirmation"
+msgstr "Confirmer"
+
+#, fuzzy
+#| msgid "Contains text"
+msgid "Continue"
+msgstr "Contient le texte"
+
+msgid "Gateway Connectivity settings updated successfully."
+msgstr ""
+
+msgid "Gateway Connectivity Settings"
+msgstr ""
+
+msgid "Instance Type"
+msgstr ""
+
+#, fuzzy
+#| msgid "Profile"
+msgid "Default Profile"
+msgstr "Profil"
+
+msgid "Plugin Settings"
+msgstr ""
+
+msgid ""
+"Are you sure that you want to overwrite plugins configuration for all Device "
+"Programs? This action cannot be undone and the current configuration will be "
+"lost."
+msgstr ""
+
+msgid ""
+"Are you sure that you want to overwrite plugins configuration for all Stock "
+"Programs? This action cannot be undone and the current configuration will be "
+"lost."
+msgstr ""
 
 msgid "Compatibility mode"
 msgstr "Mode compatibilité"

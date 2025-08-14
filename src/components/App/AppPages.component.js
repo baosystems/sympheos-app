@@ -11,6 +11,7 @@ import { EnrollmentEditEventPage } from 'capture-core/components/Pages/Enrollmen
 import { EnrollmentAddEventPage } from 'capture-core/components/Pages/EnrollmentAddEvent';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Settings } from 'sympheos-core/settings-page/Settings';
+import { About } from 'sympheos-core/about-page/About';
 import DashboardContainer from 'sympheos-core/dashboard/Dashboard';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -38,6 +39,7 @@ export const AppPages = () => (
                 component={DashboardWrapper}
             />
             <Route path="/settings" component={Settings} />
+            <Route path="/about" component={About} />
             <Route path="/viewEvent" component={ViewEventPage} />
             <Route path="/search" component={SearchPage} />
             <Route path="/new" component={NewPage} />

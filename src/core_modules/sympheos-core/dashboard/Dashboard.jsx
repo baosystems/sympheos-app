@@ -42,7 +42,7 @@ const DashboardContainer = ({
 
     useEffect(() => {
         if (!dashboardKey) {
-            handleError('No active dashboard to display');
+            handleError(i18n.t('No active dashboard to display'));
             return;
         }
 
@@ -53,7 +53,7 @@ const DashboardContainer = ({
         const dashboardId = storeQuery?.data?.results?.dashboardKeys?.[dashboardKey];
 
         if (!dashboardId) {
-            handleError('Dashboard not found');
+            handleError(i18n.t('Dashboard not found'));
             return;
         }
 
@@ -92,9 +92,9 @@ const DashboardContainer = ({
 
                 setLoading(false);
             } else if (data?.status !== 200 || dashboards?.status !== 200) {
-                handleError('Failed to fetch dashboard data');
+                handleError(i18n.t('Failed to fetch dashboard data'));
             } else {
-                handleError('Dashboard not found');
+                handleError(i18n.t('Dashboard not found'));
             }
         };
 

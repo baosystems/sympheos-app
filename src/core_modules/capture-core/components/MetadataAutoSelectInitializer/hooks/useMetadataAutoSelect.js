@@ -38,17 +38,17 @@ export const useMetadataAutoSelect = () => {
             programId: null,
             orgUnitId: null,
         };
-        if (programs && programs.length === 1) {
-            paramsToAdd.programId = programs[0].id;
-        }
-        if (searchOrgUnits && searchOrgUnits.length === 1) {
-            paramsToAdd.orgUnitId = searchOrgUnits[0].id;
-        }
+        // if (programs && programs.length === 1) {
+        //     paramsToAdd.programId = programs[0].id;
+        // }
+        // if (searchOrgUnits && searchOrgUnits.length === 1) {
+        //     paramsToAdd.orgUnitId = searchOrgUnits[0].id;
+        // }
 
         if (Object.keys(paramsToAdd).length) {
             navigate(`?${buildUrlQueryString({ ...paramsToAdd })}`);
         }
-    }, [navigate, programs, searchOrgUnits]);
+    }, [navigate]);
 
     useEffect(() => {
         if (mounted) return;
