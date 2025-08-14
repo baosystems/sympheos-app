@@ -1,4 +1,4 @@
-# 
+#
 # Translators:
 # David Júnior <davidjr.mondlane@gmail.com>, 2021
 # Fernando Jorge Bade, 2023
@@ -15,19 +15,22 @@
 # David Mondlane, 2025
 # Nancy Espinoza, 2025
 # Andres Miguel Rubio, 2025
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2025-04-09T14:11:50.346Z\n"
-"PO-Revision-Date: 2019-06-27 07:31+0000\n"
+"POT-Creation-Date: 2025-08-14T06:03:28.121Z\n"
+"PO-Revision-Date: 2025-08-14 00:29-0600\n"
 "Last-Translator: Andres Miguel Rubio, 2025\n"
-"Language-Team: Portuguese (https://app.transifex.com/hisp-uio/teams/100509/pt/)\n"
+"Language-Team: Portuguese (https://app.transifex.com/hisp-uio/teams/100509/"
+"pt/)\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: pt\n"
-"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
+"1000000 == 0 ? 1 : 2;\n"
+"X-Generator: Poedit 3.6\n"
 
 msgid "Choose one or more dates..."
 msgstr "Escolha uma ou mais datas ..."
@@ -42,8 +45,8 @@ msgid ""
 "A possible reason for this is that the browser or mode (e.g. privacy mode) "
 "is not supported. See log for details."
 msgstr ""
-"Uma possível razão para isso é que o navegador ou modo (por exemplo, modo de"
-" privacidade) não é compatível. Consulte o log para obter detalhes."
+"Uma possível razão para isso é que o navegador ou modo (por exemplo, modo de "
+"privacidade) não é compatível. Consulte o log para obter detalhes."
 
 msgid "Please refresh the page (Either the server or the app version changed)"
 msgstr ""
@@ -181,8 +184,7 @@ msgid "Saving a new enrollment in {{programName}} in {{orgUnitName}}."
 msgstr "Gravar uma nova inscrição em {{programName}} em {{orgUnitName}}."
 
 msgid "Saving a {{trackedEntityName}} in {{programName}} in {{orgUnitName}}."
-msgstr ""
-"Gravar um {{trackedEntityName}} em {{programName}} em {{orgUnitName}}."
+msgstr "Gravar um {{trackedEntityName}} em {{programName}} em {{orgUnitName}}."
 
 msgid "Cancel"
 msgstr "Cancelar"
@@ -221,11 +223,10 @@ msgid "Saving to {{programName}} in {{orgUnitName}}"
 msgstr "Gravar em {{programName}} em {{orgUnitName}}"
 
 msgid ""
-"This is not an event program or the metadata is corrupt. See log for "
-"details."
+"This is not an event program or the metadata is corrupt. See log for details."
 msgstr ""
-"Este não é um programa de evento ou os metadados estão corrompidos. Consulte"
-" o log para obter detalhes."
+"Este não é um programa de evento ou os metadados estão corrompidos. Consulte "
+"o log para obter detalhes."
 
 msgid "This event"
 msgstr "Este evento"
@@ -291,8 +292,7 @@ msgid "Discard unsaved changes?"
 msgstr "Eliminar as alterações não gravadas"
 
 msgid ""
-"Leaving this page will discard the selections you made for a new "
-"relationship"
+"Leaving this page will discard the selections you made for a new relationship"
 msgstr ""
 "Sair desta página descartará as seleções que fez para um novo relacionamento"
 
@@ -365,8 +365,7 @@ msgid "You have already registered this {{attributeName}}"
 msgstr "Já registrou este {{attributeName}}"
 
 msgid ""
-"A {{trackedEntityTypeName}} with this {{attributeName}} is already "
-"registered"
+"A {{trackedEntityTypeName}} with this {{attributeName}} is already registered"
 msgstr ""
 "Um {{trackedEntityTypeName}} com este {{attributeName}} já está registrado"
 
@@ -716,8 +715,7 @@ msgstr "A instância de entidade rastreada com id \"{{teiId}}\" não existe"
 msgid "Program with id \"{{programId}}\" does not exist"
 msgstr "O programa com o id \"{{programId}}\" não existe"
 
-msgid ""
-"An error occurred while fetching enrollments. Please enter a valid url."
+msgid "An error occurred while fetching enrollments. Please enter a valid url."
 msgstr ""
 "Ocorreu um erro ao buscar as inscrições. Por favor, insira um URL válido."
 
@@ -767,8 +765,8 @@ msgid ""
 "The category option is not valid for the selected organisation unit. Please "
 "select a valid combination."
 msgstr ""
-"A opção de categoria não é válida para a unidade organizacional selecionada."
-" Por favor, selecione uma combinação válida."
+"A opção de categoria não é válida para a unidade organizacional selecionada. "
+"Por favor, selecione uma combinação válida."
 
 msgid "Get started with Capture app"
 msgstr ""
@@ -902,8 +900,7 @@ msgid "Event details"
 msgstr "Detalhes do evento"
 
 msgid ""
-"Leaving this page will discard any selections you made for a new "
-"relationship"
+"Leaving this page will discard any selections you made for a new relationship"
 msgstr ""
 "Sair desta página descartará todas as seleções feitas para um novo "
 "relacionamento"
@@ -952,8 +949,7 @@ msgstr "Voltar para pesquisar"
 
 msgid "Could not retrieve metadata. Please try again later."
 msgstr ""
-"Não foi possível extrair os metadados. Por favor, tente novamente mais "
-"tarde."
+"Não foi possível extrair os metadados. Por favor, tente novamente mais tarde."
 
 msgid "The enrollment event data could not be found"
 msgstr "Os dados do evento de inscrição não foram encontrados"
@@ -1085,8 +1081,8 @@ msgstr "Listas gravadas neste programa"
 
 msgid "Saved lists offer quick access to your most used views in a program."
 msgstr ""
-"As listas gravadas oferecem acesso rápido às visualizações mais usadas em um"
-" programa."
+"As listas gravadas oferecem acesso rápido às visualizações mais usadas em um "
+"programa."
 
 msgid ""
 "There are no saved lists in this program yet, create one using the button "
@@ -1232,8 +1228,8 @@ msgid "Set area"
 msgstr "Definir área"
 
 msgid ""
-"Transferring enrollment ownership from {{ownerOrgUnit}} to "
-"{{newOrgUnit}}{{escape}}"
+"Transferring enrollment ownership from {{ownerOrgUnit}} to {{newOrgUnit}}"
+"{{escape}}"
 msgstr ""
 "Transferência da propriedade do registo de {{ownerOrgUnit}} para "
 "{{newOrgUnit}}{{escape}}"
@@ -1538,8 +1534,8 @@ msgid ""
 "Deleting an event is permanent and cannot be undone. Are you sure you want "
 "to delete this event?"
 msgstr ""
-"A eliminação de um evento é permanente e não pode ser anulada. Tem a certeza"
-" de que pretende apagar este evento?"
+"A eliminação de um evento é permanente e não pode ser anulada. Tem a certeza "
+"de que pretende apagar este evento?"
 
 msgid "An error occurred when updating event status"
 msgstr "Ocorreu um erro ao atualizar o estado do evento"
@@ -1621,13 +1617,6 @@ msgstr "Não tem acesso para remover a ligação e eliminar o evento ligado"
 
 msgid "An error occurred while loading the widget."
 msgstr "Ocorreu um erro ao carregar o widget."
-
-msgid ""
-"This {{stageName}} event is linked to a {{linkedStageName}} event. Review "
-"the linked event details before entering data below"
-msgstr ""
-"Este evento {{stageName}} está ligado a um evento {{linkedStageName}}. "
-"Reveja os detalhes do evento associado antes de introduzir os dados abaixo"
 
 msgid "Scheduled"
 msgstr "Agendado"
@@ -1807,8 +1796,8 @@ msgid ""
 "Some enrollments were completed successfully, but there was an error while "
 "completing the rest. Please see the details below."
 msgstr ""
-"Algumas inscrições foram concluídas com êxito, mas houve um erro ao concluir"
-" as restantes. Consulte os pormenores abaixo."
+"Algumas inscrições foram concluídas com êxito, mas houve um erro ao concluir "
+"as restantes. Consulte os pormenores abaixo."
 
 msgid ""
 "There was an error while completing the enrollments. Please see the details "
@@ -1877,73 +1866,155 @@ msgstr "Ocorreu um erro ao completar as inscrições"
 msgid "An unknown error occurred when completing enrollments"
 msgstr "Ocorreu um erro desconhecido ao concluir as inscrições"
 
-msgid "You do not have access to delete enrollments"
-msgstr "Não tem acesso para apagar inscrições"
-
-msgid "Delete enrollments"
-msgstr "Eliminar inscrições"
-
-msgid "Delete selected enrollments"
-msgstr "Eliminar inscrições selecionadas"
-
-msgid ""
-"An error occurred while loading the selected enrollments. Please try again."
+msgid "OK"
 msgstr ""
-"Ocorreu um erro ao carregar as inscrições selecionadas. Por favor, tente "
-"novamente."
 
-msgid ""
-"This action will permanently delete the selected enrollments, including all "
-"associated data and events."
+msgid "Confirm"
+msgstr "Confirme"
+
+#, fuzzy
+#| msgid "Are you sure you want to complete all active events in selection?"
+msgid "Are you sure you want to proceed?"
 msgstr ""
-"Esta acção elimina permanentemente as inscrições selecionadas, incluindo "
-"todos os dados e eventos associados."
+"Tem a certeza de que pretende completar todos os eventos activos na seleção?"
 
-msgid "Active enrollments ({{count}})"
-msgid_plural "Active enrollments ({{count}})"
-msgstr[0] "Inscrições activas ({{count}})"
-msgstr[1] "Inscrições activas ({{count}})"
-msgstr[2] "Inscrições activas ({{count}})"
-
-msgid "Completed enrollments ({{count}})"
-msgid_plural "Completed enrollments ({{count}})"
-msgstr[0] "Inscrições concluídas ({{count}})"
-msgstr[1] "Inscrições concluídas ({{count}})"
-msgstr[2] "Inscrições concluídas ({{count}})"
-
-msgid "Cancelled enrollments ({{count}})"
-msgid_plural "Cancelled enrollments ({{count}})"
-msgstr[0] "Inscrições canceladas ({{count}})"
-msgstr[1] "Inscrições canceladas ({{count}})"
-msgstr[2] "Inscrições canceladas ({{count}})"
-
-msgid "Delete {{count}} enrollment"
-msgid_plural "Delete {{count}} enrollment"
-msgstr[0] "Eliminar a inscrição em {{count}} "
-msgstr[1] "Eliminar as inscrições em {{count}} "
-msgstr[2] "Eliminar as inscrições em {{count}} "
-
-msgid "An error occurred when deleting enrollments"
-msgstr "Ocorreu um erro ao eliminar inscrições"
-
-msgid "Delete {{ trackedEntityName }} with all enrollments"
-msgstr "Eliminar {{ trackedEntityName }} com todas as inscrições"
-
-msgid "Delete {{count}} {{ trackedEntityName }}"
-msgid_plural "Delete {{count}} {{ trackedEntityName }}"
-msgstr[0] "Eliminar {{count}} {{ trackedEntityName }}"
-msgstr[1] "Eliminar {{count}} {{ trackedEntityName }}"
-msgstr[2] "Eliminar {{count}} {{ trackedEntityName }}"
-
-msgid ""
-"Deleting records will also delete any associated enrollments and events. "
-"This cannot be undone. Are you sure you want to delete?"
+#, fuzzy
+#| msgid "Are you sure you want to complete all active events in selection?"
+msgid "Are you sure you want to proceed with this operation?"
 msgstr ""
-"A eliminação de registos também elimina quaisquer inscrições e eventos "
-"associados. Isto não pode ser anulado. Tem a certeza de que pretende apagar?"
+"Tem a certeza de que pretende completar todos os eventos activos na seleção?"
 
-msgid "An error occurred while deleting the records"
-msgstr "Ocorreu um erro ao apagar os registos"
+msgid "Send Info"
+msgstr ""
+
+msgid "Request Log Files"
+msgstr ""
+
+msgid "Device reboot"
+msgstr ""
+
+#, fuzzy
+#| msgid "Update view"
+msgid "Update Instance"
+msgstr "Vista de atualização"
+
+#, fuzzy
+#| msgid "From"
+msgid "From URL"
+msgstr "A partir de"
+
+msgid "To URL"
+msgstr ""
+
+#, fuzzy
+#| msgid "Update view"
+msgid "Update Profile"
+msgstr "Vista de atualização"
+
+msgid "Overwrite Profile"
+msgstr ""
+
+#, fuzzy
+#| msgid "Profile"
+msgid "Profiles"
+msgstr "Perfil"
+
+msgid "Overwrite Status"
+msgstr ""
+
+msgid "Overwrite Firmware"
+msgstr ""
+
+msgid "Firmware"
+msgstr ""
+
+#, fuzzy
+#| msgid "Update view"
+msgid "Update Firmware"
+msgstr "Vista de atualização"
+
+msgid "Clear Requested Firmware"
+msgstr ""
+
+#, fuzzy
+#| msgid "Update"
+msgid "Update APN"
+msgstr "Atualizar"
+
+msgid "APN"
+msgstr ""
+
+msgid "Update Band Priority"
+msgstr ""
+
+msgid "Band Priority"
+msgstr ""
+
+msgid "Auth Key"
+msgstr ""
+
+#, fuzzy
+#| msgid "Please enter a valid time"
+msgid "Please insert a valid Auth Key"
+msgstr "Introduzir uma hora válida"
+
+msgid "Resend SSH Key"
+msgstr ""
+
+msgid "SSH Key"
+msgstr ""
+
+#, fuzzy
+#| msgid "Please enter a valid time"
+msgid "Please insert a valid SSH Key"
+msgstr "Introduzir uma hora válida"
+
+msgid "Requests"
+msgstr ""
+
+#, fuzzy
+#| msgid "Schedule info"
+msgid "Send info"
+msgstr "Informação de programação"
+
+#, fuzzy
+#| msgid "Reset filter"
+msgid "Request log files"
+msgstr "Reiniciar filtro"
+
+#, fuzzy
+#| msgid "Reset filter"
+msgid "Reset Modem"
+msgstr "Reiniciar filtro"
+
+#, fuzzy
+#| msgid "Update"
+msgid "Updates"
+msgstr "Atualizar"
+
+msgid "Security"
+msgstr ""
+
+msgid "Resend Auth Key"
+msgstr ""
+
+#, fuzzy
+#| msgid "No match found"
+msgid "No data found"
+msgstr "Nenhuma correspondência encontrada"
+
+#, fuzzy
+#| msgid "Loading"
+msgid "Loading options"
+msgstr "A carregar.."
+
+msgid "The operation was successful"
+msgstr ""
+
+#, fuzzy
+#| msgid "There was a problem saving changes"
+msgid "There was a problem running the selected operation"
+msgstr "Ocorreu um problema ao gravar as alterações"
 
 msgid "Working list could not be updated"
 msgstr "A lista de trabalho não pôde ser atualizada"
@@ -1981,9 +2052,6 @@ msgstr "Partilhar visualização ..."
 
 msgid "Do you really want to delete the '{{templateName}}' view?"
 msgstr "Tem certeza de que deseja excluir a visualização '{{templateName}}'?"
-
-msgid "Confirm"
-msgstr "Confirme"
 
 msgid "Save As view"
 msgstr "Gravar como visualização"
@@ -2150,5 +2218,191 @@ msgstr "Página {{currentPage}}"
 msgid "Area on map saved"
 msgstr "Área no mapa gravada"
 
+msgid "About"
+msgstr ""
+
+msgid "DHIS2 Core"
+msgstr ""
+
+msgid "The DHIS2 version running in this instance."
+msgstr ""
+
+msgid "Sympheos App"
+msgstr ""
+
+msgid "The Sympheos application running in this DHIS2 instance."
+msgstr ""
+
+msgid "Device Gateway API"
+msgstr ""
+
+msgid "Sympheos Plugins and Dependencies"
+msgstr ""
+
+#, fuzzy
+#| msgid "Complete"
+msgid "Component"
+msgstr "Completo"
+
+msgid "Version"
+msgstr ""
+
+#, fuzzy
+#| msgid "Event details"
+msgid "Details"
+msgstr "Detalhes do evento"
+
+#, fuzzy
+#| msgid "No items to display"
+msgid "No active dashboard to display"
+msgstr "Nenhum item para exibir"
+
+#, fuzzy
+#| msgid "Program not found"
+msgid "Dashboard not found"
+msgstr "Programa não encontrado"
+
+msgid "Failed to fetch dashboard data"
+msgstr ""
+
+msgid "Load dashboard failed"
+msgstr ""
+
+#, fuzzy
+#| msgid "Profile widget could not be loaded. Please try again later"
+msgid "This dashboard could not be loaded. Please try again later."
+msgstr ""
+"O widget de perfil não pôde ser carregado. Por favor, tente novamente mais "
+"tarde"
+
+#, fuzzy
+#| msgid "No programs available."
+msgid "No Programs available."
+msgstr "Nenhum programa disponível."
+
+msgid "Plugins configuration restored successfully."
+msgstr ""
+
+#, fuzzy
+#| msgid "Error updating the Assignee"
+msgid "Error updating Data Store."
+msgstr "Erro ao atualizar o destinatário"
+
+#, fuzzy
+#| msgid "Confirm"
+msgid "Confirmation"
+msgstr "Confirme"
+
+#, fuzzy
+#| msgid "Contains text"
+msgid "Continue"
+msgstr "Contém texto"
+
+msgid "Gateway Connectivity settings updated successfully."
+msgstr ""
+
+msgid "Gateway Connectivity Settings"
+msgstr ""
+
+msgid "Instance Type"
+msgstr ""
+
+#, fuzzy
+#| msgid "Profile"
+msgid "Default Profile"
+msgstr "Perfil"
+
+msgid "Plugin Settings"
+msgstr ""
+
+msgid ""
+"Are you sure that you want to overwrite plugins configuration for all Device "
+"Programs? This action cannot be undone and the current configuration will be "
+"lost."
+msgstr ""
+
+msgid ""
+"Are you sure that you want to overwrite plugins configuration for all Stock "
+"Programs? This action cannot be undone and the current configuration will be "
+"lost."
+msgstr ""
+
 msgid "Compatibility mode"
 msgstr "Modo de compatibilidade"
+
+#~ msgid ""
+#~ "This {{stageName}} event is linked to a {{linkedStageName}} event. Review "
+#~ "the linked event details before entering data below"
+#~ msgstr ""
+#~ "Este evento {{stageName}} está ligado a um evento {{linkedStageName}}. "
+#~ "Reveja os detalhes do evento associado antes de introduzir os dados abaixo"
+
+#~ msgid "You do not have access to delete enrollments"
+#~ msgstr "Não tem acesso para apagar inscrições"
+
+#~ msgid "Delete enrollments"
+#~ msgstr "Eliminar inscrições"
+
+#~ msgid "Delete selected enrollments"
+#~ msgstr "Eliminar inscrições selecionadas"
+
+#~ msgid ""
+#~ "An error occurred while loading the selected enrollments. Please try "
+#~ "again."
+#~ msgstr ""
+#~ "Ocorreu um erro ao carregar as inscrições selecionadas. Por favor, tente "
+#~ "novamente."
+
+#~ msgid ""
+#~ "This action will permanently delete the selected enrollments, including "
+#~ "all associated data and events."
+#~ msgstr ""
+#~ "Esta acção elimina permanentemente as inscrições selecionadas, incluindo "
+#~ "todos os dados e eventos associados."
+
+#~ msgid "Active enrollments ({{count}})"
+#~ msgid_plural "Active enrollments ({{count}})"
+#~ msgstr[0] "Inscrições activas ({{count}})"
+#~ msgstr[1] "Inscrições activas ({{count}})"
+#~ msgstr[2] "Inscrições activas ({{count}})"
+
+#~ msgid "Completed enrollments ({{count}})"
+#~ msgid_plural "Completed enrollments ({{count}})"
+#~ msgstr[0] "Inscrições concluídas ({{count}})"
+#~ msgstr[1] "Inscrições concluídas ({{count}})"
+#~ msgstr[2] "Inscrições concluídas ({{count}})"
+
+#~ msgid "Cancelled enrollments ({{count}})"
+#~ msgid_plural "Cancelled enrollments ({{count}})"
+#~ msgstr[0] "Inscrições canceladas ({{count}})"
+#~ msgstr[1] "Inscrições canceladas ({{count}})"
+#~ msgstr[2] "Inscrições canceladas ({{count}})"
+
+#~ msgid "Delete {{count}} enrollment"
+#~ msgid_plural "Delete {{count}} enrollment"
+#~ msgstr[0] "Eliminar a inscrição em {{count}} "
+#~ msgstr[1] "Eliminar as inscrições em {{count}} "
+#~ msgstr[2] "Eliminar as inscrições em {{count}} "
+
+#~ msgid "An error occurred when deleting enrollments"
+#~ msgstr "Ocorreu um erro ao eliminar inscrições"
+
+#~ msgid "Delete {{ trackedEntityName }} with all enrollments"
+#~ msgstr "Eliminar {{ trackedEntityName }} com todas as inscrições"
+
+#~ msgid "Delete {{count}} {{ trackedEntityName }}"
+#~ msgid_plural "Delete {{count}} {{ trackedEntityName }}"
+#~ msgstr[0] "Eliminar {{count}} {{ trackedEntityName }}"
+#~ msgstr[1] "Eliminar {{count}} {{ trackedEntityName }}"
+#~ msgstr[2] "Eliminar {{count}} {{ trackedEntityName }}"
+
+#~ msgid ""
+#~ "Deleting records will also delete any associated enrollments and events. "
+#~ "This cannot be undone. Are you sure you want to delete?"
+#~ msgstr ""
+#~ "A eliminação de registos também elimina quaisquer inscrições e eventos "
+#~ "associados. Isto não pode ser anulado. Tem a certeza de que pretende "
+#~ "apagar?"
+
+#~ msgid "An error occurred while deleting the records"
+#~ msgstr "Ocorreu um erro ao apagar os registos"

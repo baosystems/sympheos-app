@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-08-08T05:42:59.287Z\n"
-"PO-Revision-Date: 2025-08-08T05:42:59.288Z\n"
+"POT-Creation-Date: 2025-08-14T06:03:28.121Z\n"
+"PO-Revision-Date: 2025-08-14T06:03:28.121Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2116,8 +2116,14 @@ msgstr "About"
 msgid "DHIS2 Core"
 msgstr "DHIS2 Core"
 
+msgid "The DHIS2 version running in this instance."
+msgstr "The DHIS2 version running in this instance."
+
 msgid "Sympheos App"
 msgstr "Sympheos App"
+
+msgid "The Sympheos application running in this DHIS2 instance."
+msgstr "The Sympheos application running in this DHIS2 instance."
 
 msgid "Device Gateway API"
 msgstr "Device Gateway API"
@@ -2133,6 +2139,15 @@ msgstr "Version"
 
 msgid "Details"
 msgstr "Details"
+
+msgid "No active dashboard to display"
+msgstr "No active dashboard to display"
+
+msgid "Dashboard not found"
+msgstr "Dashboard not found"
+
+msgid "Failed to fetch dashboard data"
+msgstr "Failed to fetch dashboard data"
 
 msgid "Load dashboard failed"
 msgstr "Load dashboard failed"
@@ -2155,6 +2170,9 @@ msgstr "Confirmation"
 msgid "Continue"
 msgstr "Continue"
 
+msgid "Gateway Connectivity settings updated successfully."
+msgstr "Gateway Connectivity settings updated successfully."
+
 msgid "Gateway Connectivity Settings"
 msgstr "Gateway Connectivity Settings"
 
@@ -2166,6 +2184,24 @@ msgstr "Default Profile"
 
 msgid "Plugin Settings"
 msgstr "Plugin Settings"
+
+msgid ""
+"Are you sure that you want to overwrite plugins configuration for all "
+"Device Programs? This action cannot be undone and the current configuration "
+"will be lost."
+msgstr ""
+"Are you sure that you want to overwrite plugins configuration for all "
+"Device Programs? This action cannot be undone and the current configuration "
+"will be lost."
+
+msgid ""
+"Are you sure that you want to overwrite plugins configuration for all Stock "
+"Programs? This action cannot be undone and the current configuration will "
+"be lost."
+msgstr ""
+"Are you sure that you want to overwrite plugins configuration for all Stock "
+"Programs? This action cannot be undone and the current configuration will "
+"be lost."
 
 msgid "Compatibility mode"
 msgstr "Compatibility mode"

@@ -76,7 +76,7 @@ export const Settings = () => {
             if (value.httpStatus === 'OK') {
                 showSnackbar({
                     key: 'settings-update-success',
-                    message: 'Gateway Connectivity settings updated successfully.',
+                    message: i18n.t('Gateway Connectivity settings updated successfully.'),
                     duration: 3000,
                     severity: 'success',
                 });
@@ -84,7 +84,7 @@ export const Settings = () => {
             } else {
                 showSnackbar({
                     key: 'ds-update-error',
-                    message: value.message || 'Error updating Data Store.',
+                    message: value.message || i18n.t('Error updating Data Store.'),
                     severity: 'critical',
                 });
             }
@@ -181,20 +181,18 @@ export const Settings = () => {
                     <PluginsRestorer
                         basePluginSettings={baseDeviceSettings}
                         buttonIcon={<FiCpu />}
-                        buttonText="Device Programs: Overwrite plugins configuration"
+                        buttonText={i18n.t('Device Programs: Overwrite plugins configuration')}
                         warningText={
-                            'Are you sure that you want to overwrite plugins configuration for all Device Programs?'
-                            + ' This action cannot be undone and the current configuration will be lost.'
+                            i18n.t('Are you sure that you want to overwrite plugins configuration for all Device Programs? This action cannot be undone and the current configuration will be lost.')
                         }
                         prefixFilter="DV"
                     />
                     <PluginsRestorer
                         basePluginSettings={baseStockSettings}
                         buttonIcon={<FiBox />}
-                        buttonText="Stock Programs: Overwrite plugins configuration"
+                        buttonText={i18n.t('Stock Programs: Overwrite plugins configuration')}
                         warningText={
-                            'Are you sure that you want to overwrite plugins configuration for all Stock Programs?'
-                            + ' This action cannot be undone and the current configuration will be lost.'
+                            i18n.t('Are you sure that you want to overwrite plugins configuration for all Stock Programs? This action cannot be undone and the current configuration will be lost.')
                         }
                         prefixFilter="STK"
                     />

@@ -38,13 +38,13 @@ export const About = () => {
                 id: 'd2',
                 name: i18n.t('DHIS2 Core'),
                 version: d2Version.results.version,
-                details: '',
+                details: i18n.t('The DHIS2 version running in this instance.'),
             },
             {
                 id: 'sympheos-app',
                 name: i18n.t('Sympheos App'),
                 version: process.env.REACT_APP_VERSION,
-                details: '',
+                details: i18n.t('The Sympheos application running in this DHIS2 instance.'),
             },
         ];
 

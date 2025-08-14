@@ -133,11 +133,8 @@ const PluginsRestorer = ({
 
         const currentPluginsLayout = await pluginsLayoutRefetch();
 
-        console.log('layout', currentPluginsLayout);
-
         const enrollmentOverviewLayout = programIds.reduce(
             (acc: any, programId: string) => {
-                console.log('programId Changed', programId);
                 acc[programId] = pluginSettings;
                 return acc;
             },
