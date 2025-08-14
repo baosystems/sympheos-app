@@ -1,7 +1,10 @@
 {
     "leftColumn": [
         {
-            "name": "QuickActions",
+            "name": "ProfileWidget",
+            "settings": {
+                "readOnlyMode": false
+            },
             "type": "component"
         },
         {
@@ -27,11 +30,11 @@
             "type": "component"
         },
         {
-            "name": "EnrollmentNote",
+            "name": "FeedbackWidget",
             "type": "component"
         },
         {
-            "name": "FeedbackWidget",
+            "name": "EnrollmentNote",
             "type": "component"
         },
         {
@@ -40,13 +43,6 @@
         },
         {
             "name": "TrackedEntityRelationship",
-            "type": "component"
-        },
-        {
-            "name": "ProfileWidget",
-            "settings": {
-                "readOnlyMode": false
-            },
             "type": "component"
         }
     ]

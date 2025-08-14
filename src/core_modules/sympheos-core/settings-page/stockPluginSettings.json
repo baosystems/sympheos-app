@@ -7,7 +7,14 @@
     ],
     "rightColumn": [
         {
-            "source": "Stock-at-Hand/plugin.html",
+            "name": "ProfileWidget",
+            "settings": {
+                "readOnlyMode": false
+            },
+            "type": "component"
+        },
+        {
+            "source": "Stock-Management-Stock-at-Hand-Plugin/plugin.html",
             "type": "plugin"
         },
         {
@@ -19,10 +26,6 @@
             "type": "component"
         },
         {
-            "name": "EnrollmentNote",
-            "type": "component"
-        },
-        {
             "name": "FeedbackWidget",
             "type": "component"
         },
@@ -31,21 +34,14 @@
             "type": "component"
         },
         {
-            "name": "TrackedEntityRelationship",
-            "type": "component"
-        },
-        {
-            "name": "ProfileWidget",
-            "settings": {
-                "readOnlyMode": false
-            },
-            "type": "component"
-        },
-        {
             "name": "EnrollmentWidget",
             "settings": {
                 "readOnlyMode": false
             },
+            "type": "component"
+        },
+        {
+            "name": "EnrollmentNote",
             "type": "component"
         }
     ]
