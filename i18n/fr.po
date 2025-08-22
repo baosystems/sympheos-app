@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2025-08-14T06:03:28.121Z\n"
-"PO-Revision-Date: 2025-08-15 17:37+0100\n"
+"POT-Creation-Date: 2025-08-22T21:27:40.996Z\n"
+"PO-Revision-Date: 2025-08-22 15:29-0600\n"
 "Last-Translator: Philip Larsen Donnelly, 2025\n"
 "Language-Team: French (https://app.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "Language: fr\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
 "1000000 == 0 ? 1 : 2;\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.7\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choisir une ou plusieurs dates..."
@@ -77,7 +77,7 @@ msgid "Search"
 msgstr "Chercher"
 
 msgid "Working List"
-msgstr "Liste des tâches "
+msgstr "Liste des tâches"
 
 msgid "Event list"
 msgstr "Liste d'événements"
@@ -670,13 +670,13 @@ msgstr ""
 "afficher le tableau de bord."
 
 msgid "Invalid enrollment id {{enrollmentId}}."
-msgstr "ID de l'inscription {{enrollmentId}} invalide"
+msgstr "ID de l'inscription {{enrollmentId}} invalide."
 
 msgid "Choose an enrollment to view the dashboard."
 msgstr "Choisir une inscription pour afficher le tableau de bord."
 
 msgid "There are no active enrollments."
-msgstr "Il n'y a aucune inscription active"
+msgstr "Il n'y a aucune inscription active."
 
 msgid "Add new enrollment for {{teiDisplayName}} in this program."
 msgstr ""
@@ -691,10 +691,10 @@ msgstr ""
 "plus d'informations."
 
 msgid "{{teiDisplayName}} is not enrolled in this program."
-msgstr "{{teiDisplayName}} n'est pas inscrit à ce programme"
+msgstr "{{teiDisplayName}} n'est pas inscrit à ce programme."
 
 msgid "Enroll {{teiDisplayName}} in this program."
-msgstr "Inscrire {{teiDisplayName}} à ce programme"
+msgstr "Inscrire {{teiDisplayName}} à ce programme."
 
 msgid ""
 "{{teiDisplayName}} is a {{tetName}} and cannot be enrolled in the "
@@ -702,10 +702,10 @@ msgid ""
 msgstr ""
 "{{teiDisplayName}} est un {{tetName}} et ne peut pas être inscrit dans le "
 "{{programName}}. Choisissez un autre programme qui autorise l'inscription de "
-"{{tetName}}."
+"{{tetName}}. "
 
 msgid "Enroll a new {{selectedTetName}} in this program."
-msgstr "Inscrire un nouveau {{selectedTetName}} à ce programme"
+msgstr "Inscrire un nouveau {{selectedTetName}} à ce programme."
 
 msgid "{{programName}} is an event program and does not have enrollments."
 msgstr "{{programName}} est un programme d'événement et n'a pas d'inscription."
@@ -783,7 +783,7 @@ msgid "Get started with Capture app"
 msgstr "Commencez à utiliser l'application Saisie"
 
 msgid "Report data"
-msgstr ""
+msgstr "Saisir les données"
 
 msgid ""
 "Choose a program and organisation unit to see existing data and create new "
@@ -805,7 +805,7 @@ msgstr "Veuillez sélectionner {{category}}."
 
 msgid "Or see all records accessible to you in {{program}} "
 msgstr ""
-"Ou voir tous les enregistrements auxquels vous avez accès dans {{program}}"
+"Ou voir tous les enregistrements auxquels vous avez accès dans {{program}} "
 
 msgid "Or see all events accessible to you in {{program}}"
 msgstr "Ou voir tous les événements auxquels vous avez accès dans {{program}}"
@@ -817,9 +817,12 @@ msgid ""
 "You don't have access to create a {{trackedEntityName}} in the current "
 "selections"
 msgstr ""
+"Vous n’avez pas accès pour créer un(e) {{trackedEntityName}} avec la "
+"sélection actuelle"
 
 msgid "Choose an organisation unit to start reporting"
 msgstr ""
+"Choisissez une unité d’organisation pour commencer la saisie de données"
 
 msgid "Choose the {{missingCategories}} to start reporting"
 msgstr "Choisir le {{missingCategories}} pour commencer à rapporter"
@@ -850,6 +853,8 @@ msgstr "Enrégistrer {{trackedEntityName}}"
 
 msgid "Enter details now is not available when creating a relationship"
 msgstr ""
+"Saisir les détails ici si ils ne sont pas disponible lors de la création "
+"d’une relation"
 
 msgid "Save new {{trackedEntityTypeName}} and link"
 msgstr "Enregistrer le nouveau {{trackedEntityTypeName}} et le lien"
@@ -952,17 +957,21 @@ msgstr "Chercher par attributs"
 msgid "Fill in at least {{count}} attribute to search"
 msgid_plural "Fill in at least {{count}} attribute to search"
 msgstr[0] ""
+"Saisir les valeurs au moins des {{count}} attribut(s) pour effectuer la "
+"recherche"
 msgstr[1] ""
 msgstr[2] ""
+"Saisir les valeurs au moins des {{count}} attribut(s) pour effectuer la "
+"recherche"
 
 msgid "Missing search criteria"
-msgstr ""
+msgstr "Critère de recherche manquant"
 
 msgid "Back to search"
 msgstr "Retour à l'écran de recherche"
 
 msgid "Could not retrieve metadata. Please try again later."
-msgstr ""
+msgstr "Impossible de récupérer les métadonnées. Veuillez réessayer plus tard."
 
 msgid "The enrollment event data could not be found"
 msgstr "Les données de l'événement d'inscription n'ont pas pu être trouvées"
@@ -989,7 +998,7 @@ msgid "Add relationship"
 msgstr "Ajouetr relation"
 
 msgid "No results found for "
-msgstr "Aucun résultat trouvé pour"
+msgstr "Aucun résultat trouvé pour "
 
 msgid "Choose an organisation unit in the form below"
 msgstr "Choisissez une unité d'organisation dans le formulaire ci-dessous"
@@ -998,7 +1007,7 @@ msgid "Clear selection"
 msgstr "Effacer la sélection"
 
 msgid "No programs available."
-msgstr "Aucun programme disponible"
+msgstr "Aucun programme disponible."
 
 msgid "Search for a program"
 msgstr "Rechercher un programme"
@@ -1045,6 +1054,7 @@ msgstr ""
 
 msgid "No searchable attributes for {{trackedEntityName}}"
 msgstr ""
+"Aucun attribut disponible pour la recherche concernant {{trackedEntityName}}"
 
 msgid "Search in all programs"
 msgstr "Rechercher dans tous les programmes"
@@ -1052,7 +1062,7 @@ msgstr "Rechercher dans tous les programmes"
 msgid "If none of search results match, you can create a new "
 msgstr ""
 "Si aucun des résultats de la recherche ne correspond, vous pouvez créer une "
-"nouvelle"
+"nouvelle "
 
 msgid "Create new"
 msgstr "Créer nouveau"
@@ -1099,12 +1109,14 @@ msgstr "Listes sauvegardées dans ce programme"
 msgid "Saved lists offer quick access to your most used views in a program."
 msgstr ""
 "Les listes sauvegardés permettent un accès rapide à vos vues les plus "
-"utilisées dans un programme"
+"utilisées dans un programme."
 
 msgid ""
 "There are no saved lists in this program yet, create one using the button "
 "below."
 msgstr ""
+"Il n’existe encore aucune liste enregistrée dans ce programme, créez-en une "
+"en utilisant le bouton ci-dessous."
 
 msgid "Create saved list"
 msgstr "Créer une liste sauvegardée"
@@ -1125,7 +1137,7 @@ msgid "Assigned to"
 msgstr "Attribué"
 
 msgid "You don't have access to edit the assigned user"
-msgstr ""
+msgstr "Vous n’avez pas accès pour modifier l’utilisateur assigné"
 
 msgid "Edit"
 msgstr "Modifier"
@@ -1134,7 +1146,7 @@ msgid "No one is assigned to this event"
 msgstr "Personne n'est affecté à cet événement"
 
 msgid "You don't have access to assign a user to this event"
-msgstr ""
+msgstr "Vous n’avez pas accès pour assigner un utilisateur à cet événement"
 
 msgid "Assign"
 msgstr "Assigner"
@@ -1184,7 +1196,7 @@ msgid "Mark incomplete"
 msgstr "Mark comme inachevé"
 
 msgid "You do not have access to delete this enrollment"
-msgstr "Vous n'avez pas accès à la suppression de cette inscription."
+msgstr "Vous n'avez pas accès à la suppression de cette inscription"
 
 msgid "Delete enrollment"
 msgstr "Supprimer enrôlement"
@@ -1214,7 +1226,7 @@ msgstr "Une erreur s'est produite lors du transfert de propriété"
 msgid "Existing dates for auto-generated events will not be updated."
 msgstr ""
 "Les dates existantes pour les événements générés automatiquement ne seront "
-"pas mises à jour"
+"pas mises à jour."
 
 msgid "Latitude"
 msgstr "Latitude"
@@ -1254,6 +1266,8 @@ msgid ""
 "You will lose access to the enrollment when transferring ownership to "
 "{{organisationUnit}}."
 msgstr ""
+"Vous perdrez l’accès à l’inscription lors du transfert de propriété vers "
+"{{organisationUnit}}."
 
 msgid "Transfer Ownership"
 msgstr "Transférer propriété"
@@ -1298,7 +1312,7 @@ msgstr "Veuillez fournir une unité d'organisation valide"
 
 msgid "organisation unit could not be retrieved. Please try again later."
 msgstr ""
-"L'unité d'organisation n'a pas pu être récupérée. Veuillez réessayer plus "
+"l’unité d'organisation n'a pas pu être récupérée. Veuillez réessayer plus "
 "tard."
 
 msgid "Saving to {{stageName}} for {{programName}} in {{orgUnitName}}"
@@ -1430,9 +1444,12 @@ msgid ""
 "Change information about this {{trackedEntityName}} here. Information about "
 "this enrollment can be edited in the Enrollment widget."
 msgstr ""
+"Modifiez les informations concernant ce(tte) {{trackedEntityName}} ici. Les "
+"informations de cette inscription peuvent être modifiées dans le widget "
+"d’inscription."
 
 msgid " Loading..."
-msgstr "Chargement…"
+msgstr " Chargement…"
 
 msgid "Save changes"
 msgstr "Sauvegarder les modifications"
@@ -1455,7 +1472,7 @@ msgstr ""
 "l'aide"
 
 msgid "Fix errors in the form to continue."
-msgstr "Corriger les erreurs dans le formulaire pour continuer"
+msgstr "Corriger les erreurs dans le formulaire pour continuer."
 
 msgid "You do not have access to delete this {{trackedEntityTypeName}}"
 msgstr "Vous n'avez pas la permission pour supprimer {{trackedEntityTypeName}}"
@@ -1600,7 +1617,7 @@ msgstr "Étapes et événements"
 msgid "An error occurred while unlinking and deleting the event."
 msgstr ""
 "Une erreur s'est produite lors de la déconnexion et suppression de "
-"l'événement"
+"l'événement."
 
 msgid "Unlink and delete linked event"
 msgstr "Déconnecter et supprimer l'événement relié"
@@ -1640,7 +1657,7 @@ msgstr ""
 "Vous n'avez pas accès pour supprimer le lien et supprimer l'événement lié"
 
 msgid "An error occurred while loading the widget."
-msgstr "Une erreur s'est produite lors du chargement du widget"
+msgstr "Une erreur s'est produite lors du chargement du widget."
 
 msgid "Scheduled"
 msgstr "Programmé"
@@ -1768,19 +1785,19 @@ msgstr ""
 "sélection ?"
 
 msgid "There are no active events to complete in the current selection."
-msgstr "Il n'y aucun événement actif à compléter dans la sélection actuelle"
+msgstr "Il n'y aucun événement actif à compléter dans la sélection actuelle."
 
 msgid "Error completing events"
 msgstr "Erreur lors de la finalisation des événements"
 
 msgid "There was an error completing the events."
-msgstr "Une erreur s'est produite lors de la finalisation des événements"
+msgstr "Une erreur s'est produite lors de la finalisation des événements."
 
 msgid "Details (Advanced)"
 msgstr "Détails (avancé)"
 
 msgid "An unknown error occurred."
-msgstr "Une erreur inconnue s'est produite"
+msgstr "Une erreur inconnue s'est produite."
 
 msgid "An error occurred while completing events"
 msgstr "Une erreur s'est produite lors de la finalisation des événements"
@@ -1789,7 +1806,7 @@ msgid "An error occurred while deleting the events"
 msgstr "Une erreur s'est produite lors de la suppression des événements"
 
 msgid "You do not have access to delete events"
-msgstr "Vous n'avez pas accès à la suppression d'événements."
+msgstr "Vous n'avez pas accès à la suppression d'événements"
 
 msgid "Delete events"
 msgstr "Supprimer des événements"
@@ -1954,12 +1971,11 @@ msgstr "Mettre à jour l'APN"
 msgid "APN"
 msgstr "APN"
 
-#, fuzzy
 msgid "Update Band Priority"
-msgstr "Mettre à jour "
+msgstr "Mettre à Jour la Priorité de Bande"
 
 msgid "Band Priority"
-msgstr ""
+msgstr "Priorité de Bande"
 
 msgid "Auth Key"
 msgstr "Clé d'authentification"
@@ -2115,7 +2131,7 @@ msgid "Could not delete working list"
 msgstr "Impossible de supprimer la liste des tâches"
 
 msgid "Organisation unit search failed."
-msgstr "Échec de la recherche de l'unité d'organisation"
+msgstr "Échec de la recherche de l'unité d'organisation."
 
 msgid "Error saving tracked entity instance"
 msgstr "Erreur lors de l'enregistrement de l'entité suivie"
@@ -2222,13 +2238,13 @@ msgid "DHIS2 Core"
 msgstr "Noyau DHIS2"
 
 msgid "The DHIS2 version running in this instance."
-msgstr "La version DHIS2 en cours d'exécution dans cette instance"
+msgstr "La version DHIS2 en cours d'exécution dans cette instance."
 
 msgid "Sympheos App"
 msgstr "Application Sympheos"
 
 msgid "The Sympheos application running in this DHIS2 instance."
-msgstr "L'application Sympheos exécutée dans cette instance DHIS2"
+msgstr "L'application Sympheos exécutée dans cette instance DHIS2."
 
 msgid "Device Gateway API"
 msgstr "API Passerelle de l'appareil"
@@ -2252,17 +2268,17 @@ msgid "Dashboard not found"
 msgstr "Tableau de bord introuvable"
 
 msgid "Failed to fetch dashboard data"
-msgstr "Échec de la récupération des données du tableau de bord."
+msgstr "Échec de la récupération des données du tableau de bord"
 
 msgid "Load dashboard failed"
 msgstr "Échec du chargement du tableau de bord"
 
 msgid "This dashboard could not be loaded. Please try again later."
 msgstr ""
-"Le tableau de bord n'a pas pu être chargé. Veuillez réessayer plus tard"
+"Le tableau de bord n'a pas pu être chargé. Veuillez réessayer plus tard."
 
 msgid "No Programs available."
-msgstr "Aucun programme disponible"
+msgstr "Aucun programme disponible."
 
 msgid "Plugins configuration restored successfully."
 msgstr "La configuration des plugins a été rétablie avec succès."
@@ -2292,6 +2308,9 @@ msgstr "Profil par défaut"
 msgid "Plugin Settings"
 msgstr "Réglages plugin"
 
+msgid "Device Programs Overwrite plugins configuration"
+msgstr "Programmes des appareils: Remplacer la configuration des modules"
+
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Device "
 "Programs? This action cannot be undone and the current configuration will be "
@@ -2300,6 +2319,9 @@ msgstr ""
 "Êtes-vous sûr de vouloir remplacer la configuration des plugins pour tous "
 "les programmes d'Appareil? Cette action ne peut pas être annulée et la "
 "configuration actuelle sera perdue."
+
+msgid "Stock Programs Overwrite plugins configuration"
+msgstr "Programmes des stocks: Remplacer la configuration des modules"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
