@@ -2261,7 +2261,7 @@ msgid "Plugin Settings"
 msgstr "Definições do Plugin"
 
 msgid "Device Programs Overwrite plugins configuration"
-msgstr "Programas dos dispositivos: Substituir a configuração dos módulos"
+msgstr "Programas dos dispositivos: Sobregravar a configuração dos plugins"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Device "
@@ -2273,7 +2273,7 @@ msgstr ""
 "configuração actual será perdida."
 
 msgid "Stock Programs Overwrite plugins configuration"
-msgstr "Programas do inventário: Substituir a configuração dos módulos"
+msgstr "Programas de stock: Sobregravar a configuração dos plugins"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
