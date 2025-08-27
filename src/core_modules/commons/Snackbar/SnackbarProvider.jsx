@@ -1,7 +1,7 @@
 // @flow
 import React, { useState } from 'react';
 import { AlertBar, AlertStack } from '@dhis2/ui';
-import { SnackbarContext } from 'commons/Snackbar/SnackbarContext';
+import { SnackbarContext, SnackbarSeverity } from 'commons/Snackbar/SnackbarContext';
 import type { Node, ComponentType } from 'react';
 import type { Snackbar } from 'commons/Snackbar/SnackbarContext';
 
@@ -34,9 +34,9 @@ export const SnackbarProvider: ComponentType<SnackbarProviderProps> = ({ childre
                             onHidden={() => handleClose(index)}
                             duration={snackbar.duration}
                             permanent={!snackbar.duration}
-                            critical={snackbar.severity === 'critical'}
-                            warning={snackbar.severity === 'warning'}
-                            success={snackbar.severity === 'success'}
+                            critical={snackbar.severity === SnackbarSeverity.CRITICAL}
+                            warning={snackbar.severity === SnackbarSeverity.WARNING}
+                            success={snackbar.severity === SnackbarSeverity.SUCCESS}
                         >
                             {snackbar.message}
                         </AlertBar>);

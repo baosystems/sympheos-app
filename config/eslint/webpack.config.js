@@ -1,8 +1,11 @@
 /* eslint-disable */
 const customAlias = require('./alias');
 
-const webpackConfig = { resolve: {
-    alias: customAlias
-} };
+const webpackConfig = {
+    resolve: {
+        extensions: ['.js', '.mjs', '.jsx', '.json'],
+        alias: customAlias
+    }
+};
 
 module.exports = webpackConfig;

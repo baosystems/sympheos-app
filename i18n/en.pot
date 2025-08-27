@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-07-01T16:07:43.436Z\n"
-"PO-Revision-Date: 2025-07-01T16:07:43.437Z\n"
+"POT-Creation-Date: 2025-08-22T21:27:40.996Z\n"
+"PO-Revision-Date: 2025-08-22T21:27:40.996Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2110,11 +2110,104 @@ msgstr "Page {{currentPage}}"
 msgid "Area on map saved"
 msgstr "Area on map saved"
 
+msgid "About"
+msgstr "About"
+
+msgid "DHIS2 Core"
+msgstr "DHIS2 Core"
+
+msgid "The DHIS2 version running in this instance."
+msgstr "The DHIS2 version running in this instance."
+
+msgid "Sympheos App"
+msgstr "Sympheos App"
+
+msgid "The Sympheos application running in this DHIS2 instance."
+msgstr "The Sympheos application running in this DHIS2 instance."
+
+msgid "Device Gateway API"
+msgstr "Device Gateway API"
+
+msgid "Sympheos Plugins and Dependencies"
+msgstr "Sympheos Plugins and Dependencies"
+
+msgid "Component"
+msgstr "Component"
+
+msgid "Version"
+msgstr "Version"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "No active dashboard to display"
+msgstr "No active dashboard to display"
+
+msgid "Dashboard not found"
+msgstr "Dashboard not found"
+
+msgid "Failed to fetch dashboard data"
+msgstr "Failed to fetch dashboard data"
+
 msgid "Load dashboard failed"
 msgstr "Load dashboard failed"
 
 msgid "This dashboard could not be loaded. Please try again later."
 msgstr "This dashboard could not be loaded. Please try again later."
+
+msgid "No Programs available."
+msgstr "No Programs available."
+
+msgid "Plugins configuration restored successfully."
+msgstr "Plugins configuration restored successfully."
+
+msgid "Error updating Data Store."
+msgstr "Error updating Data Store."
+
+msgid "Confirmation"
+msgstr "Confirmation"
+
+msgid "Continue"
+msgstr "Continue"
+
+msgid "Gateway Connectivity settings updated successfully."
+msgstr "Gateway Connectivity settings updated successfully."
+
+msgid "Gateway Connectivity Settings"
+msgstr "Gateway Connectivity Settings"
+
+msgid "Instance Type"
+msgstr "Instance Type"
+
+msgid "Default Profile"
+msgstr "Default Profile"
+
+msgid "Plugin Settings"
+msgstr "Plugin Settings"
+
+msgid "Device Programs Overwrite plugins configuration"
+msgstr "Device Programs: Overwrite plugins configuration"
+
+msgid ""
+"Are you sure that you want to overwrite plugins configuration for all "
+"Device Programs? This action cannot be undone and the current configuration "
+"will be lost."
+msgstr ""
+"Are you sure that you want to overwrite plugins configuration for all "
+"Device Programs? This action cannot be undone and the current configuration "
+"will be lost."
+
+msgid "Stock Programs Overwrite plugins configuration"
+msgstr "Stock Programs: Overwrite plugins configuration"
+
+msgid ""
+"Are you sure that you want to overwrite plugins configuration for all Stock "
+"Programs? This action cannot be undone and the current configuration will "
+"be lost."
+msgstr ""
+"Are you sure that you want to overwrite plugins configuration for all Stock "
+"Programs? This action cannot be undone and the current configuration will "
+"be lost."
 
 msgid "Compatibility mode"
 msgstr "Compatibility mode"

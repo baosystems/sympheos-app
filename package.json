@@ -1,7 +1,7 @@
 {
     "name": "sympheos",
-    "homepage": "./dashboard/overview",
-    "version": "1.0.1",
+    "homepage": "/dashboard/overview",
+    "version": "1.1.0-SNAPSHOT",
     "cacheVersion": "1",
     "license": "BSD-3-Clause",
     "private": true,
@@ -101,6 +101,8 @@
         "@dhis2/cli-utils-cypress": "^9.0.2",
         "@dhis2/cypress-commands": "^10.0.3",
         "@dhis2/cypress-plugins": "^10.0.3",
+        "@semantic-release/changelog": "^6.0.3",
+        "@semantic-release/git": "^10.0.1",
         "@typescript-eslint/eslint-plugin": "^4.33.0",
         "babel-plugin-module-resolver": "^5.0.0",
         "concurrently": "^8.2.2",
@@ -126,6 +128,7 @@
         "jsdoc-babel": "^0.5.0",
         "jsdoc-export-default-interop": "^0.3.1",
         "redux-devtools-extension": "^2.13.9",
+        "semantic-release": "^22",
         "wait-on": "^8.0.1"
     },
     "resolutions": {
@@ -135,6 +138,7 @@
         "@dhis2/ui": "^9.10.1",
         "@dhis2-ui/calendar": "^10.4.0",
         "@js-temporal/polyfill": "0.4.3",
+        "conventional-changelog-conventionalcommits": "^9.0.0",
         "core-js": "2.5.7",
         "i18next": "^20.5.0"
     },

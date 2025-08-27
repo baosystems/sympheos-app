@@ -1,0 +1,49 @@
+{
+    "leftColumn": [
+        {
+            "name": "ProfileWidget",
+            "settings": {
+                "readOnlyMode": false
+            },
+            "type": "component"
+        },
+        {
+            "name": "StagesAndEvents",
+            "type": "component"
+        }
+    ],
+    "rightColumn": [
+        {
+            "source": "Sympheos-Capture-Location-Plugin/plugin.html",
+            "type": "plugin"
+        },
+        {
+            "source": "Sympheos-Capture-Operations-Plugin/plugin.html",
+            "type": "plugin"
+        },
+        {
+            "name": "ErrorWidget",
+            "type": "component"
+        },
+        {
+            "name": "WarningWidget",
+            "type": "component"
+        },
+        {
+            "name": "FeedbackWidget",
+            "type": "component"
+        },
+        {
+            "name": "EnrollmentNote",
+            "type": "component"
+        },
+        {
+            "name": "IndicatorWidget",
+            "type": "component"
+        },
+        {
+            "name": "TrackedEntityRelationship",
+            "type": "component"
+        }
+    ]
+}

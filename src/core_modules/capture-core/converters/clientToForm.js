@@ -23,14 +23,14 @@ type RangeValue = {
 }
 
 function convertDateForEdit(rawValue: string): string {
-    return convertIsoToLocalCalendar(rawValue).split('T')[0]; // Return only the date part
+    return convertIsoToLocalCalendar(rawValue); // Return only the date part
 }
 
 function convertDateTimeForEdit(rawValue: string): DateTimeFormValue {
     const dateTime = moment(rawValue);
     const timeString = dateTime.format('HH:mm');
     return {
-        date: convertIsoToLocalCalendar(rawValue).split('T')[0],
+        date: convertIsoToLocalCalendar(rawValue),
         time: timeString,
     };
 }

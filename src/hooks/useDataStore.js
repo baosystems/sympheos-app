@@ -17,10 +17,12 @@ export const dsQuery = {
 export function useDataStore({ key, lazyUpdate = true, lazyGet = true }) {
     const [
         mutate,
-        called,
-        loadingUpdate,
-        errorUpdate,
-        dataUpdate,
+        {
+            called,
+            loading: loadingUpdate,
+            error: errorUpdate,
+            data: dataUpdate,
+        },
     ] = useDataMutation(updateQuery, {
         variables: { key },
         // eslint-disable-next-line no-console
@@ -28,7 +30,12 @@ export function useDataStore({ key, lazyUpdate = true, lazyGet = true }) {
         lazy: lazyUpdate,
     });
 
-    const { loading, error: errorQuery, data: dataQuery, refetch } = useDataQuery(dsQuery, {
+    const {
+        loading,
+        error: errorQuery,
+        data: dataQuery,
+        refetch,
+    } = useDataQuery(dsQuery, {
         variables: { key },
         // eslint-disable-next-line no-console
         onError: err => console.error(err),

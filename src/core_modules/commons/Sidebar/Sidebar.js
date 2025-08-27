@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CircularLoader } from '@dhis2/ui';
+import i18n from '@dhis2/d2-i18n';
 import { Link, useLocation } from 'react-router-dom';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { useUserLocale } from 'capture-core/utils/localeData/useUserLocale';
@@ -168,6 +169,17 @@ export const Sidebar = () => {
                 </li>);
                 return items;
             }, [])}
+            {buildItemComponent({
+                location,
+                isCollapsed,
+                item: {
+                    id: 'about',
+                    title: { default: i18n.t('About') },
+                    icon: 'FiInfo',
+                    link: '/about',
+                },
+                locale,
+            })}
         </ul>);
     };
 
@@ -193,8 +205,7 @@ export const Sidebar = () => {
                 }}
             >
                 {!isCollapsed && <p>
-                    Sympheos App<br />
-                    v{process.env.REACT_APP_VERSION}
+                    Sympheos App
                 </p>}
                 <button
                     onClick={toggleCollapse}

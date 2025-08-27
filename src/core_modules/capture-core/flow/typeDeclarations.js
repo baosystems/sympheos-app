@@ -194,8 +194,8 @@ declare class process {
         NODE_ENV: string,
         NODE_PATH: string,
         REACT_APP_CACHE_VERSION: string,
-        REACT_APP_DHIS2_DEVICE_GATEWAY_API: string
-
+        REACT_APP_DHIS2_DEVICE_GATEWAY_API: string,
+        REACT_APP_VERSION: string,
     }
 }
 
