@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-08-22T21:27:40.996Z\n"
-"PO-Revision-Date: 2025-08-22T21:27:40.996Z\n"
+"POT-Creation-Date: 2025-09-19T20:14:35.675Z\n"
+"PO-Revision-Date: 2025-09-19T20:14:35.676Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2182,11 +2182,14 @@ msgstr "Instance Type"
 msgid "Default Profile"
 msgstr "Default Profile"
 
+msgid "Working Lists Settings"
+msgstr "Working Lists Settings"
+
 msgid "Plugin Settings"
 msgstr "Plugin Settings"
 
 msgid "Device Programs Overwrite plugins configuration"
-msgstr "Device Programs: Overwrite plugins configuration"
+msgstr "Device Programs Overwrite plugins configuration"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all "
@@ -2198,7 +2201,7 @@ msgstr ""
 "will be lost."
 
 msgid "Stock Programs Overwrite plugins configuration"
-msgstr "Stock Programs: Overwrite plugins configuration"
+msgstr "Stock Programs Overwrite plugins configuration"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
@@ -2208,6 +2211,27 @@ msgstr ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
 "Programs? This action cannot be undone and the current configuration will "
 "be lost."
+
+msgid "Both fields are required"
+msgstr "Both fields are required"
+
+msgid "Invalid Tracker Program UID"
+msgstr "Invalid Tracker Program UID"
+
+msgid "Invalid Line List UID"
+msgstr "Invalid Line List UID"
+
+msgid "Add Working List"
+msgstr "Add Working List"
+
+msgid "No Working Lists Configured"
+msgstr "No Working Lists Configured"
+
+msgid "Tracker Program UID"
+msgstr "Tracker Program UID"
+
+msgid "Line List UID"
+msgstr "Line List UID"
 
 msgid "Compatibility mode"
 msgstr "Compatibility mode"

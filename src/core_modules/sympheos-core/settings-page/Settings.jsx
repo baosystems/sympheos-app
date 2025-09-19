@@ -17,6 +17,7 @@ import baseDeviceSettings from './devicePluginSettings';
 import baseStockSettings from './stockPluginSettings';
 
 import { useDataStore } from '../../../hooks/useDataStore';
+import { WorkingListsManager } from './WorkingListsManager';
 
 const optionSetsQuery = {
     results: {
@@ -52,7 +53,11 @@ const getOptions = (
 ));
 
 export const Settings = () => {
-    const { storeMutation, storeQuery } = useDataStore({ key: 'settings', lazyGet: false });
+    const {
+        storeMutation: settingsStoreMutation,
+        storeQuery: settingsStoreQuery,
+    } = useDataStore({ key: 'settings', lazyGet: false });
+
     const {
         loading: loadingOS,
         data: dataOS,
@@ -69,9 +74,9 @@ export const Settings = () => {
     const [saveDisabled, setSaveDisabled] = useState(true);
 
     const handleSubmit = () => {
-        storeMutation.mutate({
+        settingsStoreMutation.mutate({
             key: 'settings',
-            data: { ...storeQuery.data.results, gatewayConnectivity: formData },
+            data: { ...settingsStoreQuery.data.results, gatewayConnectivity: formData },
         }).then((value) => {
             if (value.httpStatus === 'OK') {
                 showSnackbar({
@@ -92,10 +97,10 @@ export const Settings = () => {
     };
 
     useEffect(() => {
-        if (!dataOS || !storeQuery.data) { return; }
+        if (!dataOS || !settingsStoreQuery.data) { return; }
 
-        if (storeQuery.data.results.gatewayConnectivity) {
-            setFormData(storeQuery.data.results.gatewayConnectivity);
+        if (settingsStoreQuery.data.results.gatewayConnectivity) {
+            setFormData(settingsStoreQuery.data.results.gatewayConnectivity);
         }
 
         setMappedOS(dataOS.results.optionSets.reduce((
@@ -108,15 +113,15 @@ export const Settings = () => {
             acc[cur.id] = cur.options;
             return acc;
         }, {}));
-    }, [dataOS, setMappedOS, storeQuery.data]);
+    }, [dataOS, setMappedOS, settingsStoreQuery.data]);
 
     useEffect(() => {
-        if (storeQuery.loading || dataOS || loadingOS) return;
+        if (settingsStoreQuery.loading || dataOS || loadingOS) return;
 
-        if (storeQuery?.data?.results) {
-            refetchOS({ idList: Object.values(storeQuery.data.results.optionSets || {}) });
+        if (settingsStoreQuery?.data?.results) {
+            refetchOS({ idList: Object.values(settingsStoreQuery.data.results.optionSets || {}) });
         }
-    }, [storeQuery, refetchOS, dataOS, loadingOS]);
+    }, [settingsStoreQuery, refetchOS, dataOS, loadingOS]);
 
     useEffect(() => {
         if (formData.instanceType !== 'fv7AZKEjynM') {
@@ -134,14 +139,14 @@ export const Settings = () => {
                         inputWidth="100%"
                         label={i18n.t('Instance Type')}
                         selected={formData.instanceType}
-                        loading={loadingOS || storeQuery.loading}
+                        loading={loadingOS || settingsStoreQuery.loading}
                         onChange={(event) => {
                             setFormData({ ...formData, instanceType: event.selected });
                             setSaveDisabled(false);
                         }}
                     >
-                        {mappedOS && storeQuery.data &&
-                            getOptions(mappedOS, storeQuery.data.results.optionSets.instanceType)
+                        {mappedOS && settingsStoreQuery.data &&
+                            getOptions(mappedOS, settingsStoreQuery.data.results.optionSets.instanceType)
                         }
                     </SingleSelectField>
                     <InputField
@@ -164,8 +169,8 @@ export const Settings = () => {
                                 setSaveDisabled(false);
                             }}
                         >
-                            {mappedOS && storeQuery.data &&
-                                getOptions(mappedOS, storeQuery.data.results.optionSets.defaultProfile)
+                            {mappedOS && settingsStoreQuery.data &&
+                                getOptions(mappedOS, settingsStoreQuery.data.results.optionSets.defaultProfile)
                             }
                         </SingleSelectField>
                     }
@@ -174,8 +179,11 @@ export const Settings = () => {
                         onClick={handleSubmit}
                         icon={<IconSave24 />}
                         disabled={saveDisabled || loadingOS}
-                        loading={storeMutation.loading}
+                        loading={settingsStoreMutation.loading}
                     >{i18n.t('Save changes')}</Button>
+
+                    <h2>{i18n.t('Working Lists Settings')}</h2>
+                    <WorkingListsManager />
 
                     <h2>{i18n.t('Plugin Settings')}</h2>
                     <PluginsRestorer
