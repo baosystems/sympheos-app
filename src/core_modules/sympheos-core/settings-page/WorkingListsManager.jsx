@@ -14,6 +14,7 @@ import {
     IconSave24,
     CircularLoader,
 } from '@dhis2/ui';
+import { useSnackbar } from 'commons/Snackbar/SnackbarContext';
 
 import 'sympheos-core/settings-page/settings-page.css';
 
@@ -26,6 +27,8 @@ export const WorkingListsManager = () => {
     } = useDataStore({ key: 'workingLists', lazyGet: false });
 
     const [enableSave, setEnableSave] = useState(false);
+    const { showSnackbar } = useSnackbar();
+
     const [workingLists, setWorkingLists] = useState([]);
     const [validations, setValidations] = useState({ saveReady: false, validations: {} });
     const idCounter = useRef(0);
@@ -57,7 +60,7 @@ export const WorkingListsManager = () => {
         const removedElement = workingLists[index];
         const newWorkingLists = workingLists.filter((_, i) => i !== index);
         delete validations.validations[index];
-        setValidations({ saveReady: !removedElement.isNew, validations: validations.validations });
+        setValidations({ saveReady: false, validations: validations.validations });
         setWorkingLists(newWorkingLists);
         if (!removedElement.isNew) {
             setEnableSave(true);
@@ -80,6 +83,10 @@ export const WorkingListsManager = () => {
                 validations.validations[i] = {
                     workingList: i18n.t('Invalid Line List UID'),
                 };
+            } else if (workingLists.filter(item => item.targetProgram === wl.targetProgram).length > 1) {
+                validations.validations[i] = {
+                    targetProgram: i18n.t('Tracker Program UID can only be configured once'),
+                };
             } else {
                 delete validations.validations[i];
             }
@@ -101,6 +108,12 @@ export const WorkingListsManager = () => {
             }),
         }).then(() => {
             workingListsStoreQuery.refetch();
+            showSnackbar({
+                key: 'wl-update-success',
+                message: i18n.t('Working Lists settings updated.'),
+                duration: 3000,
+                severity: 'success',
+            });
             setEnableSave(false);
             setValidations({ saveReady: false, validations: {} });
         });
@@ -162,15 +175,15 @@ export const WorkingListsManager = () => {
             <DataTable>
                 <TableHead>
                     <DataTableRow>
-                        <DataTableColumnHeader>{i18n.t('Tracker Program UID')}</DataTableColumnHeader>
-                        <DataTableColumnHeader>{i18n.t('Line List UID')}</DataTableColumnHeader>
-                        <DataTableColumnHeader />
+                        <DataTableColumnHeader width="45%">{i18n.t('Tracker Program UID')}</DataTableColumnHeader>
+                        <DataTableColumnHeader width="45%">{i18n.t('Line List UID')}</DataTableColumnHeader>
+                        <DataTableColumnHeader width="10%" />
                     </DataTableRow>
                 </TableHead>
                 <TableBody>
                     {workingLists.map((wlItem, index) => (
                         <DataTableRow key={wlItem.id}>
-                            <DataTableCell>
+                            <DataTableCell className="wl-cell">
                                 <InputField
                                     value={wlItem.targetProgram}
                                     onChange={event => handleTargetProgramChange(event, index)}
@@ -178,7 +191,7 @@ export const WorkingListsManager = () => {
                                     validationText={validations.validations[index]?.targetProgram || ''}
                                 />
                             </DataTableCell>
-                            <DataTableCell>
+                            <DataTableCell className="wl-cell">
                                 <InputField
                                     value={wlItem.workingList}
                                     error={!!validations.validations[index]?.workingList}
@@ -186,7 +199,7 @@ export const WorkingListsManager = () => {
                                     onChange={event => handleTargetWorkingListChange(event, index)}
                                 />
                             </DataTableCell>
-                            <DataTableCell className="actions-container">
+                            <DataTableCell className="wl-cell" align="center">
                                 <Button
                                     onClick={() => handleRemoveWorkingList(index)}
                                     icon={<IconDelete24 />}

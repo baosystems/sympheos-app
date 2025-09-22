@@ -4,13 +4,22 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    padding: 4em;
+    padding: 0 4em;
 }
 
 .settings-container {
     display: flex !important;
     flex-direction: column;
-    padding: 1em 4em;
+    width: 100%;
+    padding: 4em;
+    gap: 1em;
+}
+
+.settings-card-content {
+    display: flex !important;
+    flex-direction: column;
+    padding: 3em 6em;
+    width: 100%;
     gap: 1em;
 }
 
@@ -28,10 +37,8 @@
     gap: 1em;
 }
 
-.actions-container {
-    display: flex !important;
-    justify-content: center;
-    align-items: center;
+.wl-cell {
+    height: 7em;
 }
 
 h2 {

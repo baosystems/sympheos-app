@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-09-19T20:14:35.675Z\n"
-"PO-Revision-Date: 2025-09-19T20:14:35.676Z\n"
+"POT-Creation-Date: 2025-09-22T00:59:43.103Z\n"
+"PO-Revision-Date: 2025-09-22T00:59:43.104Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2220,6 +2220,12 @@ msgstr "Invalid Tracker Program UID"
 
 msgid "Invalid Line List UID"
 msgstr "Invalid Line List UID"
+
+msgid "Tracker Program UID can only be configured once"
+msgstr "Tracker Program UID can only be configured once"
+
+msgid "Working Lists settings updated."
+msgstr "Working Lists settings updated."
 
 msgid "Add Working List"
 msgstr "Add Working List"
