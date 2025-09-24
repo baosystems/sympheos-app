@@ -193,7 +193,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             return;
         }
         setLineList(workingListsDataStore.data?.results?.find(
-            wl => wl.targetProgram === request.queryParams.program)?.workingList);
+            wl => wl.targetProgram === request.queryParams?.program)?.workingList);
     }, [workingListsDataStore, lineList, setLineList, request]);
 
     if (!open) {
