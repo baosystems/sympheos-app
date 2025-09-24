@@ -57,14 +57,13 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     } = useDataQuery(eventVisualizationsQuery, { lazy: true });
 
     const {
-        data: analyticsEventsData,
         refetch: refetchAnalyticsEvents,
-        loading: analyticsEventsLoading,
     } = useDataQuery(analyticsEventsQuery, { lazy: true });
 
     const { storeQuery: workingListsDataStore } = useDataStore({ key: 'workingLists', lazyGet: false });
     const [lineList, setLineList] = useState(undefined);
     const [period, setPeriod] = useState(mainOptionKeys.TODAY);
+    const [processing, setProcessing] = useState(false);
 
     const getUrlEncodedParamsString = (params: Object) => {
         const { filter, ...restParams } = params;
@@ -80,7 +79,12 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     };
 
     const downloadCustomCSV = (workingList) => {
-        refetchEventVisualization({ id: workingList });
+        setProcessing(true);
+        if (!eventVisualizationData) {
+            refetchEventVisualization({ id: workingList });
+        } else {
+            buildAndRefetchAnalyticsEvents();
+        }
     };
 
     const renderButtons = () => {
@@ -132,6 +136,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
                         <Button
                             onClick={() => downloadCustomCSV(lineList)}
                             disabled={!period}
+                            loading={processing}
                         >{i18n.t('Download custom CSV')}</Button>
                     </div>
                 }
@@ -139,11 +144,8 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         );
     };
 
-    useEffect(() => {
+    const buildAndRefetchAnalyticsEvents = () => {
         const eventVisualization = eventVisualizationData?.results;
-        if (!lineList || !eventVisualization || eventVisualizationLoading) {
-            return;
-        }
         const columns = eventVisualization.columnDimensions
             .filter(d => d !== 'ou')
             .map(d => d.split('.')
@@ -164,22 +166,41 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             stage: request.queryParams?.programStage,
         };
 
-        refetchAnalyticsEvents({ id: request.queryParams?.program, params });
+        refetchAnalyticsEvents({ id: request.queryParams?.program, params }).then((data) => {
+            downloadCSV(data);
+        });
+    };
 
-        // /api/analytics/events/query/${programId}?
-        // dimension=ou:${map->simpleDimension[ou].values[0]},${columns}
-        // &headers=ouname,${columns}&displayProperty=NAME&pageSize=1000000
-        // &includeMetadataDetails=true&outputType=EVENT&stage=${programStageId}
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [eventVisualizationData, eventVisualizationLoading]);
+    const downloadCSV = (data) => {
+        const csvContent = [];
+        if (data?.results?.headers) {
+            csvContent.push(data.results.headers.map(h => `"${h.column.replace(/"/g, '""')}"`).join(','));
+        }
+        if (data?.results?.rows) {
+            data.results.rows.forEach((row) => {
+                csvContent.push(row.map(cell => `"${(cell || '').toString().replace(/"/g, '""')}"`).join(','));
+            });
+        }
+        const csvBlob = new Blob([csvContent.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(csvBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `Working List - ${request.queryParams?.program || 'Events'} - ${period}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+        setProcessing(false);
+    };
 
     useEffect(() => {
-        const dataToCSV = analyticsEventsData?.results;
-        if (!lineList || !dataToCSV || analyticsEventsLoading) {
+        const eventVisualization = eventVisualizationData?.results;
+        if (!lineList || !eventVisualization || eventVisualizationLoading) {
             return;
         }
-        console.log('Downloading custom CSV with data:', dataToCSV);
-    }, [analyticsEventsData, analyticsEventsLoading, lineList]);
+        buildAndRefetchAnalyticsEvents();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [eventVisualizationData, eventVisualizationLoading]);
 
     useEffect(() => {
         setLineList(undefined);
