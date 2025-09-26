@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-09-23T13:54:07.729Z\n"
-"PO-Revision-Date: 2025-09-23T13:54:07.729Z\n"
+"POT-Creation-Date: 2025-09-26T20:32:51.811Z\n"
+"PO-Revision-Date: 2025-09-26T20:32:51.811Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2158,6 +2158,15 @@ msgstr "Load dashboard failed"
 msgid "This dashboard could not be loaded. Please try again later."
 msgstr "This dashboard could not be loaded. Please try again later."
 
+msgid "Filter Programs"
+msgstr "Filter Programs"
+
+msgid "Allow create records"
+msgstr "Allow create records"
+
+msgid "Disable create records"
+msgstr "Disable create records"
+
 msgid "No Programs available."
 msgstr "No Programs available."
 
@@ -2184,6 +2193,9 @@ msgstr "Instance Type"
 
 msgid "Default Profile"
 msgstr "Default Profile"
+
+msgid "Capture Settings"
+msgstr "Capture Settings"
 
 msgid "Working Lists Settings"
 msgstr "Working Lists Settings"

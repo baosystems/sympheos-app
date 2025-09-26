@@ -18,6 +18,7 @@ import baseStockSettings from './stockPluginSettings';
 
 import { useDataStore } from '../../../hooks/useDataStore';
 import { WorkingListsManager } from './WorkingListsManager';
+import { EventCreationBlacklist } from './EventCreationBlacklist';
 
 const optionSetsQuery = {
     results: {
@@ -182,6 +183,9 @@ export const Settings = () => {
                             disabled={saveDisabled || loadingOS}
                             loading={settingsStoreMutation.loading}
                         >{i18n.t('Save changes')}</Button>
+
+                        <h2>{i18n.t('Capture Settings')}</h2>
+                        <EventCreationBlacklist />
 
                         <h2>{i18n.t('Working Lists Settings')}</h2>
                         <WorkingListsManager />
