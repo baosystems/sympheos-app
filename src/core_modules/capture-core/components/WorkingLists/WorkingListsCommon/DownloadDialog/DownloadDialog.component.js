@@ -92,6 +92,14 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     const downloadCustomCSV = (workingList) => {
         setProcessing(true);
         setDateValidationError(undefined);
+        if (period === 'RANGE') {
+            const dateError = checkDateError(startDateForm?.calendarDateString, endDateForm?.calendarDateString);
+            if (dateError) {
+                setDateValidationError(dateError);
+                setProcessing(false);
+                return;
+            }
+        }
         if (!eventVisualizationData) {
             refetchEventVisualization({ id: workingList });
         } else {
@@ -229,7 +237,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     const downloadCSV = (data) => {
         let fileName = period;
         if (period === 'RANGE') {
-            fileName = `${startDateForm?.calendarDateString} to ${endDateForm?.calendarDateString}`;
+            fileName = `${startDateForm?.calendarDateString || '-'} to ${endDateForm?.calendarDateString || '-'}`;
         } else if (period === 'YTD') {
             const today = new Date();
             fileName = `${today.getFullYear()} up to (${today.toISOString().split('T')[0]})`;
@@ -260,15 +268,6 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         const eventVisualization = eventVisualizationData?.results;
         if (!lineList || !eventVisualization || eventVisualizationLoading) {
             return;
-        }
-
-        if (period === 'RANGE') {
-            const dateError = checkDateError(startDateForm?.calendarDateString, endDateForm?.calendarDateString);
-            if (dateError) {
-                setDateValidationError(dateError);
-                setProcessing(false);
-                return;
-            }
         }
 
         buildAndRefetchAnalyticsEvents();
