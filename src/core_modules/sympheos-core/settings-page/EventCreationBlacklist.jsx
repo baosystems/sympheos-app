@@ -1,21 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import i18n from '@dhis2/d2-i18n';
 import {
-    IconAdd24,
-    Button,
-    DataTable,
-    DataTableRow,
-    DataTableColumnHeader,
-    DataTableCell,
-    InputField,
-    TableHead,
-    TableBody,
-    IconDelete24,
-    IconSave24,
-    CircularLoader,
     Transfer,
 } from '@dhis2/ui';
-import { useSnackbar } from 'commons/Snackbar/SnackbarContext';
 
 import { useDataQuery } from '@dhis2/app-runtime';
 import 'sympheos-core/settings-page/settings-page.css';

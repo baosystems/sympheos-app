@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-09-26T20:32:51.811Z\n"
-"PO-Revision-Date: 2025-09-26T20:32:51.811Z\n"
+"POT-Creation-Date: 2025-10-03T02:49:29.406Z\n"
+"PO-Revision-Date: 2025-10-03T02:49:29.406Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1957,17 +1957,35 @@ msgstr "Show Less"
 msgid "Show All"
 msgstr "Show All"
 
+msgid "Please select both start and end dates"
+msgstr "Please select both start and end dates"
+
+msgid "Start date must be before end date"
+msgstr "Start date must be before end date"
+
+msgid "Last 30 days"
+msgstr "Last 30 days"
+
+msgid "Last 60 days"
+msgstr "Last 60 days"
+
+msgid "Last 90 days"
+msgstr "Last 90 days"
+
+msgid "Year to date"
+msgstr "Year to date"
+
 msgid "Download as JSON"
 msgstr "Download as JSON"
 
 msgid "Download as CSV"
 msgstr "Download as CSV"
 
-msgid "Download custom CSV"
-msgstr "Download custom CSV"
-
 msgid "Download with current filters"
 msgstr "Download with current filters"
+
+msgid "Download custom CSV"
+msgstr "Download custom CSV"
 
 msgid "An error has occured. See log for details"
 msgstr "An error has occured. See log for details"

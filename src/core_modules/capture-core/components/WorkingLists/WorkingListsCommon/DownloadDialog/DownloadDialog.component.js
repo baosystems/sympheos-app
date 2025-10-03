@@ -3,21 +3,27 @@ import React, { useEffect, useState } from 'react';
 import i18n from '@dhis2/d2-i18n';
 import { withStyles } from '@material-ui/core/styles';
 import { featureAvailable, FEATURES } from 'capture-core-utils';
-import { Button, Modal, ModalTitle, ModalContent, ModalActions, Radio } from '@dhis2/ui';
+import { Button, Modal, ModalTitle, ModalContent, ModalActions, Radio, CalendarInput } from '@dhis2/ui';
 import { useDataQuery } from '@dhis2/app-runtime';
-import { mainOptionKeys } from 'capture-core/components/FiltersForTypes/Date/options';
 import type { PlainProps } from './DownloadDialog.types';
 
 import { useDataStore } from '../../../../../../hooks/useDataStore';
 
+const checkDateError = (startDate, endDate) => {
+    if (!startDate || !endDate) {
+        return i18n.t('Please select both start and end dates');
+    } else if (new Date(startDate).getTime() > new Date(endDate).getTime()) {
+        return i18n.t('Start date must be before end date');
+    }
+    return undefined;
+};
+
 const periodOptions = {
-    [mainOptionKeys.TODAY]: i18n.t('Today'),
-    [mainOptionKeys.THIS_WEEK]: i18n.t('This week'),
-    [mainOptionKeys.THIS_MONTH]: i18n.t('This month'),
-    [mainOptionKeys.THIS_YEAR]: i18n.t('This Year'),
-    [mainOptionKeys.LAST_WEEK]: i18n.t('Last week'),
-    [mainOptionKeys.LAST_MONTH]: i18n.t('Last month'),
-    [mainOptionKeys.LAST_3_MONTHS]: i18n.t('Last 3 months'),
+    LAST_30_DAYS: i18n.t('Last 30 days'),
+    LAST_60_DAYS: i18n.t('Last 60 days'),
+    LAST_90_DAYS: i18n.t('Last 90 days'),
+    YTD: i18n.t('Year to date'),
+    RANGE: i18n.t('Absolute range'),
 };
 
 const getStyles = () => ({
@@ -49,6 +55,7 @@ const analyticsEventsQuery = {
         params: ({ params }) => params,
     },
 };
+
 const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, classes, hasCSVSupport }: PlainProps) => {
     const {
         data: eventVisualizationData,
@@ -62,7 +69,11 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
 
     const { storeQuery: workingListsDataStore } = useDataStore({ key: 'workingLists', lazyGet: false });
     const [lineList, setLineList] = useState(undefined);
-    const [period, setPeriod] = useState(mainOptionKeys.TODAY);
+    const [period, setPeriod] = useState('LAST_30_DAYS');
+    const [startDateForm, setStartDateForm] = useState(null);
+    const [endDateForm, setEndDateForm] = useState(null);
+    const [dateValidationError, setDateValidationError] = useState(undefined);
+
     const [processing, setProcessing] = useState(false);
 
     const getUrlEncodedParamsString = (params: Object) => {
@@ -80,12 +91,42 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
 
     const downloadCustomCSV = (workingList) => {
         setProcessing(true);
+        setDateValidationError(undefined);
         if (!eventVisualizationData) {
             refetchEventVisualization({ id: workingList });
         } else {
             buildAndRefetchAnalyticsEvents();
         }
     };
+
+    const renderDateRange = () => (<div
+        style={{
+            display: 'flex',
+            alignItems: 'flex-start',
+            gap: '1em',
+            margin: '0.5em 1em 1em 2em',
+        }}
+    >
+        <CalendarInput
+            label={i18n.t('From')}
+            placeholder={i18n.t('From')}
+            calendar="gregory"
+            disabled={period !== 'RANGE'}
+            date={period !== 'RANGE' ? '' : startDateForm?.calendarDateString}
+            validationText={dateValidationError || ''}
+            error={!!dateValidationError}
+            onDateSelect={setStartDateForm}
+        />
+        <CalendarInput
+            label={i18n.t('To')}
+            placeholder={i18n.t('To')}
+            calendar="gregory"
+            disabled={period !== 'RANGE'}
+            date={period !== 'RANGE' ? '' : endDateForm?.calendarDateString}
+            error={!!dateValidationError}
+            onDateSelect={setEndDateForm}
+        />
+    </div>);
 
     const renderButtons = () => {
         const url = `${absoluteApiPath}/${request.url}`;
@@ -123,7 +164,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
                     </div>
                 }
                 {lineList &&
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
                         {Object.keys(periodOptions).map(key => (
                             <Radio
                                 key={key}
@@ -133,11 +174,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
                                 onChange={() => setPeriod(key)}
                             />
                         ))}
-                        <Button
-                            onClick={() => downloadCustomCSV(lineList)}
-                            disabled={!period}
-                            loading={processing}
-                        >{i18n.t('Download custom CSV')}</Button>
+                        {renderDateRange()}
                     </div>
                 }
             </div>
@@ -156,14 +193,32 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             .find(dim => dim.dimension === 'ou');
         const orgUnit = ouDimension ? `ou:${ouDimension.values[0]},` : '';
 
+        let periodDim = '';
+        let startDate;
+        let endDate;
+
+        if (period === 'RANGE') {
+            startDate = startDateForm?.calendarDateString;
+            endDate = endDateForm?.calendarDateString;
+        } else if (period === 'YTD') {
+            const today = new Date();
+            const currentYear = today.getFullYear();
+            startDate = `${currentYear}-01-01`;
+            endDate = today.toISOString().split('T')[0];
+        } else {
+            periodDim = `,pe:${period}`;
+        }
+
         const params = {
-            dimension: `${orgUnit}${columns},pe:${period}`,
+            dimension: `${orgUnit}${columns}${periodDim}`,
             headers: `${ouDimension ? 'ouname,' : ''}${columns}`,
             displayProperty: 'NAME',
             pageSize: 1000000,
             includeMetadataDetails: true,
             outputType: 'EVENT',
             stage: request.queryParams?.programStage,
+            startDate,
+            endDate,
         };
 
         refetchAnalyticsEvents({ id: request.queryParams?.program, params }).then((data) => {
@@ -172,6 +227,14 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     };
 
     const downloadCSV = (data) => {
+        let fileName = period;
+        if (period === 'RANGE') {
+            fileName = `${startDateForm?.calendarDateString} to ${endDateForm?.calendarDateString}`;
+        } else if (period === 'YTD') {
+            const today = new Date();
+            fileName = `${today.getFullYear()} up to (${today.toISOString().split('T')[0]})`;
+        }
+
         const csvContent = [];
         if (data?.results?.headers) {
             csvContent.push(data.results.headers.map(h => `"${h.column.replace(/"/g, '""')}"`).join(','));
@@ -185,7 +248,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         const url = URL.createObjectURL(csvBlob);
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', `Working List - ${request.queryParams?.program || 'Events'} - ${period}.csv`);
+        link.setAttribute('download', `Working List - ${request.queryParams?.program || 'Events'} - ${fileName}.csv`);
         document.body?.appendChild(link);
         link.click();
         document.body?.removeChild(link);
@@ -198,6 +261,16 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         if (!lineList || !eventVisualization || eventVisualizationLoading) {
             return;
         }
+
+        if (period === 'RANGE') {
+            const dateError = checkDateError(startDateForm?.calendarDateString, endDateForm?.calendarDateString);
+            if (dateError) {
+                setDateValidationError(dateError);
+                setProcessing(false);
+                return;
+            }
+        }
+
         buildAndRefetchAnalyticsEvents();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [eventVisualizationData, eventVisualizationLoading]);
@@ -226,6 +299,15 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             <ModalTitle>{i18n.t('Download with current filters')}</ModalTitle>
             <ModalContent>{renderButtons()}</ModalContent>
             <ModalActions>
+                {lineList &&
+                    <div className={classes.downloadLinkContainer}>
+                        <Button
+                            onClick={() => downloadCustomCSV(lineList)}
+                            disabled={!period || (period === 'RANGE' && !(startDateForm && endDateForm))}
+                            loading={processing}
+                        >{i18n.t('Download custom CSV')}</Button>
+                    </div>
+                }
                 <Button onClick={onClose} color="primary">
                     {i18n.t('Close')}
                 </Button>
