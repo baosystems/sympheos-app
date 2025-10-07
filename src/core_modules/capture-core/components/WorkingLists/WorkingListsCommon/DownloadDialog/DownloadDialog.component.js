@@ -101,7 +101,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             }
         }
         if (!eventVisualizationData) {
-            refetchEventVisualization({ id: workingList });
+            refetchEventVisualization({ id: workingList.workingList });
         } else {
             buildAndRefetchAnalyticsEvents();
         }
@@ -225,6 +225,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             includeMetadataDetails: true,
             outputType: 'EVENT',
             stage: request.queryParams?.programStage,
+            timeField: lineList?.timeField,
             startDate,
             endDate,
         };
@@ -285,8 +286,10 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             || !request.queryParams?.programStage) {
             return;
         }
-        setLineList(workingListsDataStore.data?.results?.find(
-            wl => wl.targetProgram === request.queryParams?.program)?.workingList);
+        const workingList = workingListsDataStore.data?.results?.find(
+            wl => wl.targetProgram === request.queryParams?.program,
+        );
+        setLineList(workingList);
     }, [workingListsDataStore, lineList, setLineList, request]);
 
     if (!open) {

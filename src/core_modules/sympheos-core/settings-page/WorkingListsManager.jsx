@@ -20,6 +20,50 @@ import 'sympheos-core/settings-page/settings-page.css';
 
 import { useDataStore } from '../../../hooks/useDataStore';
 
+const validationsList = [
+    ({ wl }) => {
+        if (wl.targetProgram.trim() === '' || wl.workingList.trim() === '') {
+            return {
+                targetProgram: i18n.t('Both fields are required'),
+                workingList: i18n.t('Both fields are required'),
+            };
+        }
+        return null;
+    },
+    ({ wl }) => {
+        if (!wl.targetProgram.match(/^[A-Za-z][A-Za-z0-9]{10}$/)) {
+            return {
+                targetProgram: i18n.t('Invalid Tracker Program UID'),
+            };
+        }
+        return null;
+    },
+    ({ wl }) => {
+        if (!wl.workingList.match(/^[A-Za-z][A-Za-z0-9]{10}$/)) {
+            return {
+                workingList: i18n.t('Invalid Line List UID'),
+            };
+        }
+        return null;
+    },
+    ({ wl, workingLists }) => {
+        if (workingLists.filter(item => item.targetProgram === wl.targetProgram).length > 1) {
+            return {
+                targetProgram: i18n.t('Tracker Program UID can only be configured once'),
+            };
+        }
+        return null;
+    },
+    ({ wl }) => {
+        if (wl.timeField && wl.timeField.trim() !== '' && !wl.timeField.match(/^[A-Za-z][A-Za-z0-9]{10}$/)) {
+            return {
+                timeField: i18n.t('Invalid Time Field UID'),
+            };
+        }
+        return null;
+    },
+];
+
 export const WorkingListsManager = () => {
     const {
         storeMutation: workingListsStoreMutation,
@@ -55,6 +99,13 @@ export const WorkingListsManager = () => {
         setEnableSave(true);
     };
 
+    const handleTargetTimeFieldChange = (event, index) => {
+        const newWorkingLists = [...workingLists];
+        newWorkingLists[index].timeField = event.value;
+        setWorkingLists(newWorkingLists);
+        setEnableSave(true);
+    };
+
     const handleRemoveWorkingList = (index) => {
         // remove item from workingLists and return the new array and the element
         const removedElement = workingLists[index];
@@ -67,26 +118,22 @@ export const WorkingListsManager = () => {
         }
     };
 
+    const validateWorkingList = (wl) => {
+        for (const validation of validationsList) {
+            const error = validation({ wl, workingLists });
+            if (error) {
+                return error;
+            }
+        }
+        return null;
+    };
+
     const handleSaveWorkingLists = () => {
         for (let i = 0; i < workingLists.length; i++) {
             const wl = workingLists[i];
-            if (wl.targetProgram.trim() === '' || wl.workingList.trim() === '') {
-                validations.validations[i] = {
-                    targetProgram: i18n.t('Both fields are required'),
-                    workingList: i18n.t('Both fields are required'),
-                };
-            } else if (!wl.targetProgram.match(/^[A-Za-z][A-Za-z0-9]{10}$/)) {
-                validations.validations[i] = {
-                    targetProgram: i18n.t('Invalid Tracker Program UID'),
-                };
-            } else if (!wl.workingList.match(/^[A-Za-z][A-Za-z0-9]{10}$/)) {
-                validations.validations[i] = {
-                    workingList: i18n.t('Invalid Line List UID'),
-                };
-            } else if (workingLists.filter(item => item.targetProgram === wl.targetProgram).length > 1) {
-                validations.validations[i] = {
-                    targetProgram: i18n.t('Tracker Program UID can only be configured once'),
-                };
+            const validationError = validateWorkingList(wl);
+            if (validationError) {
+                validations.validations[i] = validationError;
             } else {
                 delete validations.validations[i];
             }
@@ -117,7 +164,7 @@ export const WorkingListsManager = () => {
             setEnableSave(false);
             setValidations({ saveReady: false, validations: {} });
         });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [validations]);
 
     useEffect(() => {
@@ -144,7 +191,7 @@ export const WorkingListsManager = () => {
             idCounter.current = results.length;
             setWorkingLists(results);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         workingListsStoreQuery.loading,
         workingListsStoreMutation.loading,
@@ -175,15 +222,18 @@ export const WorkingListsManager = () => {
             <DataTable>
                 <TableHead>
                     <DataTableRow>
-                        <DataTableColumnHeader width="45%">{i18n.t('Tracker Program UID')}</DataTableColumnHeader>
-                        <DataTableColumnHeader width="45%">{i18n.t('Line List UID')}</DataTableColumnHeader>
+                        <DataTableColumnHeader width="30%">{i18n.t('Tracker Program UID')}</DataTableColumnHeader>
+                        <DataTableColumnHeader width="30%">{i18n.t('Line List UID')}</DataTableColumnHeader>
+                        <DataTableColumnHeader width="30%">
+                            {i18n.t('Time field for Date filters')}
+                        </DataTableColumnHeader>
                         <DataTableColumnHeader width="10%" />
                     </DataTableRow>
                 </TableHead>
                 <TableBody>
                     {workingLists.map((wlItem, index) => (
                         <DataTableRow key={wlItem.id}>
-                            <DataTableCell className="wl-cell">
+                            <DataTableCell large>
                                 <InputField
                                     value={wlItem.targetProgram}
                                     onChange={event => handleTargetProgramChange(event, index)}
@@ -191,7 +241,7 @@ export const WorkingListsManager = () => {
                                     validationText={validations.validations[index]?.targetProgram || ''}
                                 />
                             </DataTableCell>
-                            <DataTableCell className="wl-cell">
+                            <DataTableCell large>
                                 <InputField
                                     value={wlItem.workingList}
                                     error={!!validations.validations[index]?.workingList}
@@ -199,7 +249,16 @@ export const WorkingListsManager = () => {
                                     onChange={event => handleTargetWorkingListChange(event, index)}
                                 />
                             </DataTableCell>
-                            <DataTableCell className="wl-cell" align="center">
+                            <DataTableCell large><InputField
+                                value={wlItem.timeField}
+                                error={!!validations.validations[index]?.timeField}
+                                validationText={validations.validations[index]?.timeField || ''}
+                                helpText={i18n.t(
+                                    '(Optional) Data Element or Tracked Entity Attribute UID. Default is Event Date.',
+                                )}
+                                onChange={event => handleTargetTimeFieldChange(event, index)}
+                            /></DataTableCell>
+                            <DataTableCell large align="center">
                                 <Button
                                     onClick={() => handleRemoveWorkingList(index)}
                                     icon={<IconDelete24 />}

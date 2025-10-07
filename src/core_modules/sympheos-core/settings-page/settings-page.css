@@ -28,17 +28,12 @@
     justify-content: flex-end;
     align-items: center;
     gap: 1em;
-    margin-bottom: 1em;
 }
 
 .working-lists-container {
     display: flex !important;
     flex-direction: column;
     gap: 1em;
-}
-
-.wl-cell {
-    height: 7em;
 }
 
 h2 {
