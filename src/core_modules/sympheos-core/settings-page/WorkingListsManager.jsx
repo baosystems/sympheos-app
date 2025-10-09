@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import i18n from '@dhis2/d2-i18n';
+import { useDataQuery } from '@dhis2/app-runtime';
 import {
     IconAdd24,
     Button,
@@ -13,6 +14,8 @@ import {
     IconDelete24,
     IconSave24,
     CircularLoader,
+    SingleSelectField,
+    SingleSelectOption,
 } from '@dhis2/ui';
 import { useSnackbar } from 'commons/Snackbar/SnackbarContext';
 
@@ -20,12 +23,32 @@ import 'sympheos-core/settings-page/settings-page.css';
 
 import { useDataStore } from '../../../hooks/useDataStore';
 
+const programsQuery = {
+    results: {
+        resource: 'programs',
+        params: {
+            fields: 'id,displayName',
+            paging: 'false',
+        },
+    },
+};
+
+const lineListsQuery = {
+    results: {
+        resource: 'eventVisualizations',
+        params: {
+            fields: 'id,displayName,sharing',
+            paging: 'false',
+            filter: 'type:eq:LINE_LIST',
+        },
+    },
+};
+
 const validationsList = [
     ({ wl }) => {
-        if (wl.targetProgram.trim() === '' || wl.workingList.trim() === '') {
+        if (!wl.targetProgram) {
             return {
-                targetProgram: i18n.t('Both fields are required'),
-                workingList: i18n.t('Both fields are required'),
+                targetProgram: i18n.t('A Program is required'),
             };
         }
         return null;
@@ -33,7 +56,23 @@ const validationsList = [
     ({ wl }) => {
         if (!wl.targetProgram.match(/^[A-Za-z][A-Za-z0-9]{10}$/)) {
             return {
-                targetProgram: i18n.t('Invalid Tracker Program UID'),
+                targetProgram: i18n.t('Invalid Program UID'),
+            };
+        }
+        return null;
+    },
+    ({ wl, workingLists }) => {
+        if (workingLists.filter(item => item.targetProgram === wl.targetProgram).length > 1) {
+            return {
+                targetProgram: i18n.t('Program UID can only be configured once'),
+            };
+        }
+        return null;
+    },
+    ({ wl }) => {
+        if (!wl.workingList) {
+            return {
+                workingList: i18n.t('A Line List is required'),
             };
         }
         return null;
@@ -42,14 +81,6 @@ const validationsList = [
         if (!wl.workingList.match(/^[A-Za-z][A-Za-z0-9]{10}$/)) {
             return {
                 workingList: i18n.t('Invalid Line List UID'),
-            };
-        }
-        return null;
-    },
-    ({ wl, workingLists }) => {
-        if (workingLists.filter(item => item.targetProgram === wl.targetProgram).length > 1) {
-            return {
-                targetProgram: i18n.t('Tracker Program UID can only be configured once'),
             };
         }
         return null;
@@ -64,11 +95,140 @@ const validationsList = [
     },
 ];
 
+const SingleSelectFieldMemo = React.memo(({ value, onChange, optionElems, error, warning, validationText }) => (
+    <SingleSelectField
+        clearable
+        selected={value}
+        onChange={onChange}
+        error={error}
+        warning={warning}
+        validationText={validationText}
+    >
+        {optionElems}
+    </SingleSelectField>
+));
+
+const getTableBody = ({
+    workingLists,
+    dataLineLists,
+    loadingLineLists,
+    dataPrograms,
+    loadingPrograms,
+    validations,
+    handleTargetProgramChange,
+    handleTargetWorkingListChange,
+    handleTargetTimeFieldChange,
+    handleRemoveWorkingList,
+}) => {
+    if (loadingLineLists || loadingPrograms) {
+        return (<DataTableRow>
+            <DataTableCell large colSpan="4">
+                <CircularLoader />
+            </DataTableCell>
+        </DataTableRow>);
+    }
+
+    const programs = dataPrograms?.results?.programs;
+
+    const programElems = programs?.map(({ id, displayName }) => (
+        <SingleSelectOption
+            key={id}
+            value={id}
+            label={displayName}
+        />
+    )) || [];
+
+    const eventVisualizations = dataLineLists?.results?.eventVisualizations;
+
+    const getLineListValidationText = ({ notFoundError, notPubliclyAvailable }) => {
+        let validationText = '';
+        if (notPubliclyAvailable) {
+            validationText = i18n.t('This Line List is not publicly available. Users may not be able to access it.');
+        } else if (notFoundError) {
+            validationText = i18n.t('You have no access to this Line List or it does not exist');
+        }
+        return validationText;
+    };
+
+    const LineListSelector = React.memo(({ wlItem, lineListElems, index }) => {
+        const selectedWl = eventVisualizations.find(ev => ev.id === wlItem.workingList);
+        const publicSharing = selectedWl?.sharing?.publicAccess || '--------';
+        const notPubliclyAvailable = wlItem.workingList && publicSharing[0] === '-';
+        const notFoundError = !selectedWl && wlItem.workingList;
+
+        return (<SingleSelectFieldMemo
+            optionElems={lineListElems}
+            value={selectedWl?.id || ''}
+            error={!!validations.validations[index]?.workingList || notFoundError}
+            warning={notPubliclyAvailable}
+            validationText={
+                validations.validations[index]?.workingList ||
+                getLineListValidationText({ notFoundError, notPubliclyAvailable })
+            }
+            onChange={event => handleTargetWorkingListChange(event, index)}
+        />);
+    });
+
+    const lineListElems = eventVisualizations?.map(({ id, displayName }) => (
+        <SingleSelectOption
+            key={id}
+            value={id}
+            label={displayName}
+        />
+    )) || [];
+
+    return (workingLists.map((wlItem, index) => (<DataTableRow key={wlItem.id}>
+        <DataTableCell large>
+            <SingleSelectFieldMemo
+                optionElems={programElems}
+                value={wlItem.targetProgram}
+                onChange={event => handleTargetProgramChange(event, index)}
+                error={!!validations.validations[index]?.targetProgram}
+                validationText={validations.validations[index]?.targetProgram || ''}
+            />
+        </DataTableCell>
+        <DataTableCell large>
+            <LineListSelector
+                wlItem={wlItem}
+                lineListElems={lineListElems}
+                index={index}
+            />
+        </DataTableCell>
+        <DataTableCell large><InputField
+            value={wlItem.timeField}
+            error={!!validations.validations[index]?.timeField}
+            validationText={validations.validations[index]?.timeField || ''}
+            helpText={i18n.t(
+                '(Optional) Data Element or Tracked Entity Attribute UID. Default is Event Date.',
+            )}
+            onChange={event => handleTargetTimeFieldChange(event, index)}
+        /></DataTableCell>
+        <DataTableCell large align="center">
+            <Button
+                onClick={() => handleRemoveWorkingList(index)}
+                icon={<IconDelete24 />}
+                destructive
+            />
+        </DataTableCell>
+    </DataTableRow>
+    )));
+};
+
 export const WorkingListsManager = () => {
     const {
         storeMutation: workingListsStoreMutation,
         storeQuery: workingListsStoreQuery,
     } = useDataStore({ key: 'workingLists', lazyGet: false });
+
+    const {
+        loading: loadingPrograms,
+        data: dataPrograms,
+    } = useDataQuery(programsQuery, { lazy: false });
+
+    const {
+        loading: loadingLineLists,
+        data: dataLineLists,
+    } = useDataQuery(lineListsQuery, { lazy: false });
 
     const [enableSave, setEnableSave] = useState(false);
     const { showSnackbar } = useSnackbar();
@@ -87,14 +247,14 @@ export const WorkingListsManager = () => {
 
     const handleTargetProgramChange = (event, index) => {
         const newWorkingLists = [...workingLists];
-        newWorkingLists[index].targetProgram = event.value;
+        newWorkingLists[index].targetProgram = event.selected;
         setWorkingLists(newWorkingLists);
         setEnableSave(true);
     };
 
     const handleTargetWorkingListChange = (event, index) => {
         const newWorkingLists = [...workingLists];
-        newWorkingLists[index].workingList = event.value;
+        newWorkingLists[index].workingList = event.selected;
         setWorkingLists(newWorkingLists);
         setEnableSave(true);
     };
@@ -222,8 +382,8 @@ export const WorkingListsManager = () => {
             <DataTable>
                 <TableHead>
                     <DataTableRow>
-                        <DataTableColumnHeader width="30%">{i18n.t('Tracker Program UID')}</DataTableColumnHeader>
-                        <DataTableColumnHeader width="30%">{i18n.t('Line List UID')}</DataTableColumnHeader>
+                        <DataTableColumnHeader width="30%">{i18n.t('Program')}</DataTableColumnHeader>
+                        <DataTableColumnHeader width="30%">{i18n.t('Line List')}</DataTableColumnHeader>
                         <DataTableColumnHeader width="30%">
                             {i18n.t('Time field for Date filters')}
                         </DataTableColumnHeader>
@@ -231,42 +391,18 @@ export const WorkingListsManager = () => {
                     </DataTableRow>
                 </TableHead>
                 <TableBody>
-                    {workingLists.map((wlItem, index) => (
-                        <DataTableRow key={wlItem.id}>
-                            <DataTableCell large>
-                                <InputField
-                                    value={wlItem.targetProgram}
-                                    onChange={event => handleTargetProgramChange(event, index)}
-                                    error={!!validations.validations[index]?.targetProgram}
-                                    validationText={validations.validations[index]?.targetProgram || ''}
-                                />
-                            </DataTableCell>
-                            <DataTableCell large>
-                                <InputField
-                                    value={wlItem.workingList}
-                                    error={!!validations.validations[index]?.workingList}
-                                    validationText={validations.validations[index]?.workingList || ''}
-                                    onChange={event => handleTargetWorkingListChange(event, index)}
-                                />
-                            </DataTableCell>
-                            <DataTableCell large><InputField
-                                value={wlItem.timeField}
-                                error={!!validations.validations[index]?.timeField}
-                                validationText={validations.validations[index]?.timeField || ''}
-                                helpText={i18n.t(
-                                    '(Optional) Data Element or Tracked Entity Attribute UID. Default is Event Date.',
-                                )}
-                                onChange={event => handleTargetTimeFieldChange(event, index)}
-                            /></DataTableCell>
-                            <DataTableCell large align="center">
-                                <Button
-                                    onClick={() => handleRemoveWorkingList(index)}
-                                    icon={<IconDelete24 />}
-                                    destructive
-                                />
-                            </DataTableCell>
-                        </DataTableRow>
-                    ))}
+                    {getTableBody({
+                        workingLists,
+                        dataLineLists,
+                        loadingLineLists,
+                        dataPrograms,
+                        loadingPrograms,
+                        validations,
+                        handleTargetProgramChange,
+                        handleTargetWorkingListChange,
+                        handleTargetTimeFieldChange,
+                        handleRemoveWorkingList,
+                    })}
                 </TableBody>
             </DataTable>
         }

@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-10-06T20:57:12.413Z\n"
-"PO-Revision-Date: 2025-10-06T20:57:12.413Z\n"
+"POT-Creation-Date: 2025-10-08T17:54:00.014Z\n"
+"PO-Revision-Date: 2025-10-08T17:54:00.014Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2222,7 +2222,7 @@ msgid "Plugin Settings"
 msgstr "Plugin Settings"
 
 msgid "Device Programs Overwrite plugins configuration"
-msgstr "Device Programs: Overwrite plugins configuration"
+msgstr "Device Programs Overwrite plugins configuration"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all "
@@ -2234,7 +2234,7 @@ msgstr ""
 "will be lost."
 
 msgid "Stock Programs Overwrite plugins configuration"
-msgstr "Stock Programs: Overwrite plugins configuration"
+msgstr "Stock Programs Overwrite plugins configuration"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
@@ -2245,20 +2245,40 @@ msgstr ""
 "Programs? This action cannot be undone and the current configuration will "
 "be lost."
 
-msgid "Both fields are required"
-msgstr "Both fields are required"
+msgid "A Program is required"
+msgstr "A Program is required"
 
-msgid "Invalid Tracker Program UID"
-msgstr "Invalid Tracker Program UID"
+msgid "Invalid Program UID"
+msgstr "Invalid Program UID"
+
+msgid "Program UID can only be configured once"
+msgstr "Program UID can only be configured once"
+
+msgid "A Line List is required"
+msgstr "A Line List is required"
 
 msgid "Invalid Line List UID"
 msgstr "Invalid Line List UID"
 
-msgid "Tracker Program UID can only be configured once"
-msgstr "Tracker Program UID can only be configured once"
-
 msgid "Invalid Time Field UID"
 msgstr "Invalid Time Field UID"
+
+msgid ""
+"This Line List is not publicly available. Users may not be able to access "
+"it."
+msgstr ""
+"This Line List is not publicly available. Users may not be able to access "
+"it."
+
+msgid "You have no access to this Line List or it does not exist"
+msgstr "You have no access to this Line List or it does not exist"
+
+msgid ""
+"(Optional) Data Element or Tracked Entity Attribute UID. Default is Event "
+"Date."
+msgstr ""
+"(Optional) Data Element or Tracked Entity Attribute UID. Default is Event "
+"Date."
 
 msgid "Working Lists settings updated."
 msgstr "Working Lists settings updated."
@@ -2269,21 +2289,11 @@ msgstr "Add Working List"
 msgid "No Working Lists Configured"
 msgstr "No Working Lists Configured"
 
-msgid "Tracker Program UID"
-msgstr "Tracker Program UID"
-
-msgid "Line List UID"
-msgstr "Line List UID"
+msgid "Line List"
+msgstr "Line List"
 
 msgid "Time field for Date filters"
 msgstr "Time field for Date filters"
-
-msgid ""
-"(Optional) Data Element or Tracked Entity Attribute UID. Default is Event "
-"Date."
-msgstr ""
-"(Optional) Data Element or Tracked Entity Attribute UID. Default is Event "
-"Date."
 
 msgid "Compatibility mode"
 msgstr "Compatibility mode"
