@@ -142,17 +142,17 @@ const getTableBody = ({
 
     const getLineListValidationText = ({ notFoundError, notPubliclyAvailable }) => {
         let validationText = '';
-        if (notPubliclyAvailable) {
+        if (notFoundError) {
+            validationText = i18n.t('You don\'t have access to this Line List or it does not exist');
+        } else if (notPubliclyAvailable) {
             validationText = i18n.t('This Line List is not publicly available. Users may not be able to access it.');
-        } else if (notFoundError) {
-            validationText = i18n.t('You have no access to this Line List or it does not exist');
         }
         return validationText;
     };
 
     const LineListSelector = React.memo(({ wlItem, lineListElems, index }) => {
         const selectedWl = eventVisualizations.find(ev => ev.id === wlItem.workingList);
-        const publicSharing = selectedWl?.sharing?.publicAccess || '--------';
+        const publicSharing = selectedWl?.sharing?.public || '--------';
         const notPubliclyAvailable = wlItem.workingList && publicSharing[0] === '-';
         const notFoundError = !selectedWl && wlItem.workingList;
 

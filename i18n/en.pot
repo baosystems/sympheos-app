@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-10-08T17:54:00.014Z\n"
-"PO-Revision-Date: 2025-10-08T17:54:00.014Z\n"
+"POT-Creation-Date: 2025-10-09T16:55:43.871Z\n"
+"PO-Revision-Date: 2025-10-09T16:55:43.871Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1981,6 +1981,15 @@ msgstr "Download as JSON"
 msgid "Download as CSV"
 msgstr "Download as CSV"
 
+msgid "Error loading Working List"
+msgstr "Error loading Working List"
+
+msgid "You don't have access to this Working List or it does not exist."
+msgstr "You don't have access to this Working List or it does not exist."
+
+msgid "Please contact your system administrator."
+msgstr "Please contact your system administrator."
+
 msgid "Download with current filters"
 msgstr "Download with current filters"
 
@@ -2263,15 +2272,15 @@ msgstr "Invalid Line List UID"
 msgid "Invalid Time Field UID"
 msgstr "Invalid Time Field UID"
 
+msgid "You don't have access to this Line List or it does not exist"
+msgstr "You don't have access to this Line List or it does not exist"
+
 msgid ""
 "This Line List is not publicly available. Users may not be able to access "
 "it."
 msgstr ""
 "This Line List is not publicly available. Users may not be able to access "
 "it."
-
-msgid "You have no access to this Line List or it does not exist"
-msgstr "You have no access to this Line List or it does not exist"
 
 msgid ""
 "(Optional) Data Element or Tracked Entity Attribute UID. Default is Event "

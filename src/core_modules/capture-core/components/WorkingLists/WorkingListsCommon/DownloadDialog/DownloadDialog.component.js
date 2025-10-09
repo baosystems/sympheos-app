@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import i18n from '@dhis2/d2-i18n';
 import { withStyles } from '@material-ui/core/styles';
 import { featureAvailable, FEATURES } from 'capture-core-utils';
-import { Button, Modal, ModalTitle, ModalContent, ModalActions, Radio, CalendarInput } from '@dhis2/ui';
+import { Button, Modal, ModalTitle, ModalContent, ModalActions, Radio, CalendarInput, NoticeBox } from '@dhis2/ui';
 import { useDataQuery } from '@dhis2/app-runtime';
 import type { PlainProps } from './DownloadDialog.types';
 
@@ -61,6 +61,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         data: eventVisualizationData,
         refetch: refetchEventVisualization,
         loading: eventVisualizationLoading,
+        error: eventVisualizationError,
     } = useDataQuery(eventVisualizationsQuery, { lazy: true });
 
     const {
@@ -75,6 +76,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     const [dateValidationError, setDateValidationError] = useState(undefined);
 
     const [processing, setProcessing] = useState(false);
+    const [errorBoxContent, setErrorBoxContent] = useState(undefined);
 
     const getUrlEncodedParamsString = (params: Object) => {
         const { filter, ...restParams } = params;
@@ -183,6 +185,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
                             />
                         ))}
                         {renderDateRange()}
+                        {errorBoxContent}
                     </div>
                 }
             </div>
@@ -276,7 +279,19 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     }, [eventVisualizationData, eventVisualizationLoading]);
 
     useEffect(() => {
+        if (eventVisualizationError) {
+            setProcessing(false);
+            setErrorBoxContent(<NoticeBox error title={i18n.t('Error loading Working List')}>
+                {i18n.t('You don\'t have access to this Working List or it does not exist.')}
+                <br />
+                {i18n.t('Please contact your system administrator.')}
+            </NoticeBox>);
+        }
+    }, [eventVisualizationError]);
+
+    useEffect(() => {
         setLineList(undefined);
+        setErrorBoxContent(undefined);
     }, [open]);
 
     useEffect(() => {
