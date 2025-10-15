@@ -17,6 +17,8 @@ import baseDeviceSettings from './devicePluginSettings';
 import baseStockSettings from './stockPluginSettings';
 
 import { useDataStore } from '../../../hooks/useDataStore';
+import { WorkingListsManager } from './WorkingListsManager';
+import { EventCreationBlacklist } from './EventCreationBlacklist';
 
 const optionSetsQuery = {
     results: {
@@ -52,7 +54,11 @@ const getOptions = (
 ));
 
 export const Settings = () => {
-    const { storeMutation, storeQuery } = useDataStore({ key: 'settings', lazyGet: false });
+    const {
+        storeMutation: settingsStoreMutation,
+        storeQuery: settingsStoreQuery,
+    } = useDataStore({ key: 'settings', lazyGet: false });
+
     const {
         loading: loadingOS,
         data: dataOS,
@@ -69,9 +75,9 @@ export const Settings = () => {
     const [saveDisabled, setSaveDisabled] = useState(true);
 
     const handleSubmit = () => {
-        storeMutation.mutate({
+        settingsStoreMutation.mutate({
             key: 'settings',
-            data: { ...storeQuery.data.results, gatewayConnectivity: formData },
+            data: { ...settingsStoreQuery.data.results, gatewayConnectivity: formData },
         }).then((value) => {
             if (value.httpStatus === 'OK') {
                 showSnackbar({
@@ -92,10 +98,10 @@ export const Settings = () => {
     };
 
     useEffect(() => {
-        if (!dataOS || !storeQuery.data) { return; }
+        if (!dataOS || !settingsStoreQuery.data) { return; }
 
-        if (storeQuery.data.results.gatewayConnectivity) {
-            setFormData(storeQuery.data.results.gatewayConnectivity);
+        if (settingsStoreQuery.data.results.gatewayConnectivity) {
+            setFormData(settingsStoreQuery.data.results.gatewayConnectivity);
         }
 
         setMappedOS(dataOS.results.optionSets.reduce((
@@ -108,15 +114,15 @@ export const Settings = () => {
             acc[cur.id] = cur.options;
             return acc;
         }, {}));
-    }, [dataOS, setMappedOS, storeQuery.data]);
+    }, [dataOS, setMappedOS, settingsStoreQuery.data]);
 
     useEffect(() => {
-        if (storeQuery.loading || dataOS || loadingOS) return;
+        if (settingsStoreQuery.loading || dataOS || loadingOS) return;
 
-        if (storeQuery?.data?.results) {
-            refetchOS({ idList: Object.values(storeQuery.data.results.optionSets || {}) });
+        if (settingsStoreQuery?.data?.results) {
+            refetchOS({ idList: Object.values(settingsStoreQuery.data.results.optionSets || {}) });
         }
-    }, [storeQuery, refetchOS, dataOS, loadingOS]);
+    }, [settingsStoreQuery, refetchOS, dataOS, loadingOS]);
 
     useEffect(() => {
         if (formData.instanceType !== 'fv7AZKEjynM') {
@@ -127,77 +133,85 @@ export const Settings = () => {
     return (
 
         <div className="main-container">
-            <Card>
-                <div className="settings-container">
-                    <h2>{i18n.t('Gateway Connectivity Settings')}</h2>
-                    <SingleSelectField
-                        inputWidth="100%"
-                        label={i18n.t('Instance Type')}
-                        selected={formData.instanceType}
-                        loading={loadingOS || storeQuery.loading}
-                        onChange={(event) => {
-                            setFormData({ ...formData, instanceType: event.selected });
-                            setSaveDisabled(false);
-                        }}
-                    >
-                        {mappedOS && storeQuery.data &&
-                            getOptions(mappedOS, storeQuery.data.results.optionSets.instanceType)
-                        }
-                    </SingleSelectField>
-                    <InputField
-                        value={formData.authKey}
-                        onChange={(event) => {
-                            setFormData({ ...formData, authKey: event.value });
-                            setSaveDisabled(false);
-                        }}
-                        placeholder={i18n.t('Auth Key')}
-                        label={i18n.t('Auth Key')}
-                        inputWidth="100%"
-                    />
-                    {formData.instanceType === INSTANCE_TYPE_ID.ACCOUNT &&
+            <div className="settings-container">
+                <Card>
+                    <div className="settings-card-content">
+                        <h2>{i18n.t('Gateway Connectivity Settings')}</h2>
                         <SingleSelectField
                             inputWidth="100%"
-                            label={i18n.t('Default Profile')}
-                            selected={formData.defaultProfile}
+                            label={i18n.t('Instance Type')}
+                            selected={formData.instanceType}
+                            loading={loadingOS || settingsStoreQuery.loading}
                             onChange={(event) => {
-                                setFormData({ ...formData, defaultProfile: event.selected });
+                                setFormData({ ...formData, instanceType: event.selected });
                                 setSaveDisabled(false);
                             }}
                         >
-                            {mappedOS && storeQuery.data &&
-                                getOptions(mappedOS, storeQuery.data.results.optionSets.defaultProfile)
+                            {mappedOS && settingsStoreQuery.data &&
+                                getOptions(mappedOS, settingsStoreQuery.data.results.optionSets.instanceType)
                             }
                         </SingleSelectField>
-                    }
-                    <Button
-                        primary
-                        onClick={handleSubmit}
-                        icon={<IconSave24 />}
-                        disabled={saveDisabled || loadingOS}
-                        loading={storeMutation.loading}
-                    >{i18n.t('Save changes')}</Button>
+                        <InputField
+                            value={formData.authKey}
+                            onChange={(event) => {
+                                setFormData({ ...formData, authKey: event.value });
+                                setSaveDisabled(false);
+                            }}
+                            placeholder={i18n.t('Auth Key')}
+                            label={i18n.t('Auth Key')}
+                            inputWidth="100%"
+                        />
+                        {formData.instanceType === INSTANCE_TYPE_ID.ACCOUNT &&
+                            <SingleSelectField
+                                inputWidth="100%"
+                                label={i18n.t('Default Profile')}
+                                selected={formData.defaultProfile}
+                                onChange={(event) => {
+                                    setFormData({ ...formData, defaultProfile: event.selected });
+                                    setSaveDisabled(false);
+                                }}
+                            >
+                                {mappedOS && settingsStoreQuery.data &&
+                                    getOptions(mappedOS, settingsStoreQuery.data.results.optionSets.defaultProfile)
+                                }
+                            </SingleSelectField>
+                        }
+                        <Button
+                            primary
+                            onClick={handleSubmit}
+                            icon={<IconSave24 />}
+                            disabled={saveDisabled || loadingOS}
+                            loading={settingsStoreMutation.loading}
+                        >{i18n.t('Save changes')}</Button>
 
-                    <h2>{i18n.t('Plugin Settings')}</h2>
-                    <PluginsRestorer
-                        basePluginSettings={baseDeviceSettings}
-                        buttonIcon={<FiCpu />}
-                        buttonText={i18n.t('Device Programs Overwrite plugins configuration')}
-                        warningText={
-                            i18n.t('Are you sure that you want to overwrite plugins configuration for all Device Programs? This action cannot be undone and the current configuration will be lost.')
-                        }
-                        prefixFilter="DV"
-                    />
-                    <PluginsRestorer
-                        basePluginSettings={baseStockSettings}
-                        buttonIcon={<FiBox />}
-                        buttonText={i18n.t('Stock Programs Overwrite plugins configuration')}
-                        warningText={
-                            i18n.t('Are you sure that you want to overwrite plugins configuration for all Stock Programs? This action cannot be undone and the current configuration will be lost.')
-                        }
-                        prefixFilter="STK"
-                    />
-                </div>
-            </Card>
+                        <h2>{i18n.t('Capture Settings')}</h2>
+                        <EventCreationBlacklist />
+
+                        <h2>{i18n.t('Working Lists Settings')}</h2>
+                        <WorkingListsManager />
+
+                        <h2>{i18n.t('Plugin Settings')}</h2>
+                        <PluginsRestorer
+                            basePluginSettings={baseDeviceSettings}
+                            buttonIcon={<FiCpu />}
+                            buttonText={i18n.t('Device Programs Overwrite plugins configuration')}
+                            warningText={
+                                i18n.t('Are you sure that you want to overwrite plugins configuration for all Device Programs? This action cannot be undone and the current configuration will be lost.')
+                            }
+                            prefixFilter="DV"
+                        />
+                        <PluginsRestorer
+                            basePluginSettings={baseStockSettings}
+                            buttonIcon={<FiBox />}
+                            buttonText={i18n.t('Stock Programs Overwrite plugins configuration')}
+                            warningText={
+                                i18n.t('Are you sure that you want to overwrite plugins configuration for all Stock Programs? This action cannot be undone and the current configuration will be lost.')
+                            }
+                            prefixFilter="STK"
+                        />
+                    </div>
+                </Card>
+            </div>
         </div >
     );
 };

@@ -7,6 +7,8 @@ import { scopeTypes } from '../../metaData';
 import { useScopeInfo } from '../../hooks/useScopeInfo';
 import type { PlainProps } from './TopBarActions.types';
 
+import { useDataStore } from '../../../../hooks/useDataStore';
+
 const styles = () => ({
     container: {
         display: 'flex',
@@ -29,50 +31,58 @@ const ActionButtonsPlain = ({
     const { trackedEntityName, scopeType/* , programName */ } = useScopeInfo(selectedProgramId);
     const [/* openSearch */, setOpenSearch] = useState(false);
 
+    const {
+        storeQuery: eventCreationBlacklistStoreQuery,
+    } = useDataStore({ key: 'eventCreationBlacklist', lazyGet: false });
+
     useEffect(() => {
         setOpenSearch(false);
     }, [openConfirmDialog]);
 
     return (
         <div className={classes.container}>
-            {scopeType !== scopeTypes.TRACKER_PROGRAM && scopeType !== scopeTypes.EVENT_PROGRAM ? (
-                <Button
-                    small
-                    secondary
-                    dataTest="new-event-button"
-                    className={classes.marginRight}
-                    onClick={onNewClickWithoutProgramId}
-                >
-                    {i18n.t('Create new')}
-                </Button>
-            ) : (
-                <SplitButton
-                    small
-                    secondary
-                    dataTest="new-button"
-                    className={classes.marginRight}
-                    onClick={() => { onNewClick(); }}
-                    component={
-                        <FlyoutMenu dense maxWidth="250px">
-                            <MenuItem
-                                dataTest="new-menuitem-one"
-                                label={`${i18n.t('Create new in another program')}...`}
-                                onClick={() => { onNewClickWithoutProgramId(); }}
-                            />
-                        </FlyoutMenu>
-                    }
-                >
-                    {scopeType === scopeTypes.TRACKER_PROGRAM && (
-                        i18n.t('Create new {{trackedEntityType}}', {
-                            trackedEntityType: trackedEntityName,
-                            interpolation: { escapeValue: false },
-                        })
-                    )}
-                    {scopeType === scopeTypes.EVENT_PROGRAM && (
-                        i18n.t('Create new event')
-                    )}
-                </SplitButton>
-            )}
+            {!eventCreationBlacklistStoreQuery.loading
+                && !eventCreationBlacklistStoreQuery.data?.results?.[selectedProgramId]
+                && (
+                    scopeType !== scopeTypes.TRACKER_PROGRAM && scopeType !== scopeTypes.EVENT_PROGRAM ? (
+                        <Button
+                            small
+                            secondary
+                            dataTest="new-event-button"
+                            className={classes.marginRight}
+                            onClick={onNewClickWithoutProgramId}
+                        >
+                            {i18n.t('Create new')}
+                        </Button>
+                    ) : (
+                        <SplitButton
+                            small
+                            secondary
+                            dataTest="new-button"
+                            className={classes.marginRight}
+                            onClick={() => { onNewClick(); }}
+                            component={
+                                <FlyoutMenu dense maxWidth="250px">
+                                    <MenuItem
+                                        dataTest="new-menuitem-one"
+                                        label={`${i18n.t('Create new in another program')}...`}
+                                        onClick={() => { onNewClickWithoutProgramId(); }}
+                                    />
+                                </FlyoutMenu>
+                            }
+                        >
+                            {scopeType === scopeTypes.TRACKER_PROGRAM && (
+                                i18n.t('Create new {{trackedEntityType}}', {
+                                    trackedEntityType: trackedEntityName,
+                                    interpolation: { escapeValue: false },
+                                })
+                            )}
+                            {scopeType === scopeTypes.EVENT_PROGRAM && !eventCreationBlacklistStoreQuery.loading && (
+                                i18n.t('Create new event')
+                            )}
+                        </SplitButton>
+                    )
+                )}
 
             {/* scopeType !== scopeTypes.TRACKER_PROGRAM ? (
                 <Button

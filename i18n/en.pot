@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-08-22T21:27:40.996Z\n"
-"PO-Revision-Date: 2025-08-22T21:27:40.996Z\n"
+"POT-Creation-Date: 2025-10-09T16:55:43.871Z\n"
+"PO-Revision-Date: 2025-10-09T16:55:43.871Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1957,14 +1957,44 @@ msgstr "Show Less"
 msgid "Show All"
 msgstr "Show All"
 
+msgid "Please select both start and end dates"
+msgstr "Please select both start and end dates"
+
+msgid "Start date must be before end date"
+msgstr "Start date must be before end date"
+
+msgid "Last 30 days"
+msgstr "Last 30 days"
+
+msgid "Last 60 days"
+msgstr "Last 60 days"
+
+msgid "Last 90 days"
+msgstr "Last 90 days"
+
+msgid "Year to date"
+msgstr "Year to date"
+
 msgid "Download as JSON"
 msgstr "Download as JSON"
 
 msgid "Download as CSV"
 msgstr "Download as CSV"
 
+msgid "Error loading Working List"
+msgstr "Error loading Working List"
+
+msgid "You don't have access to this Working List or it does not exist."
+msgstr "You don't have access to this Working List or it does not exist."
+
+msgid "Please contact your system administrator."
+msgstr "Please contact your system administrator."
+
 msgid "Download with current filters"
 msgstr "Download with current filters"
+
+msgid "Download custom CSV"
+msgstr "Download custom CSV"
 
 msgid "An error has occured. See log for details"
 msgstr "An error has occured. See log for details"
@@ -2155,6 +2185,15 @@ msgstr "Load dashboard failed"
 msgid "This dashboard could not be loaded. Please try again later."
 msgstr "This dashboard could not be loaded. Please try again later."
 
+msgid "Filter Programs"
+msgstr "Filter Programs"
+
+msgid "Allow create records"
+msgstr "Allow create records"
+
+msgid "Disable create records"
+msgstr "Disable create records"
+
 msgid "No Programs available."
 msgstr "No Programs available."
 
@@ -2182,11 +2221,17 @@ msgstr "Instance Type"
 msgid "Default Profile"
 msgstr "Default Profile"
 
+msgid "Capture Settings"
+msgstr "Capture Settings"
+
+msgid "Working Lists Settings"
+msgstr "Working Lists Settings"
+
 msgid "Plugin Settings"
 msgstr "Plugin Settings"
 
 msgid "Device Programs Overwrite plugins configuration"
-msgstr "Device Programs: Overwrite plugins configuration"
+msgstr "Device Programs Overwrite plugins configuration"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all "
@@ -2198,7 +2243,7 @@ msgstr ""
 "will be lost."
 
 msgid "Stock Programs Overwrite plugins configuration"
-msgstr "Stock Programs: Overwrite plugins configuration"
+msgstr "Stock Programs Overwrite plugins configuration"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
@@ -2208,6 +2253,56 @@ msgstr ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
 "Programs? This action cannot be undone and the current configuration will "
 "be lost."
+
+msgid "A Program is required"
+msgstr "A Program is required"
+
+msgid "Invalid Program UID"
+msgstr "Invalid Program UID"
+
+msgid "Program UID can only be configured once"
+msgstr "Program UID can only be configured once"
+
+msgid "A Line List is required"
+msgstr "A Line List is required"
+
+msgid "Invalid Line List UID"
+msgstr "Invalid Line List UID"
+
+msgid "Invalid Time Field UID"
+msgstr "Invalid Time Field UID"
+
+msgid "You don't have access to this Line List or it does not exist"
+msgstr "You don't have access to this Line List or it does not exist"
+
+msgid ""
+"This Line List is not publicly available. Users may not be able to access "
+"it."
+msgstr ""
+"This Line List is not publicly available. Users may not be able to access "
+"it."
+
+msgid ""
+"(Optional) Data Element or Tracked Entity Attribute UID. Default is Event "
+"Date."
+msgstr ""
+"(Optional) Data Element or Tracked Entity Attribute UID. Default is Event "
+"Date."
+
+msgid "Working Lists settings updated."
+msgstr "Working Lists settings updated."
+
+msgid "Add Working List"
+msgstr "Add Working List"
+
+msgid "No Working Lists Configured"
+msgstr "No Working Lists Configured"
+
+msgid "Line List"
+msgstr "Line List"
+
+msgid "Time field for Date filters"
+msgstr "Time field for Date filters"
 
 msgid "Compatibility mode"
 msgstr "Compatibility mode"
