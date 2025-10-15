@@ -229,6 +229,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             outputType: 'EVENT',
             stage: request.queryParams?.programStage,
             timeField: lineList?.timeField,
+            filter: lineList?.timeField ? `${lineList.timeField}:NE:NV` : undefined,
             startDate,
             endDate,
         };
