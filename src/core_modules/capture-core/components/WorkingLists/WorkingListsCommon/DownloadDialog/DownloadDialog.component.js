@@ -231,7 +231,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         }
 
         return { periodDim, startDate, endDate };
-    }
+    };
 
     const buildAndRefetchAnalyticsEvents = () => {
         const eventVisualization = eventVisualizationData?.results;
