@@ -26,6 +26,20 @@ const periodOptions = {
     RANGE: i18n.t('Absolute range'),
 };
 
+const periodDayValues = {
+    LAST_30_DAYS: 30,
+    LAST_60_DAYS: 60,
+    LAST_90_DAYS: 90,
+};
+
+const simpleDimensionHeaders = {
+    ou: 'ouname',
+    lastUpdated: 'lastupdated',
+    createdBy: 'createdbydisplayname',
+    lastUpdatedBy: 'lastupdatedbydisplayname',
+    eventDate: 'eventdate',
+};
+
 const getStyles = () => ({
     downloadLink: {
         textDecoration: 'none',
@@ -192,18 +206,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         );
     };
 
-    const buildAndRefetchAnalyticsEvents = () => {
-        const eventVisualization = eventVisualizationData?.results;
-        const columns = eventVisualization.columnDimensions
-            .filter(d => d !== 'ou')
-            .map(d => d.split('.')
-                .filter(e => e !== request.queryParams?.program).join('.'))
-            .join(',');
-
-        const ouDimension = eventVisualization.simpleDimensions
-            .find(dim => dim.dimension === 'ou');
-        const orgUnit = ouDimension ? `ou:${ouDimension.values[0]},` : '';
-
+    const periodBuilder = () => {
         let periodDim = '';
         let startDate;
         let endDate;
@@ -218,18 +221,63 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             endDate = today.toISOString().split('T')[0];
         } else {
             periodDim = `,pe:${period}`;
+
+            const endDateDate = new Date();
+            const startDateDate = new Date();
+            startDateDate.setDate(endDateDate.getDate() - periodDayValues[period] + 1);
+
+            startDate = startDateDate.toISOString().split('T')[0];
+            endDate = endDateDate.toISOString().split('T')[0];
         }
+
+        return { periodDim, startDate, endDate };
+    };
+
+    const buildAndRefetchAnalyticsEvents = () => {
+        const eventVisualization = eventVisualizationData?.results;
+
+        const simpleDimensions = (eventVisualization.simpleDimensions || []).reduce((acc, dim) => {
+            acc[dim.dimension] = dim;
+            return acc;
+        }, {});
+
+        const columns = eventVisualization.columnDimensions
+            .filter(d => !simpleDimensions[d])
+            .map(d => d.split('.')
+                .filter(e => e !== request.queryParams?.program).join('.'))
+            .join(',');
+
+        const orgUnit = simpleDimensions.ou ? `ou:${simpleDimensions.ou.values.join(',')},` : '';
+
+        const eventDate = simpleDimensions.eventDate?.simpleDimensions?.eventDate?.values?.join(',');
+        const lastUpdated = simpleDimensions.lastUpdated?.simpleDimensions?.lastUpdated?.values?.join(',');
+
+        let { periodDim, startDate, endDate } = periodBuilder();
+
+        let filter;
+        if (lineList?.timeField && startDate && endDate) {
+            filter = `${lineList.timeField}:NE:NV,`;
+            filter += `${lineList.timeField}:GE:${startDate},`;
+            filter += `${lineList.timeField}:LE:${endDate}`;
+            periodDim = '';
+            startDate = undefined;
+            endDate = undefined;
+        }
+
+        const additionalHeaders = Object.keys(simpleDimensions)
+            .map(dimKey => simpleDimensionHeaders[dimKey]);
 
         const params = {
             dimension: `${orgUnit}${columns}${periodDim}`,
-            headers: `${ouDimension ? 'ouname,' : ''}${columns}`,
+            headers: `${additionalHeaders.length > 0 ? `${additionalHeaders.join(',')},` : ''}${columns}`,
             displayProperty: 'NAME',
             pageSize: 1000000,
             includeMetadataDetails: true,
             outputType: 'EVENT',
             stage: request.queryParams?.programStage,
-            timeField: lineList?.timeField,
-            filter: lineList?.timeField ? `${lineList.timeField}:NE:NV` : undefined,
+            filter,
+            eventDate,
+            lastUpdated,
             startDate,
             endDate,
         };
