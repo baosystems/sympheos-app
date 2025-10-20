@@ -206,25 +206,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         );
     };
 
-    const buildAndRefetchAnalyticsEvents = () => {
-        const eventVisualization = eventVisualizationData?.results;
-
-        const simpleDimensions = (eventVisualization.simpleDimensions || []).reduce((acc, dim) => {
-            acc[dim.dimension] = dim;
-            return acc;
-        }, {});
-
-        const columns = eventVisualization.columnDimensions
-            .filter(d => !simpleDimensions[d])
-            .map(d => d.split('.')
-                .filter(e => e !== request.queryParams?.program).join('.'))
-            .join(',');
-
-        const orgUnit = simpleDimensions.ou ? `ou:${simpleDimensions.ou.values.join(',')},` : '';
-
-        const eventDate = simpleDimensions.eventDate?.simpleDimensions?.eventDate?.values?.join(',');
-        const lastUpdated = simpleDimensions.lastUpdated?.simpleDimensions?.lastUpdated?.values?.join(',');
-
+    const periodBuilder = () => {
         let periodDim = '';
         let startDate;
         let endDate;
@@ -248,8 +230,32 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             endDate = endDateDate.toISOString().split('T')[0];
         }
 
+        return { periodDim, startDate, endDate };
+    }
+
+    const buildAndRefetchAnalyticsEvents = () => {
+        const eventVisualization = eventVisualizationData?.results;
+
+        const simpleDimensions = (eventVisualization.simpleDimensions || []).reduce((acc, dim) => {
+            acc[dim.dimension] = dim;
+            return acc;
+        }, {});
+
+        const columns = eventVisualization.columnDimensions
+            .filter(d => !simpleDimensions[d])
+            .map(d => d.split('.')
+                .filter(e => e !== request.queryParams?.program).join('.'))
+            .join(',');
+
+        const orgUnit = simpleDimensions.ou ? `ou:${simpleDimensions.ou.values.join(',')},` : '';
+
+        const eventDate = simpleDimensions.eventDate?.simpleDimensions?.eventDate?.values?.join(',');
+        const lastUpdated = simpleDimensions.lastUpdated?.simpleDimensions?.lastUpdated?.values?.join(',');
+
+        let { periodDim, startDate, endDate } = periodBuilder();
+
         let filter;
-        if (lineList?.timeField) {
+        if (lineList?.timeField && startDate && endDate) {
             filter = `${lineList.timeField}:NE:NV,`;
             filter += `${lineList.timeField}:GE:${startDate},`;
             filter += `${lineList.timeField}:LE:${endDate}`;
