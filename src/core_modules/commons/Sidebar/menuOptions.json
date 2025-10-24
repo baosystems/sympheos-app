@@ -116,6 +116,21 @@
                     ]
                 },
                 {
+                    "id": "device_r2",
+                    "key": "hPiqPnwjPGL",
+                    "link": "/?programId=hPiqPnwjPGL&all",
+                    "title": {
+                        "default": "CONNECT Universal Gateway R2",
+                        "fr": "Passerelle universelle CONNECT R2"
+                    },
+                    "type": "CAPTURE",
+                    "userGroups": [
+                        "dsjDVYKkq2a",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
+                },
+                {
                     "id": "device_r1",
                     "key": "emmnFREJ5n4",
                     "link": "/?programId=emmnFREJ5n4&all",

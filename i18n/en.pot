@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-10-24T02:46:08.073Z\n"
-"PO-Revision-Date: 2025-10-24T02:46:08.074Z\n"
+"POT-Creation-Date: 2025-10-24T16:47:09.862Z\n"
+"PO-Revision-Date: 2025-10-24T16:47:09.862Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2150,16 +2150,16 @@ msgid "The DHIS2 version running in this instance."
 msgstr "The DHIS2 version running in this instance."
 
 msgid "Sympheos App"
-msgstr "Sympheos App"
+msgstr "Sympheos™ App"
 
 msgid "The Sympheos application running in this DHIS2 instance."
-msgstr "The Sympheos application running in this DHIS2 instance."
+msgstr "The Sympheos™ application running in this DHIS2 instance."
 
 msgid "Device Gateway API"
 msgstr "Device Gateway API"
 
-msgid "Sympheos Plugins and Dependencies"
-msgstr "Sympheos Plugins and Dependencies"
+msgid "Sympheos System"
+msgstr "Sympheos™ System"
 
 msgid "Component"
 msgstr "Component"

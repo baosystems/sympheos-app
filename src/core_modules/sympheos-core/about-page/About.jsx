@@ -86,7 +86,7 @@ export const About = () => {
                     style={{
                         marginBottom: '1em',
                     }}
-                >{i18n.t('Sympheos Plugins and Dependencies')}</h2>
+                >{i18n.t('Sympheos System')}</h2>
                 <DataTable width="65svw">
                     <TableHead>
                         <DataTableRow>
