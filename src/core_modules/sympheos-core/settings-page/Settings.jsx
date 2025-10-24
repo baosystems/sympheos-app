@@ -6,6 +6,7 @@ import { useDataQuery } from '@dhis2/app-runtime';
 import i18n from '@dhis2/d2-i18n';
 import { useSnackbar } from 'commons/Snackbar/SnackbarContext';
 import PluginsRestorer from 'sympheos-core/settings-page/PluginsRestorer';
+import MenuUpdater from 'sympheos-core/settings-page/MenuUpdater';
 
 import 'sympheos-core/settings-page/settings-page.css';
 
@@ -190,7 +191,8 @@ export const Settings = () => {
                         <h2>{i18n.t('Working Lists Settings')}</h2>
                         <WorkingListsManager />
 
-                        <h2>{i18n.t('Plugin Settings')}</h2>
+                        <h2>{i18n.t('Danger Zone')}</h2>
+                        <MenuUpdater />
                         <PluginsRestorer
                             basePluginSettings={baseDeviceSettings}
                             buttonIcon={<FiCpu />}

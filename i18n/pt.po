@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2025-08-22T21:27:40.996Z\n"
-"PO-Revision-Date: 2025-08-22 15:38-0600\n"
+"POT-Creation-Date: 2025-10-09T16:55:43.871Z\n"
+"PO-Revision-Date: 2025-10-22 16:53-0600\n"
 "Last-Translator: Andres Miguel Rubio, 2025\n"
 "Language-Team: Portuguese (https://app.transifex.com/hisp-uio/teams/100509/"
 "pt/)\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
 "1000000 == 0 ? 1 : 2;\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 msgid "Choose one or more dates..."
 msgstr "Escolher uma ou mais datas..."
@@ -2032,14 +2032,51 @@ msgstr "Mostre menos"
 msgid "Show All"
 msgstr "Mostre tudo"
 
+#| msgid "Please select a valid event"
+msgid "Please select both start and end dates"
+msgstr ""
+
+msgid "Start date must be before end date"
+msgstr ""
+
+#| msgid "Last 3 months"
+msgid "Last 30 days"
+msgstr ""
+
+msgid "Last 60 days"
+msgstr ""
+
+msgid "Last 90 days"
+msgstr ""
+
+#| msgid "Report date"
+msgid "Year to date"
+msgstr ""
+
 msgid "Download as JSON"
 msgstr "Baixar como JSON"
 
 msgid "Download as CSV"
 msgstr "Baixar como CSV"
 
+#| msgid "an error occurred loading working lists"
+msgid "Error loading Working List"
+msgstr ""
+
+#| msgid "You don't have access to write notes"
+msgid "You don't have access to this Working List or it does not exist."
+msgstr ""
+
+#| msgid "Try again or contact your system administrator for support"
+msgid "Please contact your system administrator."
+msgstr ""
+
 msgid "Download with current filters"
 msgstr "Baixar com filtros actuais"
+
+#| msgid "Download as CSV"
+msgid "Download custom CSV"
+msgstr ""
 
 msgid "An error has occured. See log for details"
 msgstr "Ocorreu um erro. Veja o log para detalhes"
@@ -2230,6 +2267,16 @@ msgstr "Falha ao carregar painel"
 msgid "This dashboard could not be loaded. Please try again later."
 msgstr "Painel não pôde ser carregado. Por favor, tente novamente mais tarde."
 
+#| msgid "all programs"
+msgid "Filter Programs"
+msgstr ""
+
+msgid "Allow create records"
+msgstr ""
+
+msgid "Disable create records"
+msgstr ""
+
 msgid "No Programs available."
 msgstr "Nenhum programa disponível."
 
@@ -2257,6 +2304,14 @@ msgstr "Tipo de Instância"
 msgid "Default Profile"
 msgstr "Perfil padrão"
 
+#| msgid "Plugin Settings"
+msgid "Capture Settings"
+msgstr ""
+
+#| msgid "Working List"
+msgid "Working Lists Settings"
+msgstr ""
+
 msgid "Plugin Settings"
 msgstr "Definições do Plugin"
 
@@ -2283,6 +2338,58 @@ msgstr ""
 "Tem a certeza de que deseja substituir a configuração dos plugins para todos "
 "os programas de stock? Esta acção não pode ser desfeita e a configuração "
 "actual será perdida."
+
+#| msgid "A value is required"
+msgid "A Program is required"
+msgstr ""
+
+msgid "Invalid Program UID"
+msgstr ""
+
+msgid "Program UID can only be configured once"
+msgstr ""
+
+#| msgid "A value is required"
+msgid "A Line List is required"
+msgstr ""
+
+msgid "Invalid Line List UID"
+msgstr ""
+
+msgid "Invalid Time Field UID"
+msgstr ""
+
+#| msgid "You don't have access to write notes"
+msgid "You don't have access to this Line List or it does not exist"
+msgstr ""
+
+msgid ""
+"This Line List is not publicly available. Users may not be able to access it."
+msgstr ""
+
+msgid ""
+"(Optional) Data Element or Tracked Entity Attribute UID. Default is Event "
+"Date."
+msgstr ""
+
+#| msgid "Working list could not be updated"
+msgid "Working Lists settings updated."
+msgstr ""
+
+#| msgid "Working List"
+msgid "Add Working List"
+msgstr ""
+
+#| msgid "Working List"
+msgid "No Working Lists Configured"
+msgstr ""
+
+#| msgid "Working List"
+msgid "Line List"
+msgstr ""
+
+msgid "Time field for Date filters"
+msgstr ""
 
 msgid "Compatibility mode"
 msgstr "Modo de compatibilidade"

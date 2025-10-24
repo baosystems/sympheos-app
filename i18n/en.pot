@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-10-09T16:55:43.871Z\n"
-"PO-Revision-Date: 2025-10-09T16:55:43.871Z\n"
+"POT-Creation-Date: 2025-10-24T02:46:08.073Z\n"
+"PO-Revision-Date: 2025-10-24T02:46:08.074Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2194,6 +2194,25 @@ msgstr "Allow create records"
 msgid "Disable create records"
 msgstr "Disable create records"
 
+msgid "An error occurred while updating the App Menu labels."
+msgstr "An error occurred while updating the App Menu labels."
+
+msgid "Confirmation"
+msgstr "Confirmation"
+
+msgid ""
+"Are you sure you want to update the labels of the App Menu to the latest "
+"version?"
+msgstr ""
+"Are you sure you want to update the labels of the App Menu to the latest "
+"version?"
+
+msgid "Continue"
+msgstr "Continue"
+
+msgid "Update App Menu labels"
+msgstr "Update App Menu labels"
+
 msgid "No Programs available."
 msgstr "No Programs available."
 
@@ -2202,12 +2221,6 @@ msgstr "Plugins configuration restored successfully."
 
 msgid "Error updating Data Store."
 msgstr "Error updating Data Store."
-
-msgid "Confirmation"
-msgstr "Confirmation"
-
-msgid "Continue"
-msgstr "Continue"
 
 msgid "Gateway Connectivity settings updated successfully."
 msgstr "Gateway Connectivity settings updated successfully."
@@ -2227,8 +2240,8 @@ msgstr "Capture Settings"
 msgid "Working Lists Settings"
 msgstr "Working Lists Settings"
 
-msgid "Plugin Settings"
-msgstr "Plugin Settings"
+msgid "Danger Zone"
+msgstr "Danger Zone"
 
 msgid "Device Programs Overwrite plugins configuration"
 msgstr "Device Programs Overwrite plugins configuration"
