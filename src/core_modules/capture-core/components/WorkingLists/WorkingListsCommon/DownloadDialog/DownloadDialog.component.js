@@ -236,6 +236,8 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     const buildAndRefetchAnalyticsEvents = () => {
         const eventVisualization = eventVisualizationData?.results;
 
+        const orderedColumns = eventVisualization.columns;
+
         const simpleDimensions = (eventVisualization.simpleDimensions || []).reduce((acc, dim) => {
             acc[dim.dimension] = dim;
             return acc;
@@ -244,8 +246,15 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         const columns = eventVisualization.columnDimensions
             .filter(d => !simpleDimensions[d])
             .map(d => d.split('.')
-                .filter(e => e !== request.queryParams?.program).join('.'))
-            .join(',');
+                .filter(e => e !== request.queryParams?.program).join('.'));
+
+        const columnsMap = columns.reduce((acc, cur) => {
+            const key = cur.split('.');
+            if (key.length > 1) {
+                acc[key[key.length - 1]] = cur;
+            }
+            return acc;
+        }, {});
 
         const orgUnit = simpleDimensions.ou ? `ou:${simpleDimensions.ou.values.join(',')},` : '';
 
@@ -264,12 +273,26 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             endDate = undefined;
         }
 
-        const additionalHeaders = Object.keys(simpleDimensions)
-            .map(dimKey => simpleDimensionHeaders[dimKey]);
+        const headers = orderedColumns.reduce((acc, dim) => {
+            const dimKey = dim.id?.split('.')?.pop() || '';
+            const elem = columnsMap[dimKey] || simpleDimensionHeaders[dimKey];
+            if (elem) {
+                acc.push(elem);
+            }
+            return acc;
+        }, []).join(',');
+
+        let additionalDimsText = '';
+        if (eventDate) {
+            additionalDimsText += 'eventDate,';
+        }
+        if (lastUpdated) {
+            additionalDimsText += 'lastUpdated,';
+        }
 
         const params = {
-            dimension: `${orgUnit}${columns}${periodDim}`,
-            headers: `${additionalHeaders.length > 0 ? `${additionalHeaders.join(',')},` : ''}${columns}`,
+            dimension: `${orgUnit}${additionalDimsText}${columns.join(',')}${periodDim}`,
+            headers,
             displayProperty: 'NAME',
             pageSize: 1000000,
             includeMetadataDetails: true,
