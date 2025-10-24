@@ -74,8 +74,9 @@ const MenuUpdater = () => {
         }).catch(() => {
             setIsLoading(false);
             showSnackbar({
+                key: `update-error-${new Date().getTime()}`,
                 message: i18n.t('An error occurred while updating the App Menu labels.'),
-                severity: SnackbarSeverity.ERROR,
+                severity: SnackbarSeverity.CRITICAL,
             });
         });
     };
