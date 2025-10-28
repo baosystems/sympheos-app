@@ -80,6 +80,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
 
     const {
         refetch: refetchAnalyticsEvents,
+        error: analyticsEventsError,
     } = useDataQuery(analyticsEventsQuery, { lazy: true });
 
     const { storeQuery: workingListsDataStore } = useDataStore({ key: 'workingLists', lazyGet: false });
@@ -308,6 +309,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         refetchAnalyticsEvents({ id: request.queryParams?.program, params }).then((data) => {
             downloadCSV(data);
         });
+        // TODO: catch error on request
     };
 
     const downloadCSV = (data) => {
@@ -339,6 +341,25 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
 
         setProcessing(false);
     };
+
+    const handleClose = (e) => {
+        setProcessing(false);
+        onClose(e);
+    };
+
+    useEffect(() => {
+        if (analyticsEventsError) {
+            setProcessing(false);
+            setErrorBoxContent(<NoticeBox error title={i18n.t('Error generating CSV')}>
+                {analyticsEventsError.message}
+            </NoticeBox>);
+        } else if (eventVisualizationError) {
+            setProcessing(false);
+            setErrorBoxContent(<NoticeBox error title={i18n.t('Error generating CSV')}>
+                {eventVisualizationError.message}
+            </NoticeBox>);
+        }
+    }, [eventVisualizationError, analyticsEventsError]);
 
     useEffect(() => {
         const eventVisualization = eventVisualizationData?.results;
@@ -384,7 +405,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     }
 
     return (
-        <Modal hide={!open} onClose={onClose} position={'center'} dataTest="working-lists-download-dialog">
+        <Modal hide={!open} onClose={handleClose} position={'center'} dataTest="working-lists-download-dialog">
             <ModalTitle>{i18n.t('Download with current filters')}</ModalTitle>
             <ModalContent>{renderButtons()}</ModalContent>
             <ModalActions>
@@ -397,7 +418,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
                         >{i18n.t('Download custom CSV')}</Button>
                     </div>
                 }
-                <Button onClick={onClose} color="primary">
+                <Button onClick={handleClose} color="primary">
                     {i18n.t('Close')}
                 </Button>
             </ModalActions>

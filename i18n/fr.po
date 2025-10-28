@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2025-10-09T16:55:43.871Z\n"
-"PO-Revision-Date: 2025-10-22 16:46-0600\n"
+"POT-Creation-Date: 2025-10-24T16:47:09.862Z\n"
+"PO-Revision-Date: 2025-10-24 11:25-0600\n"
 "Last-Translator: Philip Larsen Donnelly, 2025\n"
 "Language-Team: French (https://app.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "Language: fr\n"
@@ -2076,14 +2076,12 @@ msgstr "Afficher moins"
 msgid "Show All"
 msgstr "Afficher tout"
 
-#| msgid "Please select a valid event"
 msgid "Please select both start and end dates"
 msgstr ""
 
 msgid "Start date must be before end date"
 msgstr ""
 
-#| msgid "Last 3 months"
 msgid "Last 30 days"
 msgstr ""
 
@@ -2093,7 +2091,6 @@ msgstr ""
 msgid "Last 90 days"
 msgstr ""
 
-#| msgid "Report date"
 msgid "Year to date"
 msgstr ""
 
@@ -2103,22 +2100,18 @@ msgstr "Télécharger en JSON"
 msgid "Download as CSV"
 msgstr "Télécharger en CSV"
 
-#| msgid "an error occurred loading working lists"
 msgid "Error loading Working List"
 msgstr ""
 
-#| msgid "You don't have access to write notes"
 msgid "You don't have access to this Working List or it does not exist."
 msgstr ""
 
-#| msgid "Try again or contact your system administrator for support"
 msgid "Please contact your system administrator."
 msgstr ""
 
 msgid "Download with current filters"
 msgstr "Télécharger avec les filtres actuels"
 
-#| msgid "Download as CSV"
 msgid "Download custom CSV"
 msgstr ""
 
@@ -2286,8 +2279,9 @@ msgstr "L'application Sympheos™ exécutée dans cette instance DHIS2."
 msgid "Device Gateway API"
 msgstr "API Passerelle de l'appareil"
 
-msgid "Sympheos Plugins and Dependencies"
-msgstr "Plugins et dépendances Sympheos™"
+#| msgid "Sympheos App"
+msgid "Sympheos System"
+msgstr ""
 
 msgid "Component"
 msgstr "Composant"
@@ -2314,7 +2308,6 @@ msgid "This dashboard could not be loaded. Please try again later."
 msgstr ""
 "Le tableau de bord n'a pas pu être chargé. Veuillez réessayer plus tard."
 
-#| msgid "all programs"
 msgid "Filter Programs"
 msgstr ""
 
@@ -2322,6 +2315,25 @@ msgid "Allow create records"
 msgstr ""
 
 msgid "Disable create records"
+msgstr ""
+
+#| msgid "An error occurred while deleting the events"
+msgid "An error occurred while updating the App Menu labels."
+msgstr ""
+
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#| msgid "Are you sure you want to complete all active events in selection?"
+msgid ""
+"Are you sure you want to update the labels of the App Menu to the latest "
+"version?"
+msgstr ""
+
+msgid "Continue"
+msgstr "Continuer"
+
+msgid "Update App Menu labels"
 msgstr ""
 
 msgid "No Programs available."
@@ -2332,12 +2344,6 @@ msgstr "La configuration des plugins a été rétablie avec succès."
 
 msgid "Error updating Data Store."
 msgstr "Erreur lors de la mise à jour de l'entrepôt de données."
-
-msgid "Confirmation"
-msgstr "Confirmation"
-
-msgid "Continue"
-msgstr "Continuer"
 
 msgid "Gateway Connectivity settings updated successfully."
 msgstr ""
@@ -2352,16 +2358,14 @@ msgstr "Type d'instance"
 msgid "Default Profile"
 msgstr "Profil par défaut"
 
-#| msgid "Plugin Settings"
 msgid "Capture Settings"
 msgstr ""
 
-#| msgid "Working List"
 msgid "Working Lists Settings"
 msgstr ""
 
-msgid "Plugin Settings"
-msgstr "Réglages plugin"
+msgid "Danger Zone"
+msgstr ""
 
 msgid "Device Programs Overwrite plugins configuration"
 msgstr "Programmes des appareils: Remplacer la configuration des modules"
@@ -2387,7 +2391,6 @@ msgstr ""
 "les programmes de Stock? Cette action ne peut pas être annulée et la "
 "configuration actuelle sera perdue."
 
-#| msgid "A value is required"
 msgid "A Program is required"
 msgstr ""
 
@@ -2397,7 +2400,6 @@ msgstr ""
 msgid "Program UID can only be configured once"
 msgstr ""
 
-#| msgid "A value is required"
 msgid "A Line List is required"
 msgstr ""
 
@@ -2407,7 +2409,6 @@ msgstr ""
 msgid "Invalid Time Field UID"
 msgstr ""
 
-#| msgid "You don't have access to write notes"
 msgid "You don't have access to this Line List or it does not exist"
 msgstr ""
 
@@ -2420,19 +2421,15 @@ msgid ""
 "Date."
 msgstr ""
 
-#| msgid "Working list could not be updated"
 msgid "Working Lists settings updated."
 msgstr ""
 
-#| msgid "Working List"
 msgid "Add Working List"
 msgstr ""
 
-#| msgid "Working List"
 msgid "No Working Lists Configured"
 msgstr ""
 
-#| msgid "Working List"
 msgid "Line List"
 msgstr ""
 
@@ -2441,3 +2438,9 @@ msgstr ""
 
 msgid "Compatibility mode"
 msgstr "Mode de compatibilité"
+
+#~ msgid "Sympheos Plugins and Dependencies"
+#~ msgstr "Plugins et dépendances Sympheos™"
+
+#~ msgid "Plugin Settings"
+#~ msgstr "Réglages plugin"

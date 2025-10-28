@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-10-24T16:47:09.862Z\n"
-"PO-Revision-Date: 2025-10-24T16:47:09.862Z\n"
+"POT-Creation-Date: 2025-10-28T02:41:08.400Z\n"
+"PO-Revision-Date: 2025-10-28T02:41:08.400Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1981,6 +1981,9 @@ msgstr "Download as JSON"
 msgid "Download as CSV"
 msgstr "Download as CSV"
 
+msgid "Error generating CSV"
+msgstr "Error generating CSV"
+
 msgid "Error loading Working List"
 msgstr "Error loading Working List"
 
@@ -2150,16 +2153,16 @@ msgid "The DHIS2 version running in this instance."
 msgstr "The DHIS2 version running in this instance."
 
 msgid "Sympheos App"
-msgstr "Sympheos™ App"
+msgstr "Sympheos App"
 
 msgid "The Sympheos application running in this DHIS2 instance."
-msgstr "The Sympheos™ application running in this DHIS2 instance."
+msgstr "The Sympheos application running in this DHIS2 instance."
 
 msgid "Device Gateway API"
 msgstr "Device Gateway API"
 
 msgid "Sympheos System"
-msgstr "Sympheos™ System"
+msgstr "Sympheos System"
 
 msgid "Component"
 msgstr "Component"
