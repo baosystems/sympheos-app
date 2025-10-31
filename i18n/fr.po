@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
 "POT-Creation-Date: 2025-10-24T16:47:09.862Z\n"
-"PO-Revision-Date: 2025-10-24 11:25-0600\n"
+"PO-Revision-Date: 2025-10-27 17:50-0400\n"
 "Last-Translator: Philip Larsen Donnelly, 2025\n"
 "Language-Team: French (https://app.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "Language: fr\n"
@@ -2077,22 +2077,22 @@ msgid "Show All"
 msgstr "Afficher tout"
 
 msgid "Please select both start and end dates"
-msgstr ""
+msgstr "Veuillez sélectionner à la fois la date de début et la date de fin"
 
 msgid "Start date must be before end date"
-msgstr ""
+msgstr "La date de début doit être antérieure à la date de fin"
 
 msgid "Last 30 days"
-msgstr ""
+msgstr "Derniers 30 jours"
 
 msgid "Last 60 days"
-msgstr ""
+msgstr "Derniers 60 jours"
 
 msgid "Last 90 days"
-msgstr ""
+msgstr "Derniers 90 jours"
 
 msgid "Year to date"
-msgstr ""
+msgstr "Depuis le début de l’année"
 
 msgid "Download as JSON"
 msgstr "Télécharger en JSON"
@@ -2101,19 +2101,19 @@ msgid "Download as CSV"
 msgstr "Télécharger en CSV"
 
 msgid "Error loading Working List"
-msgstr ""
+msgstr "Erreur lors du chargement de la liste de travail"
 
 msgid "You don't have access to this Working List or it does not exist."
-msgstr ""
+msgstr "Vous n’avez pas accès à cette liste de travail ou elle n’existe pas."
 
 msgid "Please contact your system administrator."
-msgstr ""
+msgstr "Veuillez contacter votre administrateur système."
 
 msgid "Download with current filters"
 msgstr "Télécharger avec les filtres actuels"
 
 msgid "Download custom CSV"
-msgstr ""
+msgstr "Télécharger le CSV personnalisé"
 
 msgid "An error has occured. See log for details"
 msgstr "Une erreur s'est produite. Voir le journal pour plus de détails"
@@ -2281,7 +2281,7 @@ msgstr "API Passerelle de l'appareil"
 
 #| msgid "Sympheos App"
 msgid "Sympheos System"
-msgstr ""
+msgstr "Système Sympheos"
 
 msgid "Component"
 msgstr "Composant"
@@ -2309,17 +2309,19 @@ msgstr ""
 "Le tableau de bord n'a pas pu être chargé. Veuillez réessayer plus tard."
 
 msgid "Filter Programs"
-msgstr ""
+msgstr "Filtrer les programmes"
 
 msgid "Allow create records"
-msgstr ""
+msgstr "Autoriser la création d’enregistrements"
 
 msgid "Disable create records"
-msgstr ""
+msgstr "La création d’enregistrements est désactivée"
 
 #| msgid "An error occurred while deleting the events"
 msgid "An error occurred while updating the App Menu labels."
 msgstr ""
+"Une erreur est survenue lors de la mise à jour des libellés du menu de "
+"l’application."
 
 msgid "Confirmation"
 msgstr "Confirmation"
@@ -2329,12 +2331,14 @@ msgid ""
 "Are you sure you want to update the labels of the App Menu to the latest "
 "version?"
 msgstr ""
+"Êtes-vous sûr de vouloir mettre à jour les libellés du menu de l’application "
+"vers la dernière version ?"
 
 msgid "Continue"
 msgstr "Continuer"
 
 msgid "Update App Menu labels"
-msgstr ""
+msgstr "Mise à jour les libellés du menu de l’application"
 
 msgid "No Programs available."
 msgstr "Aucun programme disponible."
@@ -2359,13 +2363,13 @@ msgid "Default Profile"
 msgstr "Profil par défaut"
 
 msgid "Capture Settings"
-msgstr ""
+msgstr "Capture"
 
 msgid "Working Lists Settings"
-msgstr ""
+msgstr "Paramètres des listes de travail"
 
 msgid "Danger Zone"
-msgstr ""
+msgstr "Zone de danger"
 
 msgid "Device Programs Overwrite plugins configuration"
 msgstr "Programmes des appareils: Remplacer la configuration des modules"
@@ -2392,49 +2396,53 @@ msgstr ""
 "configuration actuelle sera perdue."
 
 msgid "A Program is required"
-msgstr ""
+msgstr "Un programme est requis"
 
 msgid "Invalid Program UID"
-msgstr ""
+msgstr "L’identifiant du programme est invalide"
 
 msgid "Program UID can only be configured once"
-msgstr ""
+msgstr "L’identifiant du programme ne peut être configuré qu’une seule fois"
 
 msgid "A Line List is required"
-msgstr ""
+msgstr "Une liste linéaire est requise"
 
 msgid "Invalid Line List UID"
-msgstr ""
+msgstr "L’identifiant de la liste linéaire est invalide"
 
 msgid "Invalid Time Field UID"
-msgstr ""
+msgstr "L’identifiant du champ de temps est invalide"
 
 msgid "You don't have access to this Line List or it does not exist"
-msgstr ""
+msgstr "Vous n’avez pas accès à cette liste ou celle-ci n’existe pas."
 
 msgid ""
 "This Line List is not publicly available. Users may not be able to access it."
 msgstr ""
+"Cette liste linéaire n’est pas accessible publiquement. Les utilisateurs "
+"pourraient ne pas y avoir accès."
 
 msgid ""
 "(Optional) Data Element or Tracked Entity Attribute UID. Default is Event "
 "Date."
 msgstr ""
+"(Facultatif) UID de l’élément de données ou de l’attribut de l’entité "
+"suivie. La valeur par défaut est la date de l’événement."
 
 msgid "Working Lists settings updated."
-msgstr ""
+msgstr "Paramètres des listes de travail mis à jour"
 
 msgid "Add Working List"
-msgstr ""
+msgstr "Ajouter une liste de travail"
 
 msgid "No Working Lists Configured"
-msgstr ""
+msgstr "Aucune liste de travail configurée"
 
 msgid "Line List"
-msgstr ""
+msgstr "Liste linéaire"
 
 msgid "Time field for Date filters"
-msgstr ""
+msgstr "Champ de temps pour les filtres de date"
 
 msgid "Compatibility mode"
 msgstr "Mode de compatibilité"

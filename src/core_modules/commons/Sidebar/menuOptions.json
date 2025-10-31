@@ -30,8 +30,8 @@
                     "id": "results_mpima_overview",
                     "link": "/dashboard/mPimaOverview",
                     "title": {
-                        "default": "M-PIMA™ Overview",
-                        "fr": "Vue d'ensemble M-PIMA™"
+                        "default": "m-PIMA™ Overview",
+                        "fr": "Vue d'ensemble m-PIMA™"
                     },
                     "type": "SUPERSET",
                     "userGroups": [
@@ -45,8 +45,8 @@
                     "key": "Fbb3mcEPeqP",
                     "link": "/?programId=Fbb3mcEPeqP&all",
                     "title": {
-                        "default": "M-PIMA™ Data",
-                        "fr": "Données M-PIMA™"
+                        "default": "m-PIMA™ Data",
+                        "fr": "Données m-PIMA™"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
@@ -59,8 +59,8 @@
                     "id": "results_pima_overview",
                     "link": "/dashboard/pimaOverview",
                     "title": {
-                        "default": "PIMA™ Overview",
-                        "fr": "Vue d'ensemble PIMA™"
+                        "default": "Pima™ Overview",
+                        "fr": "Vue d'ensemble Pima™"
                     },
                     "type": "SUPERSET",
                     "userGroups": [
@@ -74,8 +74,8 @@
                     "key": "wlOqXvONeU4",
                     "link": "/?programId=wlOqXvONeU4&all",
                     "title": {
-                        "default": "PIMA™ Data",
-                        "fr": "Données PIMA™"
+                        "default": "Pima™ Data",
+                        "fr": "Données Pima™"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
@@ -150,8 +150,8 @@
                     "key": "WoLFKfl21Om",
                     "link": "/?programId=WoLFKfl21Om&all",
                     "title": {
-                        "default": "NetCom Gateway",
-                        "fr": "Passerelle NetCom"
+                        "default": "NetComm Gateway",
+                        "fr": "Passerelle NetComm"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
@@ -180,8 +180,8 @@
                     "key": "vEK0nUEtkI6",
                     "link": "/?programId=vEK0nUEtkI6&all",
                     "title": {
-                        "default": "PIMA™ Analyser",
-                        "fr": "Analyseur PIMA™"
+                        "default": "Pima™ Analyser",
+                        "fr": "Analyseur Pima™"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
@@ -196,8 +196,8 @@
                     "key": "H8gFGCN7pgf",
                     "link": "/?programId=H8gFGCN7pgf&all",
                     "title": {
-                        "default": "M-PIMA™ Analyser",
-                        "fr": "Analyseur M-PIMA™"
+                        "default": "m-PIMA™ Analyser",
+                        "fr": "Analyseur m-PIMA™"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
