@@ -32,14 +32,22 @@ export const AppStart = () => {
                             defaultProfile: 'WT3MuPwNwwh',
                             instanceType: 'gVUs8MP8PBG',
                         },
-                        dashboardKeys: {
-                            overview: '',
-                            resultsOverview: '',
-                            mPimaOverview: '',
-                            pimaOverview: '',
-                            deviceOverview: '',
-                            stockOverview: '',
-                            adminOverview: '',
+                        supersetDashboards: {
+                            deviceOverview: {
+                                id: '',
+                            },
+                            mPimaOverview: {
+                                id: '',
+                            },
+                            overview: {
+                                id: '',
+                            },
+                            pimaOverview: {
+                                id: '',
+                            },
+                            resultsOverview: {
+                                id: '',
+                            },
                         },
                     },
                 });

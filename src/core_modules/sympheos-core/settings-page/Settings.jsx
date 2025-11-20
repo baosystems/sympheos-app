@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, useEffect } from 'react';
-import { Button, Card, IconSave24, InputField, SingleSelectField, SingleSelectOption } from '@dhis2/ui';
+import { Button, Card, CircularLoader, IconSave24, InputField, SingleSelectField, SingleSelectOption } from '@dhis2/ui';
 import { FiBox, FiCpu } from 'react-icons/fi';
 import { useDataQuery } from '@dhis2/app-runtime';
 import i18n from '@dhis2/d2-i18n';
@@ -67,18 +67,25 @@ export const Settings = () => {
     } = useDataQuery(optionSetsQuery, { lazy: true });
     const { showSnackbar } = useSnackbar();
 
+    const [settingsReady, setSettingsReady] = useState(false);
     const [mappedOS, setMappedOS] = useState(initialOSMap);
-    const [formData, setFormData] = useState({
-        authKey: '',
-        instanceType: '',
-        defaultProfile: '',
+    const [sympheosSettings, setSympheosSettings] = useState({
+        gatewayConnectivity: {
+            authKey: '',
+            instanceType: '',
+            defaultProfile: '',
+        },
+        smsSatelliteOURegex: '',
     });
     const [saveDisabled, setSaveDisabled] = useState(true);
 
     const handleSubmit = () => {
         settingsStoreMutation.mutate({
             key: 'settings',
-            data: { ...settingsStoreQuery.data.results, gatewayConnectivity: formData },
+            data: {
+                ...settingsStoreQuery.data.results,
+                ...sympheosSettings,
+            },
         }).then((value) => {
             if (value.httpStatus === 'OK') {
                 showSnackbar({
@@ -99,10 +106,11 @@ export const Settings = () => {
     };
 
     useEffect(() => {
-        if (!dataOS || !settingsStoreQuery.data) { return; }
+        if (!dataOS || !settingsStoreQuery.data || settingsStoreQuery.loading) { return; }
 
         if (settingsStoreQuery.data.results.gatewayConnectivity) {
-            setFormData(settingsStoreQuery.data.results.gatewayConnectivity);
+            setSympheosSettings(prev => ({ ...prev, ...settingsStoreQuery.data.results }));
+            setSettingsReady(true);
         }
 
         setMappedOS(dataOS.results.optionSets.reduce((
@@ -126,64 +134,101 @@ export const Settings = () => {
     }, [settingsStoreQuery, refetchOS, dataOS, loadingOS]);
 
     useEffect(() => {
-        if (formData.instanceType !== 'fv7AZKEjynM') {
-            setFormData(prev => ({ ...prev, defaultProfile: '' }));
+        if (sympheosSettings.gatewayConnectivity?.instanceType !== 'fv7AZKEjynM') {
+            const gatewayConnectivity = {
+                ...sympheosSettings.gatewayConnectivity,
+                defaultProfile: '',
+            };
+            setSympheosSettings(prev => ({ ...prev, gatewayConnectivity }));
         }
-    }, [formData.instanceType]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sympheosSettings.gatewayConnectivity?.instanceType]);
+
+    const displaySympheosSettings = () => {
+        if (!settingsReady) {
+            return <CircularLoader small />;
+        }
+
+        return (<>
+            <h3>{i18n.t('Gateway Connectivity Settings')}</h3>
+            <SingleSelectField
+                inputWidth="100%"
+                label={i18n.t('Instance Type')}
+                selected={sympheosSettings.gatewayConnectivity?.instanceType}
+                onChange={(event) => {
+                    const gatewayConnectivity = {
+                        ...sympheosSettings.gatewayConnectivity,
+                        instanceType: event.selected,
+                    };
+                    setSympheosSettings({ ...sympheosSettings, gatewayConnectivity });
+                    setSaveDisabled(false);
+                }}
+            >
+                {mappedOS && settingsStoreQuery.data &&
+                    getOptions(mappedOS, settingsStoreQuery.data.results.optionSets.instanceType)
+                }
+            </SingleSelectField>
+            <InputField
+                value={sympheosSettings.gatewayConnectivity?.authKey}
+                onChange={(event) => {
+                    const gatewayConnectivity = {
+                        ...sympheosSettings.gatewayConnectivity,
+                        authKey: event.value,
+                    };
+                    setSympheosSettings({ ...sympheosSettings, gatewayConnectivity });
+                    setSaveDisabled(false);
+                }}
+                placeholder={i18n.t('Auth Key')}
+                label={i18n.t('Auth Key')}
+                inputWidth="100%"
+            />
+            {sympheosSettings.gatewayConnectivity?.instanceType === INSTANCE_TYPE_ID.ACCOUNT &&
+                <SingleSelectField
+                    inputWidth="100%"
+                    label={i18n.t('Default Profile')}
+                    selected={sympheosSettings.gatewayConnectivity?.defaultProfile}
+                    onChange={(event) => {
+                        const gatewayConnectivity = {
+                            ...sympheosSettings.gatewayConnectivity,
+                            defaultProfile: event.selected,
+                        };
+                        setSympheosSettings({ ...sympheosSettings, gatewayConnectivity });
+                        setSaveDisabled(false);
+                    }}
+                >
+                    {mappedOS && settingsStoreQuery.data &&
+                        getOptions(mappedOS, settingsStoreQuery.data.results.optionSets.defaultProfile)
+                    }
+                </SingleSelectField>
+            }
+            <h3>{i18n.t('Other Settings')}</h3>
+            <InputField
+                value={sympheosSettings.smsSatelliteOURegex}
+                onChange={(event) => {
+                    setSympheosSettings({ ...sympheosSettings, smsSatelliteOURegex: event.value });
+                    setSaveDisabled(false);
+                }}
+                placeholder={i18n.t('SampleID Satellite Org Unit Regex for SMS Printing')}
+                label={i18n.t('SampleID Satellite Org Unit Regex for SMS Printing')}
+                inputWidth="100%"
+            />
+            <Button
+                primary
+                onClick={handleSubmit}
+                icon={<IconSave24 />}
+                disabled={saveDisabled || loadingOS}
+                loading={settingsStoreMutation.loading}
+            >{i18n.t('Save changes')}</Button>
+        </>);
+    };
 
     return (
-
         <div className="main-container">
             <div className="settings-container">
                 <Card>
                     <div className="settings-card-content">
-                        <h2>{i18n.t('Gateway Connectivity Settings')}</h2>
-                        <SingleSelectField
-                            inputWidth="100%"
-                            label={i18n.t('Instance Type')}
-                            selected={formData.instanceType}
-                            loading={loadingOS || settingsStoreQuery.loading}
-                            onChange={(event) => {
-                                setFormData({ ...formData, instanceType: event.selected });
-                                setSaveDisabled(false);
-                            }}
-                        >
-                            {mappedOS && settingsStoreQuery.data &&
-                                getOptions(mappedOS, settingsStoreQuery.data.results.optionSets.instanceType)
-                            }
-                        </SingleSelectField>
-                        <InputField
-                            value={formData.authKey}
-                            onChange={(event) => {
-                                setFormData({ ...formData, authKey: event.value });
-                                setSaveDisabled(false);
-                            }}
-                            placeholder={i18n.t('Auth Key')}
-                            label={i18n.t('Auth Key')}
-                            inputWidth="100%"
-                        />
-                        {formData.instanceType === INSTANCE_TYPE_ID.ACCOUNT &&
-                            <SingleSelectField
-                                inputWidth="100%"
-                                label={i18n.t('Default Profile')}
-                                selected={formData.defaultProfile}
-                                onChange={(event) => {
-                                    setFormData({ ...formData, defaultProfile: event.selected });
-                                    setSaveDisabled(false);
-                                }}
-                            >
-                                {mappedOS && settingsStoreQuery.data &&
-                                    getOptions(mappedOS, settingsStoreQuery.data.results.optionSets.defaultProfile)
-                                }
-                            </SingleSelectField>
-                        }
-                        <Button
-                            primary
-                            onClick={handleSubmit}
-                            icon={<IconSave24 />}
-                            disabled={saveDisabled || loadingOS}
-                            loading={settingsStoreMutation.loading}
-                        >{i18n.t('Save changes')}</Button>
+                        <h2>{i18n.t('App Settings')}</h2>
+                        {displaySympheosSettings()}
 
                         <h2>{i18n.t('Capture Settings')}</h2>
                         <EventCreationBlacklist />

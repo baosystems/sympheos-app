@@ -2235,7 +2235,7 @@ msgstr "API do gateway do dispositivo"
 
 #| msgid "Sympheos App"
 msgid "Sympheos System"
-msgstr "Sistema Sympheos"
+msgstr "Sistema Sympheos™"
 
 msgid "Component"
 msgstr "Componente"

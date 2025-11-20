@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-10-28T02:41:08.400Z\n"
-"PO-Revision-Date: 2025-10-28T02:41:08.400Z\n"
+"POT-Creation-Date: 2025-11-20T22:12:36.225Z\n"
+"PO-Revision-Date: 2025-11-20T22:12:36.225Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2236,6 +2236,15 @@ msgstr "Instance Type"
 
 msgid "Default Profile"
 msgstr "Default Profile"
+
+msgid "Other Settings"
+msgstr "Other Settings"
+
+msgid "SampleID Satellite Org Unit Regex for SMS Printing"
+msgstr "SampleID Satellite Org Unit Regex for SMS Printing"
+
+msgid "App Settings"
+msgstr "App Settings"
 
 msgid "Capture Settings"
 msgstr "Capture Settings"

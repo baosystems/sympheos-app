@@ -146,12 +146,12 @@
                     ]
                 },
                 {
-                    "id": "device_netcom",
+                    "id": "device_netcomm",
                     "key": "WoLFKfl21Om",
                     "link": "/?programId=WoLFKfl21Om&all",
                     "title": {
-                        "default": "NetComm Gateway",
-                        "fr": "Passerelle NetComm"
+                        "default": "Netcomm Gateway",
+                        "fr": "Passerelle Netcomm"
                     },
                     "type": "CAPTURE",
                     "userGroups": [

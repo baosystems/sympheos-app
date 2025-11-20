@@ -2281,7 +2281,7 @@ msgstr "API Passerelle de l'appareil"
 
 #| msgid "Sympheos App"
 msgid "Sympheos System"
-msgstr "Système Sympheos"
+msgstr "Système Sympheos™"
 
 msgid "Component"
 msgstr "Composant"
