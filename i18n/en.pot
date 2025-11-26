@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-11-20T22:12:36.225Z\n"
-"PO-Revision-Date: 2025-11-20T22:12:36.225Z\n"
+"POT-Creation-Date: 2025-11-26T05:39:55.460Z\n"
+"PO-Revision-Date: 2025-11-26T05:39:55.460Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2225,6 +2225,21 @@ msgstr "Plugins configuration restored successfully."
 msgid "Error updating Data Store."
 msgstr "Error updating Data Store."
 
+msgid "Filter by Program, Program Stage UID, name, ..."
+msgstr "Filter by Program, Program Stage UID, name, ..."
+
+msgid "Program | Program Stages"
+msgstr "Program | Program Stages"
+
+msgid "Enable Create"
+msgstr "Enable Create"
+
+msgid "Enable Edit"
+msgstr "Enable Edit"
+
+msgid "Enable Print"
+msgstr "Enable Print"
+
 msgid "Gateway Connectivity settings updated successfully."
 msgstr "Gateway Connectivity settings updated successfully."
 
@@ -2248,6 +2263,9 @@ msgstr "App Settings"
 
 msgid "Capture Settings"
 msgstr "Capture Settings"
+
+msgid "Program Stage Settings"
+msgstr "Program Stage Settings"
 
 msgid "Working Lists Settings"
 msgstr "Working Lists Settings"
@@ -2328,6 +2346,12 @@ msgstr "Line List"
 
 msgid "Time field for Date filters"
 msgstr "Time field for Date filters"
+
+msgid "This event hasn't been enabled for SMS printing"
+msgstr "This event hasn't been enabled for SMS printing"
+
+msgid "Send to SMS Printer"
+msgstr "Send to SMS Printer"
 
 msgid "Compatibility mode"
 msgstr "Compatibility mode"

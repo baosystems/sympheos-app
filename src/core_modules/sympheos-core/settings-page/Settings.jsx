@@ -20,6 +20,8 @@ import baseStockSettings from './stockPluginSettings';
 import { useDataStore } from '../../../hooks/useDataStore';
 import { WorkingListsManager } from './WorkingListsManager';
 import { EventCreationBlacklist } from './EventCreationBlacklist';
+import { CheckBox } from '@material-ui/icons';
+import { ProgramStagesSettings } from './ProgramStagesSettings';
 
 const optionSetsQuery = {
     results: {
@@ -232,6 +234,8 @@ export const Settings = () => {
 
                         <h2>{i18n.t('Capture Settings')}</h2>
                         <EventCreationBlacklist />
+                        <h3>{i18n.t('Program Stage Settings')}</h3>
+                        <ProgramStagesSettings />
 
                         <h2>{i18n.t('Working Lists Settings')}</h2>
                         <WorkingListsManager />

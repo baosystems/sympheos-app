@@ -7,6 +7,7 @@ import { spacers, IconFileDocument24, Button, IconMore16, FlyoutMenu, MenuItem }
 import { useQueryClient } from 'react-query';
 import i18n from '@dhis2/d2-i18n';
 import { ConditionalTooltip } from 'capture-core/components/Tooltips/ConditionalTooltip';
+import { SMSPrinterManager } from 'sympheos-core/sms-printer/SMSPrinterManager';
 import { ViewEventSection } from '../Section/ViewEventSection.component';
 import { ViewEventSectionHeader } from '../Section/ViewEventSectionHeader.component';
 import { EditEventDataEntry } from '../../../WidgetEventEdit/EditEventDataEntry/EditEventDataEntry.container';
@@ -22,6 +23,7 @@ import { CHANGELOG_ENTITY_TYPES } from '../../../WidgetsChangelog';
 import { useCategoryCombinations } from '../../../DataEntryDhis2Helpers/AOC/useCategoryCombinations';
 import type { ProgramCategory } from '../../../WidgetEventSchedule/CategoryOptions/CategoryOptions.types';
 import { useMetadataForProgramStage } from '../../../DataEntries/common/ProgramStage/useMetadataForProgramStage';
+import { useDataStore } from '../../../../../../hooks/useDataStore';
 
 const getStyles = () => ({
     container: {
@@ -95,6 +97,10 @@ const EventDetailsSectionPlain = (props: Props) => {
     const [changeLogIsOpen, setChangeLogIsOpen] = useState(false);
     const [actionsIsOpen, setActionsIsOpen] = useState(false);
 
+    const {
+        storeQuery: psSettingsStoreQuery,
+    } = useDataStore({ key: 'programStagesSettings', lazyGet: false });
+
     const onSaveExternal = () => {
         const queryKey = [ReactQueryAppNamespace, 'changelog', CHANGELOG_ENTITY_TYPES.EVENT, eventId];
         queryClient.removeQueries(queryKey);
@@ -108,7 +114,7 @@ const EventDetailsSectionPlain = (props: Props) => {
     const renderDataEntryContainer = () => (
         <div className={classes.dataEntryContainer}>
             {showEditEvent ?
-            // $FlowFixMe[cannot-spread-inexact] automated comment
+                // $FlowFixMe[cannot-spread-inexact] automated comment
                 <EditEventDataEntry
                     dataEntryId={dataEntryIds.SINGLE_EVENT}
                     formFoundation={formFoundation}
@@ -117,7 +123,7 @@ const EventDetailsSectionPlain = (props: Props) => {
                     programId={programId}
                     {...passOnProps}
                 /> :
-            // $FlowFixMe[cannot-spread-inexact] automated comment
+                // $FlowFixMe[cannot-spread-inexact] automated comment
                 <ViewEventDataEntry
                     dataEntryId={dataEntryIds.SINGLE_EVENT}
                     formFoundation={formFoundation}
@@ -129,28 +135,35 @@ const EventDetailsSectionPlain = (props: Props) => {
     );
 
     const renderActionsContainer = () => {
-        const canEdit = eventAccess.write;
+        // eslint-disable-next-line no-underscore-dangle
+        const stageSympheosSettings = psSettingsStoreQuery.data?.results?.[programStage._id];
+        const editEnabled = stageSympheosSettings?.enableEdit;
+        const canEdit = eventAccess.write && editEnabled;
         return (
             <div className={classes.actionsContainer}>
                 {!showEditEvent && !isLoading &&
-                <div
-                    className={classes.editButtonContainer}
-                >
-                    <ConditionalTooltip
-                        content={i18n.t('You don\'t have access to edit this event')}
-                        enabled={!canEdit}
+                    <div
+                        className={classes.editButtonContainer}
+                        style={{ display: 'flex', gap: '5px' }}
                     >
-                        <Button
-                            className={classes.button}
-                            onClick={() => onOpenEditEvent(orgUnit, programCategory)}
-                            disabled={!canEdit}
-                            secondary
-                            small
+                        <SMSPrinterManager
+                            disabled={!stageSympheosSettings?.enablePrint}
+                        />
+                        <ConditionalTooltip
+                            content={i18n.t('You don\'t have access to edit this event')}
+                            enabled={!canEdit}
                         >
-                            {i18n.t('Edit event')}
-                        </Button>
-                    </ConditionalTooltip>
-                </div>}
+                            <Button
+                                className={classes.button}
+                                onClick={() => onOpenEditEvent(orgUnit, programCategory)}
+                                disabled={!canEdit}
+                                secondary
+                                small
+                            >
+                                {i18n.t('Edit event')}
+                            </Button>
+                        </ConditionalTooltip>
+                    </div>}
                 {supportsChangelog && (
                     <OverflowButton
                         open={actionsIsOpen}

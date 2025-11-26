@@ -17,6 +17,8 @@ import { OverflowButton } from '../../Buttons';
 import { inMemoryFileStore } from '../../DataEntry/file/inMemoryFileStore';
 import { eventStatuses } from '../constants/status.const';
 import type { PlainProps, Props } from './WidgetHeader.types';
+import { useDataStore } from '../../../../../hooks/useDataStore';
+import { SMSPrinterManager } from 'sympheos-core/sms-printer/SMSPrinterManager';
 
 const styles = {
     icon: {
@@ -46,6 +48,10 @@ export const WidgetHeaderPlain = ({
     useEffect(() => inMemoryFileStore.clear, []);
     const dispatch = useDispatch();
 
+    const {
+        storeQuery: psSettingsStoreQuery,
+    } = useDataStore({ key: 'programStagesSettings', lazyGet: false });
+
     const supportsChangelog = useFeature(FEATURES.changelogs);
     const { currentPageMode } = useEnrollmentEditEventPageMode(eventStatus);
     const [actionsIsOpen, setActionsIsOpen] = useState(false);
@@ -53,7 +59,11 @@ export const WidgetHeaderPlain = ({
     const eventAccess = getProgramEventAccess(programId, stage.id);
     const { hasAuthority } = useAuthorities({ authorities: ['F_UNCOMPLETE_EVENT'] });
     const blockEntryForm = stage.blockEntryForm && !hasAuthority && eventStatus === eventStatuses.COMPLETED;
-    const disableEdit = !eventAccess?.write || blockEntryForm;
+
+    const checkEditDisabled = () =>
+        !eventAccess?.write ||
+        blockEntryForm ||
+        psSettingsStoreQuery.data?.results?.[stage.id]?.enableEdit !== true;
 
     const tooltipContent = blockEntryForm
         ? i18n.t('The event cannot be edited after it has been completed')
@@ -80,15 +90,18 @@ export const WidgetHeaderPlain = ({
             <div className={classes.menu}>
                 {currentPageMode === dataEntryKeys.VIEW && (
                     <div className={classes.menuActions}>
+                        <SMSPrinterManager
+                            disabled={psSettingsStoreQuery.data?.results?.[stage.id]?.enablePrint !== true}
+                        />
                         <ConditionalTooltip
                             content={tooltipContent}
-                            enabled={disableEdit}
+                            enabled={checkEditDisabled()}
                             wrapperClassName={classes.tooltip}
                         >
                             <Button
                                 small
                                 secondary
-                                disabled={disableEdit}
+                                disabled={checkEditDisabled()}
                                 icon={<IconEdit24 />}
                                 onClick={() => dispatch(startShowEditEventDataEntry(orgUnit, programCategory))}
                                 data-test="widget-enrollment-event-edit-button"

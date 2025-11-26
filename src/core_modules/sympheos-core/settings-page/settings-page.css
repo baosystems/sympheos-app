@@ -48,3 +48,9 @@ h3 {
     margin-top: 0.25em;
     font-weight: 500;
 }
+
+.centered-cell {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
