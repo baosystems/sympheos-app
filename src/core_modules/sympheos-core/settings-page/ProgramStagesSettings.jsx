@@ -20,6 +20,11 @@ import 'sympheos-core/settings-page/settings-page.css';
 
 import { useDataStore } from '../../../hooks/useDataStore';
 
+const getProgramTypeLabel = (programType) => {
+    if (programType === 'WITH_REGISTRATION') return i18n.t('Tracker');
+    return i18n.t('Event');
+};
+
 export const ProgramStagesSettings = () => {
     const {
         storeMutation: psSettingsStoreMutation,
@@ -35,7 +40,9 @@ export const ProgramStagesSettings = () => {
             resource: 'programStages',
             params: ({ token, page, pageSize }) => {
                 const paramsObject = {
-                    fields: 'id,displayName,program[id,displayName]',
+                    fields: 'id,displayName,program[id,displayName,programType]',
+                    rootJunction: 'OR',
+                    filter: [],
                     page,
                     pageSize,
                 };
@@ -45,7 +52,6 @@ export const ProgramStagesSettings = () => {
                         `program.name:ilike:${token}`,
                         `identifiable:token:${token}`,
                     ];
-                    paramsObject.rootJunction = 'OR';
                 }
                 return paramsObject;
             },
@@ -138,16 +144,21 @@ export const ProgramStagesSettings = () => {
                 {!programStagesLoading && programStagesData?.results.programStages.map((programStage) => {
                     const programStageId = programStage.id;
                     const programName = programStage.program?.displayName || programStage.displayName;
+                    const programType = programStage.program?.programType;
                     return (<DataTableRow key={programStageId}>
                         <DataTableCell colSpan="4">
-                            <b>{programName}</b> | {programStage.displayName}
+                            <b>{programName}</b> | {programStage.displayName} [{getProgramTypeLabel(programType)}]
                         </DataTableCell>
                         <DataTableCell colSpan="1">
-                            <Checkbox
-                                disabled={psSettingsStoreQuery.loading || psSettingsStoreMutation.loading}
-                                checked={psSettingsStoreQuery.data?.results?.[programStageId]?.enableCreate}
-                                onChange={event => handleSettingChange(programStageId, 'enableCreate', event.checked)}
-                            />
+                            {programStage.program?.programType === 'WITH_REGISTRATION' &&
+                                <Checkbox
+                                    disabled={psSettingsStoreQuery.loading || psSettingsStoreMutation.loading}
+                                    checked={psSettingsStoreQuery.data?.results?.[programStageId]?.enableCreate}
+                                    onChange={event =>
+                                        handleSettingChange(programStageId, 'enableCreate', event.checked)
+                                    }
+                                />
+                            }
                         </DataTableCell>
                         <DataTableCell colSpan="1">
                             <Checkbox

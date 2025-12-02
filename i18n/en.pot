@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-11-26T05:39:55.460Z\n"
-"PO-Revision-Date: 2025-11-26T05:39:55.460Z\n"
+"POT-Creation-Date: 2025-12-02T02:26:53.731Z\n"
+"PO-Revision-Date: 2025-12-02T02:26:53.731Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2225,6 +2225,12 @@ msgstr "Plugins configuration restored successfully."
 msgid "Error updating Data Store."
 msgstr "Error updating Data Store."
 
+msgid "Tracker"
+msgstr "Tracker"
+
+msgid "Event"
+msgstr "Event"
+
 msgid "Filter by Program, Program Stage UID, name, ..."
 msgstr "Filter by Program, Program Stage UID, name, ..."
 
@@ -2346,9 +2352,6 @@ msgstr "Line List"
 
 msgid "Time field for Date filters"
 msgstr "Time field for Date filters"
-
-msgid "This event hasn't been enabled for SMS printing"
-msgstr "This event hasn't been enabled for SMS printing"
 
 msgid "Send to SMS Printer"
 msgstr "Send to SMS Printer"

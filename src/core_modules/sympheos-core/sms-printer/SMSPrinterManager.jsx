@@ -10,16 +10,13 @@ type Props = {
 
 export const SMSPrinterManager = ({ disabled }: Props) => {
     const a = 1;
-    return (<ConditionalTooltip
-        content={i18n.t('This event hasn\'t been enabled for SMS printing')}
-        enabled={disabled}
-    >
-        <Button
+    return (<>
+        {!disabled && <Button
             secondary
             small
             disabled={disabled}
         >
             {i18n.t('Send to SMS Printer')}
-        </Button>
-    </ConditionalTooltip>);
+        </Button>}
+    </>);
 };
