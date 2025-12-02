@@ -37,7 +37,7 @@ export const StagePlain = (
         ruleEffects,
         enableCreate,
         ...passOnProps
-    }: Props
+    }: Props,
 ) => {
     const [open, setOpenStatus] = useState(true);
     const { id, name, icon, description, dataElements, hideDueDate, repeatable, enableUserAssignment } = stage;

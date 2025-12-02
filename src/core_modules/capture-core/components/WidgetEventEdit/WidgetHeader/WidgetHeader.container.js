@@ -9,6 +9,7 @@ import { FEATURES, useFeature } from 'capture-core-utils';
 import { useAuthorities } from 'capture-core/utils/authority/useAuthorities';
 import { ConditionalTooltip } from 'capture-core/components/Tooltips/ConditionalTooltip';
 import { useEnrollmentEditEventPageMode } from 'capture-core/hooks';
+import { SMSPrinterManager } from 'sympheos-core/sms-printer/SMSPrinterManager';
 import { startShowEditEventDataEntry } from '../WidgetEventEdit.actions';
 import { NonBundledDhis2Icon } from '../../NonBundledDhis2Icon';
 import { getProgramEventAccess } from '../../../metaData';
@@ -18,7 +19,6 @@ import { inMemoryFileStore } from '../../DataEntry/file/inMemoryFileStore';
 import { eventStatuses } from '../constants/status.const';
 import type { PlainProps, Props } from './WidgetHeader.types';
 import { useDataStore } from '../../../../../hooks/useDataStore';
-import { SMSPrinterManager } from 'sympheos-core/sms-printer/SMSPrinterManager';
 
 const styles = {
     icon: {
