@@ -9,7 +9,7 @@ import { FEATURES, useFeature } from 'capture-core-utils';
 import { useAuthorities } from 'capture-core/utils/authority/useAuthorities';
 import { ConditionalTooltip } from 'capture-core/components/Tooltips/ConditionalTooltip';
 import { useEnrollmentEditEventPageMode } from 'capture-core/hooks';
-import { SMSPrinterManager } from 'sympheos-core/sms-printer/SMSPrinterManager';
+import { SMSPrinterSelector } from 'sympheos-core/sms-printer/SMSPrinterSelector';
 import { startShowEditEventDataEntry } from '../WidgetEventEdit.actions';
 import { NonBundledDhis2Icon } from '../../NonBundledDhis2Icon';
 import { getProgramEventAccess } from '../../../metaData';
@@ -17,8 +17,8 @@ import { useCategoryCombinations } from '../../DataEntryDhis2Helpers/AOC/useCate
 import { OverflowButton } from '../../Buttons';
 import { inMemoryFileStore } from '../../DataEntry/file/inMemoryFileStore';
 import { eventStatuses } from '../constants/status.const';
-import type { PlainProps, Props } from './WidgetHeader.types';
 import { useDataStore } from '../../../../../hooks/useDataStore';
+import type { PlainProps, Props } from './WidgetHeader.types';
 
 const styles = {
     icon: {
@@ -38,6 +38,7 @@ const styles = {
 };
 
 export const WidgetHeaderPlain = ({
+    eventId,
     eventStatus,
     stage,
     programId,
@@ -57,6 +58,7 @@ export const WidgetHeaderPlain = ({
     const [actionsIsOpen, setActionsIsOpen] = useState(false);
 
     const eventAccess = getProgramEventAccess(programId, stage.id);
+
     const { hasAuthority } = useAuthorities({ authorities: ['F_UNCOMPLETE_EVENT'] });
     const blockEntryForm = stage.blockEntryForm && !hasAuthority && eventStatus === eventStatuses.COMPLETED;
 
@@ -90,8 +92,10 @@ export const WidgetHeaderPlain = ({
             <div className={classes.menu}>
                 {currentPageMode === dataEntryKeys.VIEW && (
                     <div className={classes.menuActions}>
-                        <SMSPrinterManager
+                        <SMSPrinterSelector
                             disabled={psSettingsStoreQuery.data?.results?.[stage.id]?.enablePrint !== true}
+                            eventId={eventId}
+                            orgUnit={orgUnit.id}
                         />
                         <ConditionalTooltip
                             content={tooltipContent}

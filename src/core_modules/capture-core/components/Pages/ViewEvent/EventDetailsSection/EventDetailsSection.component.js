@@ -7,7 +7,7 @@ import { spacers, IconFileDocument24, Button, IconMore16, FlyoutMenu, MenuItem }
 import { useQueryClient } from 'react-query';
 import i18n from '@dhis2/d2-i18n';
 import { ConditionalTooltip } from 'capture-core/components/Tooltips/ConditionalTooltip';
-import { SMSPrinterManager } from 'sympheos-core/sms-printer/SMSPrinterManager';
+import { SMSPrinterSelector } from 'sympheos-core/sms-printer/SMSPrinterSelector';
 import { ViewEventSection } from '../Section/ViewEventSection.component';
 import { ViewEventSectionHeader } from '../Section/ViewEventSectionHeader.component';
 import { EditEventDataEntry } from '../../../WidgetEventEdit/EditEventDataEntry/EditEventDataEntry.container';
@@ -88,6 +88,7 @@ const EventDetailsSectionPlain = (props: Props) => {
         programId,
         ...passOnProps
     } = props;
+
     const orgUnitId = useSelector(({ viewEventPage }) => viewEventPage.loadedValues?.orgUnit?.id);
     const { formFoundation } = useMetadataForProgramStage({ programId });
     const { orgUnit, error } = useCoreOrgUnit(orgUnitId);
@@ -146,9 +147,11 @@ const EventDetailsSectionPlain = (props: Props) => {
                         className={classes.editButtonContainer}
                         style={{ display: 'flex', gap: '5px' }}
                     >
-                        <SMSPrinterManager
+                        {orgUnitId && <SMSPrinterSelector
                             disabled={!stageSympheosSettings?.enablePrint}
-                        />
+                            eventId={eventId}
+                            orgUnit={orgUnitId}
+                        />}
                         <ConditionalTooltip
                             content={i18n.t('You don\'t have access to edit this event')}
                             enabled={!canEdit}

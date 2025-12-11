@@ -19,6 +19,9 @@ export const AppStart = () => {
     const [ready, setReadyStatus] = useState(false);
     const [cacheExpired, setCacheExpired] = useState(false);
     const { storeMutation, storeQuery } = useDataStore({ key: 'settings' });
+    const {
+        storeMutation: printerRefsMutation, storeQuery: printerRefsQuery,
+    } = useDataStore({ key: 'smsPrinterRefs', lazyGet: true });
 
     const store: { current: Object } = useRef();
 
@@ -53,6 +56,19 @@ export const AppStart = () => {
                 });
             }
         });
+        printerRefsQuery.refetch({ key: 'smsPrinterRefs' }).then((data) => {
+            if (!data) {
+                printerRefsMutation.mutate({
+                    key: 'smsPrinterRefs',
+                    data: {
+                        smsPrinterRecordsProgramId: 'JrKyubafFtp',
+                        smsPrinterSerialNumber: 'QiLO2vxpmGD',
+                        smsPrinterLastSeen: 'Zss3gfqukHT',
+                        defaultSmsPrinterAttributeId: 'APESI7DFszC',
+                    },
+                });
+            }
+        });
         store.current = storeArg;
         setReadyStatus(true);
         storeArg.dispatch(loadApp());
@@ -62,6 +78,8 @@ export const AppStart = () => {
         store,
         storeQuery,
         storeMutation,
+        printerRefsQuery,
+        printerRefsMutation,
     ]);
 
     const handleCacheExpired = useCallback(() => {
