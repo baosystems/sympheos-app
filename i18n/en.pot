@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-12-11T06:12:27.409Z\n"
-"PO-Revision-Date: 2025-12-11T06:12:27.409Z\n"
+"POT-Creation-Date: 2025-12-16T06:08:34.688Z\n"
+"PO-Revision-Date: 2025-12-16T06:08:34.688Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2352,6 +2352,12 @@ msgstr "Line List"
 
 msgid "Time field for Date filters"
 msgstr "Time field for Date filters"
+
+msgid "Event sent to SMS Printer."
+msgstr "Event sent to SMS Printer."
+
+msgid "Error sending to SMS Printer."
+msgstr "Error sending to SMS Printer."
 
 msgid "No SMS Printers found"
 msgstr "No SMS Printers found"

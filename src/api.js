@@ -2,6 +2,7 @@ import {
     API_PATH_DASHBOARDS,
     API_PATH_GUEST_TOKEN,
     API_PATH_SYSTEM_INFO,
+    SMS_PRINTERS_API_PATH,
 } from './constants/paths';
 import { getAbsoluteUrl } from './utils';
 
@@ -141,6 +142,18 @@ export const apiDeleteDashboard = async (id, { baseUrl } = {}) => {
     );
 
     return response.json();
+};
+
+export const apiDeviceGatewayReprintSMS = async (
+    smsPrinterTrackedEntity,
+    eventId,
+    { baseUrl } = {},
+) => {
+    const response = await post(
+        getAbsoluteUrl(
+            baseUrl, `${SMS_PRINTERS_API_PATH}/${smsPrinterTrackedEntity}/reprint?eventId=${eventId}`,
+        ));
+    return response;
 };
 
 /**

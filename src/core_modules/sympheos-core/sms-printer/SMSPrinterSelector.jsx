@@ -19,6 +19,9 @@ import {
     TableBody,
 } from '@dhis2/ui';
 import { useDataStore } from '../../../hooks/useDataStore';
+import { apiDeviceGatewayReprintSMS } from '../../../api';
+import { useAppContext } from '../../../hooks';
+import { useSnackbar } from 'commons/Snackbar/SnackbarContext';
 
 type Props = {
     disabled: boolean,
@@ -35,12 +38,30 @@ const getAttributeValue = (
     return attribute ? attribute.value : defaultValue;
 };
 
+const rootOUsQuery = {
+    orgUnits: {
+        resource: 'organisationUnits',
+        id: ({ orgUnitId }) => orgUnitId,
+        params: {
+            fields: 'id,displayName,attributeValues,parent[children[id,displayName,attributeValues]]',
+            filter: ['level:eq:1'],
+            paging: false,
+        },
+    },
+};
+
 export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
     const [showModal, setShowModal] = useState(false);
     const [processingOUs, setProcessingOUs] = useState(false);
     const [orgUnitsMap, setOrgUnitsMap] = useState({});
     const [selectedPrinter, setSelectedPrinter] = useState(null);
+    const [sendingSms, setSendingSms] = useState(false);
+
+    const { baseUrl } = useAppContext();
+    const { showSnackbar } = useSnackbar();
+
     const { storeQuery: printerRefsQuery } = useDataStore({ key: 'smsPrinterRefs', lazyGet: false });
+
     const { loading: loadingTEIs, data: printerTEIs, refetch: refetchTEIs } = useDataQuery(
         useMemo(
             () => ({
@@ -60,10 +81,11 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
     const { loading: loadingOUs, refetch: refetchOUs } = useDataQuery(
         useMemo(
             () => ({
-                orgUnits: {
+                orgUnit: {
                     resource: 'organisationUnits',
+                    id: ({ orgUnitId }) => orgUnitId,
                     params: {
-                        fields: 'id,displayName,attributeValues',
+                        fields: 'id,displayName,attributeValues,parent[children[id,displayName,attributeValues]],level',
                         paging: false,
                     },
                 },
@@ -72,19 +94,53 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
         ),
         { lazy: true },
     );
+    const { loading: loadingRootOUs, data: rootOUs } = useDataQuery(
+        rootOUsQuery,
+        { lazy: false },
+    );
 
-    const handleSendToPrint = () => { };
+    const hideModal = () => {
+        if (!sendingSms) {
+            setShowModal(false);
+        }
+    };
+
+    const handleSendToPrint = () => {
+        setSendingSms(true);
+        apiDeviceGatewayReprintSMS(
+            selectedPrinter,
+            eventId,
+            { baseUrl },
+        ).then((response) => {
+            setSendingSms(false);
+            if (response.httpStatus === 'OK') {
+                showSnackbar({
+                    key: 'sms-send-success',
+                    message: i18n.t('Event sent to SMS Printer.'),
+                    duration: 3000,
+                    severity: 'success',
+                });
+            } else {
+                showSnackbar({
+                    key: 'sms-send-error',
+                    message: response.message || i18n.t('Error sending to SMS Printer.'),
+                    severity: 'critical',
+                });
+            }
+        });
+    };
 
     const renderPrinterList = () => {
         if (processingOUs || loadingOUs) {
             return <CircularLoader />;
         }
         const { trackedEntities: teis } = printerTEIs;
-        if (!teis || teis.length === 0) {
+        const printersList = teis?.trackedEntities?.filter(tei => orgUnitsMap[tei.orgUnit]);
+        if (!printersList || printersList.length === 0) {
             return <div>{i18n.t('No SMS Printers found')}</div>;
         }
         const smsPrinterRefs = printerRefsQuery.data.results;
-        return (<DataTable>
+        return (<DataTable layout="fixed" scrollHeight="70vh">
             <TableHead>
                 <DataTableRow>
                     <DataTableColumnHeader>{i18n.t('Select')}</DataTableColumnHeader>
@@ -95,40 +151,45 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
                 </DataTableRow>
             </TableHead>
             <TableBody>
-                {teis.trackedEntities.map((tei) => {
-                    const serialNumber = getAttributeValue(
+                {printersList.map((tei) => {
+                    tei.serialNumber = getAttributeValue(
                         smsPrinterRefs.smsPrinterSerialNumber,
                         tei.attributes,
                         i18n.t('Unknown'));
-                    const isDefaultPrinter = (orgUnitsMap[tei.orgUnit]?.attributeValues || [])
+                    tei.isDefaultPrinter = (orgUnitsMap[tei.orgUnit]?.attributeValues || [])
                         .find(attr =>
                             attr.attribute.id === smsPrinterRefs.defaultSmsPrinterAttributeId,
-                        ).value === serialNumber;
-                    // TODO: Verify if this is the desired behavior
-                    if (isDefaultPrinter && !selectedPrinter) {
+                        ).value === tei.serialNumber;
+                    if (tei.isDefaultPrinter && orgUnitsMap[tei.orgUnit]?.id === orgUnit && !selectedPrinter) {
                         setSelectedPrinter(tei.trackedEntity);
                     }
-                    return (<DataTableRow key={tei.trackedEntity}>
-                        <DataTableCell>
-                            <Checkbox
-                                checked={selectedPrinter === tei.trackedEntity}
-                                onChange={({ checked }) => {
-                                    if (checked) {
-                                        setSelectedPrinter(tei.trackedEntity);
-                                    } else {
-                                        setSelectedPrinter(null);
-                                    }
-                                }}
-                            />
-                        </DataTableCell>
-                        <DataTableCell>{serialNumber}</DataTableCell>
-                        <DataTableCell>{orgUnitsMap[tei.orgUnit]?.displayName || tei.orgUnit}</DataTableCell>
-                        <DataTableCell>{isDefaultPrinter ? i18n.t('Yes') : i18n.t('No')}</DataTableCell>
-                        <DataTableCell>
-                            {getAttributeValue(smsPrinterRefs.smsPrinterLastSeen, tei.attributes, '-')}
-                        </DataTableCell>
-                    </DataTableRow>);
-                })}
+                    return tei;
+                }).sort((a, b) => b.isDefaultPrinter - a.isDefaultPrinter)
+                    .map((tei, index) => {
+                        if (index === 0 && !selectedPrinter) {
+                            setSelectedPrinter(tei.trackedEntity);
+                        }
+                        return (<DataTableRow key={tei.trackedEntity} selected={selectedPrinter === tei.trackedEntity}>
+                            <DataTableCell>
+                                <Checkbox
+                                    checked={selectedPrinter === tei.trackedEntity}
+                                    onChange={({ checked }) => {
+                                        if (checked) {
+                                            setSelectedPrinter(tei.trackedEntity);
+                                        } else {
+                                            setSelectedPrinter(null);
+                                        }
+                                    }}
+                                />
+                            </DataTableCell>
+                            <DataTableCell>{tei.serialNumber}</DataTableCell>
+                            <DataTableCell>{orgUnitsMap[tei.orgUnit]?.displayName || tei.orgUnit}</DataTableCell>
+                            <DataTableCell>{tei.isDefaultPrinter ? i18n.t('Yes') : i18n.t('No')}</DataTableCell>
+                            <DataTableCell>
+                                {getAttributeValue(smsPrinterRefs.smsPrinterLastSeen, tei.attributes, '-')}
+                            </DataTableCell>
+                        </DataTableRow>);
+                    })}
             </TableBody>
         </DataTable>);
     };
@@ -146,14 +207,18 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
             return;
         }
         (async () => {
-            const { orgUnits: ouList } = await refetchOUs();
-            const ouMap = ouList.organisationUnits.reduce((acc, ou) => {
+            const { orgUnit: orgUnitResult } = await refetchOUs({ orgUnitId: orgUnit });
+            const children = (orgUnitResult?.level === 1
+                ? rootOUs?.orgUnits?.organisationUnits
+                : orgUnitResult?.parent?.children
+            ) || [];
+            const ouMap = children.reduce((acc, ou) => {
                 acc[ou.id] = ou;
                 return acc;
             }, {});
             setOrgUnitsMap(ouMap);
         })();
-    }, [showModal, refetchOUs]);
+    }, [showModal, refetchOUs, orgUnit, rootOUs]);
 
     useEffect(() => {
         setProcessingOUs(false);
@@ -163,7 +228,7 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
         {!disabled && <Button
             secondary
             small
-            disabled={!printerTEIs}
+            disabled={!printerTEIs || loadingRootOUs}
             loading={loadingTEIs}
             onClick={() => {
                 setProcessingOUs(true);
@@ -172,17 +237,26 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
         >
             {i18n.t('Send to SMS Printer')}
         </Button>}
-        {showModal && <Modal position="middle" onClose={() => setShowModal(false)}>
+        {showModal && <Modal
+            position="middle"
+            onClose={hideModal}
+            large
+        >
             <ModalTitle>{i18n.t('Send selected Event to SMS Printer')}</ModalTitle>
-            <ModalContent>
+            <ModalContent >
                 {renderPrinterList()}
             </ModalContent>
             <ModalActions>
                 <ButtonStrip end>
-                    <Button onClick={() => setShowModal(false)} secondary>
+                    <Button onClick={hideModal} secondary disabled={sendingSms}>
                         {i18n.t('Close modal')}
                     </Button>
-                    <Button onClick={handleSendToPrint} primary>
+                    <Button
+                        onClick={handleSendToPrint}
+                        disabled={!selectedPrinter}
+                        loading={sendingSms}
+                        primary
+                    >
                         {i18n.t('Print')}
                     </Button>
                 </ButtonStrip>
