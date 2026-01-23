@@ -2152,8 +2152,8 @@ msgstr "DHIS2 Core"
 msgid "The DHIS2 version running in this instance."
 msgstr "The DHIS2 version running in this instance."
 
-msgid "Sympheos App"
-msgstr "Sympheos App"
+msgid "Sympheos™ App"
+msgstr "Sympheos™ App"
 
 msgid "The Sympheos application running in this DHIS2 instance."
 msgstr "The Sympheos application running in this DHIS2 instance."
@@ -2161,8 +2161,8 @@ msgstr "The Sympheos application running in this DHIS2 instance."
 msgid "Device Gateway API"
 msgstr "Device Gateway API"
 
-msgid "Sympheos System"
-msgstr "Sympheos System"
+msgid "Sympheos™ System"
+msgstr "Sympheos™ System"
 
 msgid "Component"
 msgstr "Component"

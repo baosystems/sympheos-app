@@ -2270,7 +2270,7 @@ msgstr "Noyau DHIS2"
 msgid "The DHIS2 version running in this instance."
 msgstr "La version DHIS2 en cours d'exécution dans cette instance."
 
-msgid "Sympheos App"
+msgid "Sympheos™ App"
 msgstr "Application Sympheos™"
 
 msgid "The Sympheos application running in this DHIS2 instance."
@@ -2279,8 +2279,8 @@ msgstr "L'application Sympheos™ exécutée dans cette instance DHIS2."
 msgid "Device Gateway API"
 msgstr "API Passerelle de l'appareil"
 
-#| msgid "Sympheos App"
-msgid "Sympheos System"
+#| msgid "Sympheos™ App"
+msgid "Sympheos™ System"
 msgstr "Système Sympheos™"
 
 msgid "Component"

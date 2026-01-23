@@ -42,7 +42,7 @@ export const About = () => {
             },
             {
                 id: 'sympheos-app',
-                name: i18n.t('Sympheos App'),
+                name: i18n.t('Sympheos™ App'),
                 version: process.env.REACT_APP_VERSION,
                 details: i18n.t('The Sympheos application running in this DHIS2 instance.'),
             },
@@ -86,7 +86,7 @@ export const About = () => {
                     style={{
                         marginBottom: '1em',
                     }}
-                >{i18n.t('Sympheos System')}</h2>
+                >{i18n.t('Sympheos™ System')}</h2>
                 <DataTable width="65svw">
                     <TableHead>
                         <DataTableRow>

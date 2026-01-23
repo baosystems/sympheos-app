@@ -312,6 +312,20 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         // TODO: catch error on request
     };
 
+    const generateCSV = ({ fileName, csvContent }) => {
+        if (!csvContent || csvContent.length === 0) {
+            return;
+        }
+        const csvBlob = new Blob([csvContent.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(csvBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `Working List - ${request.queryParams?.program || 'Events'} - ${fileName}.csv`);
+        document.body?.appendChild(link);
+        link.click();
+        document.body?.removeChild(link);
+    };
+
     const downloadCSV = (data) => {
         let fileName = period;
         if (period === 'RANGE') {
@@ -330,14 +344,8 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
                 csvContent.push(row.map(cell => `"${(cell || '').toString().replace(/"/g, '""')}"`).join(','));
             });
         }
-        const csvBlob = new Blob([csvContent.join('\n')], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(csvBlob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `Working List - ${request.queryParams?.program || 'Events'} - ${fileName}.csv`);
-        document.body?.appendChild(link);
-        link.click();
-        document.body?.removeChild(link);
+
+        generateCSV({ fileName, csvContent });
 
         setProcessing(false);
     };

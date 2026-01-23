@@ -159,7 +159,7 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
                     tei.isDefaultPrinter = (orgUnitsMap[tei.orgUnit]?.attributeValues || [])
                         .find(attr =>
                             attr.attribute.id === smsPrinterRefs.defaultSmsPrinterAttributeId,
-                        ).value === tei.serialNumber;
+                        )?.value === tei.serialNumber;
                     if (tei.isDefaultPrinter && orgUnitsMap[tei.orgUnit]?.id === orgUnit && !selectedPrinter) {
                         setSelectedPrinter(tei.trackedEntity);
                     }
