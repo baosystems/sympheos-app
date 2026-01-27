@@ -80,6 +80,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
 
     const {
         refetch: refetchAnalyticsEvents,
+        error: analyticsEventsError,
     } = useDataQuery(analyticsEventsQuery, { lazy: true });
 
     const { storeQuery: workingListsDataStore } = useDataStore({ key: 'workingLists', lazyGet: false });
@@ -236,6 +237,8 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     const buildAndRefetchAnalyticsEvents = () => {
         const eventVisualization = eventVisualizationData?.results;
 
+        const orderedColumns = eventVisualization.columns;
+
         const simpleDimensions = (eventVisualization.simpleDimensions || []).reduce((acc, dim) => {
             acc[dim.dimension] = dim;
             return acc;
@@ -244,8 +247,15 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         const columns = eventVisualization.columnDimensions
             .filter(d => !simpleDimensions[d])
             .map(d => d.split('.')
-                .filter(e => e !== request.queryParams?.program).join('.'))
-            .join(',');
+                .filter(e => e !== request.queryParams?.program).join('.'));
+
+        const columnsMap = columns.reduce((acc, cur) => {
+            const key = cur.split('.');
+            if (key.length > 1) {
+                acc[key[key.length - 1]] = cur;
+            }
+            return acc;
+        }, {});
 
         const orgUnit = simpleDimensions.ou ? `ou:${simpleDimensions.ou.values.join(',')},` : '';
 
@@ -264,12 +274,26 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
             endDate = undefined;
         }
 
-        const additionalHeaders = Object.keys(simpleDimensions)
-            .map(dimKey => simpleDimensionHeaders[dimKey]);
+        const headers = orderedColumns.reduce((acc, dim) => {
+            const dimKey = dim.id?.split('.')?.pop() || '';
+            const elem = columnsMap[dimKey] || simpleDimensionHeaders[dimKey];
+            if (elem) {
+                acc.push(elem);
+            }
+            return acc;
+        }, []).join(',');
+
+        let additionalDimsText = '';
+        if (eventDate) {
+            additionalDimsText += 'eventDate,';
+        }
+        if (lastUpdated) {
+            additionalDimsText += 'lastUpdated,';
+        }
 
         const params = {
-            dimension: `${orgUnit}${columns}${periodDim}`,
-            headers: `${additionalHeaders.length > 0 ? `${additionalHeaders.join(',')},` : ''}${columns}`,
+            dimension: `${orgUnit}${additionalDimsText}${columns.join(',')}${periodDim}`,
+            headers,
             displayProperty: 'NAME',
             pageSize: 1000000,
             includeMetadataDetails: true,
@@ -285,6 +309,21 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
         refetchAnalyticsEvents({ id: request.queryParams?.program, params }).then((data) => {
             downloadCSV(data);
         });
+        // TODO: catch error on request
+    };
+
+    const generateCSV = ({ fileName, csvContent }) => {
+        if (!csvContent || csvContent.length === 0) {
+            return;
+        }
+        const csvBlob = new Blob([csvContent.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(csvBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `Working List - ${request.queryParams?.program || 'Events'} - ${fileName}.csv`);
+        document.body?.appendChild(link);
+        link.click();
+        document.body?.removeChild(link);
     };
 
     const downloadCSV = (data) => {
@@ -305,17 +344,30 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
                 csvContent.push(row.map(cell => `"${(cell || '').toString().replace(/"/g, '""')}"`).join(','));
             });
         }
-        const csvBlob = new Blob([csvContent.join('\n')], { type: 'text/csv;charset=utf-8;' });
-        const url = URL.createObjectURL(csvBlob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', `Working List - ${request.queryParams?.program || 'Events'} - ${fileName}.csv`);
-        document.body?.appendChild(link);
-        link.click();
-        document.body?.removeChild(link);
+
+        generateCSV({ fileName, csvContent });
 
         setProcessing(false);
     };
+
+    const handleClose = (e) => {
+        setProcessing(false);
+        onClose(e);
+    };
+
+    useEffect(() => {
+        if (analyticsEventsError) {
+            setProcessing(false);
+            setErrorBoxContent(<NoticeBox error title={i18n.t('Error generating CSV')}>
+                {analyticsEventsError.message}
+            </NoticeBox>);
+        } else if (eventVisualizationError) {
+            setProcessing(false);
+            setErrorBoxContent(<NoticeBox error title={i18n.t('Error generating CSV')}>
+                {eventVisualizationError.message}
+            </NoticeBox>);
+        }
+    }, [eventVisualizationError, analyticsEventsError]);
 
     useEffect(() => {
         const eventVisualization = eventVisualizationData?.results;
@@ -361,7 +413,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
     }
 
     return (
-        <Modal hide={!open} onClose={onClose} position={'center'} dataTest="working-lists-download-dialog">
+        <Modal hide={!open} onClose={handleClose} position={'center'} dataTest="working-lists-download-dialog">
             <ModalTitle>{i18n.t('Download with current filters')}</ModalTitle>
             <ModalContent>{renderButtons()}</ModalContent>
             <ModalActions>
@@ -374,7 +426,7 @@ const DownloadDialogPlain = ({ open, onClose, request = {}, absoluteApiPath, cla
                         >{i18n.t('Download custom CSV')}</Button>
                     </div>
                 }
-                <Button onClick={onClose} color="primary">
+                <Button onClick={handleClose} color="primary">
                     {i18n.t('Close')}
                 </Button>
             </ModalActions>

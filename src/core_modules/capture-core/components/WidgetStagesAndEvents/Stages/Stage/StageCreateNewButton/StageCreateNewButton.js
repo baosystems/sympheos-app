@@ -11,6 +11,7 @@ type Props = {
     repeatable: ?boolean,
     preventAddingEventActionInEffect: ?boolean,
     eventName: string,
+    enableCreate: boolean,
 }
 
 export const StageCreateNewButton = ({
@@ -20,6 +21,7 @@ export const StageCreateNewButton = ({
     repeatable,
     preventAddingEventActionInEffect,
     eventName,
+    enableCreate,
 }: Props) => {
     const { isDisabled, tooltipContent } = useMemo(() => {
         if (!stageWriteAccess) {
@@ -52,8 +54,8 @@ export const StageCreateNewButton = ({
         };
     }, [eventCount, eventName, preventAddingEventActionInEffect, repeatable, stageWriteAccess]);
 
-    return (
-        <ConditionalTooltip
+    return (<>
+        {enableCreate && <ConditionalTooltip
             enabled={isDisabled}
             content={tooltipContent}
             closeDelay={50}
@@ -70,6 +72,6 @@ export const StageCreateNewButton = ({
                     eventName, interpolation: { escapeValue: false },
                 })}
             </Button>
-        </ConditionalTooltip>
-    );
+        </ConditionalTooltip>}
+    </>);
 };

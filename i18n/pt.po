@@ -19,8 +19,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2025-08-22T21:27:40.996Z\n"
-"PO-Revision-Date: 2025-08-22 15:38-0600\n"
+"POT-Creation-Date: 2025-10-24T16:47:09.862Z\n"
+"PO-Revision-Date: 2025-10-27 16:48+0000\n"
 "Last-Translator: Andres Miguel Rubio, 2025\n"
 "Language-Team: Portuguese (https://app.transifex.com/hisp-uio/teams/100509/"
 "pt/)\n"
@@ -30,7 +30,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % "
 "1000000 == 0 ? 1 : 2;\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.8\n"
 
 msgid "Choose one or more dates..."
 msgstr "Escolher uma ou mais datas..."
@@ -162,7 +162,7 @@ msgid "Complete event"
 msgstr "Evento completo"
 
 msgid "A value is required"
-msgstr "Um valor é obrigatório"
+msgstr "É necessário um valor"
 
 msgid "Please provide a valid date"
 msgstr "Por favor forneça uma data válida"
@@ -779,7 +779,7 @@ msgid ""
 "records."
 msgstr ""
 "Escolher um programa e unidade organizacional para ver dados existentes e "
-"criar novos arquivos."
+"criar novos registos."
 
 msgid "Click 'Search'. For program-specific results, choose a program first."
 msgstr ""
@@ -1728,7 +1728,7 @@ msgid "Working list could not be loaded"
 msgstr "A lista de trabalho não pôde ser carregada"
 
 msgid "Download data..."
-msgstr "Baixar dados..."
+msgstr "Descarregar dados..."
 
 msgid "an error occurred loading working lists"
 msgstr "ocorreu um erro ao carregar as listas de trabalho"
@@ -2032,14 +2032,44 @@ msgstr "Mostre menos"
 msgid "Show All"
 msgstr "Mostre tudo"
 
+msgid "Please select both start and end dates"
+msgstr "Por favor seleccionar data de início e data de término"
+
+msgid "Start date must be before end date"
+msgstr "Data de início deve ser anterior à data de término"
+
+msgid "Last 30 days"
+msgstr "Últimos 30 dias"
+
+msgid "Last 60 days"
+msgstr "Últimos 60 dias"
+
+msgid "Last 90 days"
+msgstr "Últimos 90 dias"
+
+msgid "Year to date"
+msgstr "Ano até o momento"
+
 msgid "Download as JSON"
-msgstr "Baixar como JSON"
+msgstr "Descarregar como JSON"
 
 msgid "Download as CSV"
-msgstr "Baixar como CSV"
+msgstr "Descarregar como CSV"
+
+msgid "Error loading Working List"
+msgstr "Erro ao carregar lista de trabalho"
+
+msgid "You don't have access to this Working List or it does not exist."
+msgstr "Não tem acesso a esta lista de trabalho, ou não existe."
+
+msgid "Please contact your system administrator."
+msgstr "Por favor contacte o administrador do sistema."
 
 msgid "Download with current filters"
-msgstr "Baixar com filtros actuais"
+msgstr "Descarregar com filtros actuais"
+
+msgid "Download custom CSV"
+msgstr "Descarregar CSV personalizado"
 
 msgid "An error has occured. See log for details"
 msgstr "Ocorreu um erro. Veja o log para detalhes"
@@ -2194,17 +2224,18 @@ msgstr "DHIS2 Core"
 msgid "The DHIS2 version running in this instance."
 msgstr "A versão DHIS2 a correr nesta instãncia."
 
-msgid "Sympheos App"
-msgstr "Aplicação Sympheos"
+msgid "Sympheos™ App"
+msgstr "Aplicação Sympheos™"
 
 msgid "The Sympheos application running in this DHIS2 instance."
-msgstr "A aplicação Sympheos a correr nesta instância DHIS2."
+msgstr "A aplicação Sympheos™ a correr nesta instância DHIS2."
 
 msgid "Device Gateway API"
 msgstr "API do gateway do dispositivo"
 
-msgid "Sympheos Plugins and Dependencies"
-msgstr "Plugins e dependências de Sympheos"
+#| msgid "Sympheos™ App"
+msgid "Sympheos™ System"
+msgstr "Sistema Sympheos™"
 
 msgid "Component"
 msgstr "Componente"
@@ -2230,6 +2261,36 @@ msgstr "Falha ao carregar painel"
 msgid "This dashboard could not be loaded. Please try again later."
 msgstr "Painel não pôde ser carregado. Por favor, tente novamente mais tarde."
 
+msgid "Filter Programs"
+msgstr "Filtrar programas"
+
+msgid "Allow create records"
+msgstr "Permitir criação de registos"
+
+msgid "Disable create records"
+msgstr "Desactivar criação de registos"
+
+#| msgid "An error occurred while deleting the events"
+msgid "An error occurred while updating the App Menu labels."
+msgstr "Ocorreu um erro ao atualizar os rótulos do menu da aplicação."
+
+msgid "Confirmation"
+msgstr "Confirmação"
+
+#| msgid "Are you sure you want to complete all active events in selection?"
+msgid ""
+"Are you sure you want to update the labels of the App Menu to the latest "
+"version?"
+msgstr ""
+"Tem a certeza de que deseja actualizar os rótulos do menu da aplicação para "
+"a versão mais recente?"
+
+msgid "Continue"
+msgstr "Continuar"
+
+msgid "Update App Menu labels"
+msgstr "Actualizar os rótulos do menu da aplicação"
+
 msgid "No Programs available."
 msgstr "Nenhum programa disponível."
 
@@ -2238,12 +2299,6 @@ msgstr "Configuração dos plugins restaurada com sucesso."
 
 msgid "Error updating Data Store."
 msgstr "Erro ao atualizar arquivo de dados."
-
-msgid "Confirmation"
-msgstr "Confirmação"
-
-msgid "Continue"
-msgstr "Continuar"
 
 msgid "Gateway Connectivity settings updated successfully."
 msgstr "Definições de conectividade do gateway foram actualizadas com sucesso."
@@ -2257,11 +2312,17 @@ msgstr "Tipo de Instância"
 msgid "Default Profile"
 msgstr "Perfil padrão"
 
-msgid "Plugin Settings"
-msgstr "Definições do Plugin"
+msgid "Capture Settings"
+msgstr "Definições Capture"
 
-msgid "Device Programs Overwrite plugins configuration"
-msgstr "Programas dos dispositivos: Sobregravar a configuração dos plugins"
+msgid "Working Lists Settings"
+msgstr "Definições de listas de trabalho"
+
+msgid "Danger Zone"
+msgstr "Zona de perigo"
+
+msgid "Device Programs - Overwrite plugins configuration"
+msgstr "Programas dos dispositivos - Sobregravar a configuração dos plugins"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Device "
@@ -2272,8 +2333,8 @@ msgstr ""
 "os programas do dispositivo? Esta acção não pode ser desfeita e a "
 "configuração actual será perdida."
 
-msgid "Stock Programs Overwrite plugins configuration"
-msgstr "Programas de stock: Sobregravar a configuração dos plugins"
+msgid "Stock Programs - Overwrite plugins configuration"
+msgstr "Programas de stock - Sobregravar a configuração dos plugins"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
@@ -2284,8 +2345,63 @@ msgstr ""
 "os programas de stock? Esta acção não pode ser desfeita e a configuração "
 "actual será perdida."
 
+msgid "A Program is required"
+msgstr "É necessário um programa"
+
+msgid "Invalid Program UID"
+msgstr "UID do programa inválido"
+
+msgid "Program UID can only be configured once"
+msgstr "UID do programa só pode ser configurado uma vez"
+
+msgid "A Line List is required"
+msgstr "É necessária uma lista de linhas"
+
+msgid "Invalid Line List UID"
+msgstr "UID de lista de linha inválido"
+
+msgid "Invalid Time Field UID"
+msgstr "UID de campo de horário inválido"
+
+msgid "You don't have access to this Line List or it does not exist"
+msgstr "Não tem acesso a esta lista de linha, ou não existe"
+
+msgid ""
+"This Line List is not publicly available. Users may not be able to access it."
+msgstr ""
+"Lista de linha não está disponível publicamente. Utilizadores poderão não "
+"ter acesso."
+
+msgid ""
+"(Optional) Data Element or Tracked Entity Attribute UID. Default is Event "
+"Date."
+msgstr ""
+"(Opcional) Elemento de dados ou UID do atributo de entidade monitorizada. O "
+"padrão é data do evento."
+
+msgid "Working Lists settings updated."
+msgstr "Definições de lista de trabalho actualizadas."
+
+msgid "Add Working List"
+msgstr "Adicionar lista de trabalho"
+
+msgid "No Working Lists Configured"
+msgstr "Sem listas de trabalho configuradas"
+
+msgid "Line List"
+msgstr "Lista de linha"
+
+msgid "Time field for Date filters"
+msgstr "Campo de horário para filtros de data"
+
 msgid "Compatibility mode"
 msgstr "Modo de compatibilidade"
+
+#~ msgid "Sympheos Plugins and Dependencies"
+#~ msgstr "Plugins e dependências de Sympheos™"
+
+#~ msgid "Plugin Settings"
+#~ msgstr "Definições do Plugin"
 
 #~ msgid ""
 #~ "This {{stageName}} event is linked to a {{linkedStageName}} event. Review "
