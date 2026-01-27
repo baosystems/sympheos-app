@@ -45,8 +45,8 @@
                     "key": "Fbb3mcEPeqP",
                     "link": "/?programId=Fbb3mcEPeqP&all",
                     "title": {
-                        "default": "m-PIMA™ Data",
-                        "fr": "Données m-PIMA™"
+                        "default": "m-PIMA™ Results",
+                        "fr": "Résultats m-PIMA™"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
@@ -74,8 +74,8 @@
                     "key": "wlOqXvONeU4",
                     "link": "/?programId=wlOqXvONeU4&all",
                     "title": {
-                        "default": "Pima™ Data",
-                        "fr": "Données Pima™"
+                        "default": "Pima™ Results",
+                        "fr": "Résultats Pima™"
                     },
                     "type": "CAPTURE",
                     "userGroups": [

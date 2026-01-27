@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-12-16T06:08:34.688Z\n"
-"PO-Revision-Date: 2025-12-16T06:08:34.688Z\n"
+"POT-Creation-Date: 2026-01-26T22:56:25.577Z\n"
+"PO-Revision-Date: 2026-01-26T22:56:25.577Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -2279,8 +2279,8 @@ msgstr "Working Lists Settings"
 msgid "Danger Zone"
 msgstr "Danger Zone"
 
-msgid "Device Programs Overwrite plugins configuration"
-msgstr "Device Programs Overwrite plugins configuration"
+msgid "Device Programs - Overwrite plugins configuration"
+msgstr "Device Programs - Overwrite plugins configuration"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all "
@@ -2291,8 +2291,8 @@ msgstr ""
 "Device Programs? This action cannot be undone and the current configuration "
 "will be lost."
 
-msgid "Stock Programs Overwrite plugins configuration"
-msgstr "Stock Programs Overwrite plugins configuration"
+msgid "Stock Programs - Overwrite plugins configuration"
+msgstr "Stock Programs - Overwrite plugins configuration"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
@@ -2359,6 +2359,9 @@ msgstr "Event sent to SMS Printer."
 msgid "Error sending to SMS Printer."
 msgstr "Error sending to SMS Printer."
 
+msgid "Unknown"
+msgstr "Unknown"
+
 msgid "No SMS Printers found"
 msgstr "No SMS Printers found"
 
@@ -2371,20 +2374,17 @@ msgstr "Serial Number"
 msgid "Location"
 msgstr "Location"
 
-msgid "Default"
-msgstr "Default"
-
 msgid "Last Seen"
 msgstr "Last Seen"
-
-msgid "Unknown"
-msgstr "Unknown"
 
 msgid "Send to SMS Printer"
 msgstr "Send to SMS Printer"
 
 msgid "Send selected Event to SMS Printer"
 msgstr "Send selected Event to SMS Printer"
+
+msgid "Show all printers"
+msgstr "Show all printers"
 
 msgid "Close modal"
 msgstr "Close modal"

@@ -15,8 +15,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: i18next-conv\n"
-"POT-Creation-Date: 2025-10-24T16:47:09.862Z\n"
-"PO-Revision-Date: 2025-10-27 17:50-0400\n"
+"POT-Creation-Date: 2026-01-26T22:30:02.639Z\n"
+"PO-Revision-Date: 2026-01-26 16:50-0600\n"
 "Last-Translator: Philip Larsen Donnelly, 2025\n"
 "Language-Team: French (https://app.transifex.com/hisp-uio/teams/100509/fr/)\n"
 "Language: fr\n"
@@ -2100,6 +2100,9 @@ msgstr "Télécharger en JSON"
 msgid "Download as CSV"
 msgstr "Télécharger en CSV"
 
+msgid "Error generating CSV"
+msgstr ""
+
 msgid "Error loading Working List"
 msgstr "Erreur lors du chargement de la liste de travail"
 
@@ -2279,7 +2282,6 @@ msgstr "L'application Sympheos™ exécutée dans cette instance DHIS2."
 msgid "Device Gateway API"
 msgstr "API Passerelle de l'appareil"
 
-#| msgid "Sympheos™ App"
 msgid "Sympheos™ System"
 msgstr "Système Sympheos™"
 
@@ -2317,7 +2319,6 @@ msgstr "Autoriser la création d’enregistrements"
 msgid "Disable create records"
 msgstr "La création d’enregistrements est désactivée"
 
-#| msgid "An error occurred while deleting the events"
 msgid "An error occurred while updating the App Menu labels."
 msgstr ""
 "Une erreur est survenue lors de la mise à jour des libellés du menu de "
@@ -2326,7 +2327,6 @@ msgstr ""
 msgid "Confirmation"
 msgstr "Confirmation"
 
-#| msgid "Are you sure you want to complete all active events in selection?"
 msgid ""
 "Are you sure you want to update the labels of the App Menu to the latest "
 "version?"
@@ -2349,6 +2349,33 @@ msgstr "La configuration des plugins a été rétablie avec succès."
 msgid "Error updating Data Store."
 msgstr "Erreur lors de la mise à jour de l'entrepôt de données."
 
+msgid "Tracker"
+msgstr ""
+
+#, fuzzy
+#| msgid "event"
+msgid "Event"
+msgstr "événement"
+
+msgid "Filter by Program, Program Stage UID, name, ..."
+msgstr ""
+
+#, fuzzy
+#| msgid "Program or stage is invalid"
+msgid "Program | Program Stages"
+msgstr "Programme ou étape invalide"
+
+#, fuzzy
+#| msgid "Created"
+msgid "Enable Create"
+msgstr "Créé"
+
+msgid "Enable Edit"
+msgstr ""
+
+msgid "Enable Print"
+msgstr ""
+
 msgid "Gateway Connectivity settings updated successfully."
 msgstr ""
 "Les réglages de connectivité des passerelles ont été mis à jour avec succès."
@@ -2362,8 +2389,26 @@ msgstr "Type d'instance"
 msgid "Default Profile"
 msgstr "Profil par défaut"
 
+#, fuzzy
+#| msgid "Capture Settings"
+msgid "Other Settings"
+msgstr "Capture"
+
+msgid "SampleID Satellite Org Unit Regex for SMS Printing"
+msgstr ""
+
+#, fuzzy
+#| msgid "Capture Settings"
+msgid "App Settings"
+msgstr "Capture"
+
 msgid "Capture Settings"
 msgstr "Capture"
+
+#, fuzzy
+#| msgid "Program stage name"
+msgid "Program Stage Settings"
+msgstr "Nom de l'étape du programme"
 
 msgid "Working Lists Settings"
 msgstr "Paramètres des listes de travail"
@@ -2371,8 +2416,8 @@ msgstr "Paramètres des listes de travail"
 msgid "Danger Zone"
 msgstr "Zone de danger"
 
-msgid "Device Programs Overwrite plugins configuration"
-msgstr "Programmes des appareils: Remplacer la configuration des modules"
+msgid "Device Programs - Overwrite plugins configuration"
+msgstr "Programmes des appareils - Remplacer la configuration des modules"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Device "
@@ -2383,8 +2428,8 @@ msgstr ""
 "les programmes d'Appareil? Cette action ne peut pas être annulée et la "
 "configuration actuelle sera perdue."
 
-msgid "Stock Programs Overwrite plugins configuration"
-msgstr "Programmes des stocks: Remplacer la configuration des modules"
+msgid "Stock Programs - Overwrite plugins configuration"
+msgstr "Programmes des stocks - Remplacer la configuration des modules"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
@@ -2443,6 +2488,49 @@ msgstr "Liste linéaire"
 
 msgid "Time field for Date filters"
 msgstr "Champ de temps pour les filtres de date"
+
+msgid "Event sent to SMS Printer."
+msgstr "Événement envoyé via SMS"
+
+msgid "Error sending to SMS Printer."
+msgstr "Erreur d’envoi via SMS"
+
+msgid "Unknown"
+msgstr "Inconnu"
+
+#, fuzzy
+#| msgid "No results found"
+msgid "No SMS Printers found"
+msgstr "Aucun résultat trouvé"
+
+msgid "Select"
+msgstr "Sélectionner"
+
+msgid "Serial Number"
+msgstr "Numéro de série"
+
+msgid "Location"
+msgstr "Emplacement"
+
+msgid "Last Seen"
+msgstr "Dernière activité"
+
+msgid "Send to SMS Printer"
+msgstr "Imprimer via SMS"
+
+msgid "Send selected Event to SMS Printer"
+msgstr "Envoyer l’événement sélectionné à l’imprimante SMS"
+
+msgid "Show all printers"
+msgstr "Afficher toutes les imprimantes"
+
+#, fuzzy
+#| msgid "Close"
+msgid "Close modal"
+msgstr "Fermer"
+
+msgid "Print"
+msgstr "Imprimer"
 
 msgid "Compatibility mode"
 msgstr "Mode de compatibilité"

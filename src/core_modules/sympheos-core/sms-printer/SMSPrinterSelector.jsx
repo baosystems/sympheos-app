@@ -56,6 +56,7 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
     const [orgUnitsMap, setOrgUnitsMap] = useState({});
     const [selectedPrinter, setSelectedPrinter] = useState(null);
     const [sendingSms, setSendingSms] = useState(false);
+    const [showAllPrinters, setShowAllPrinters] = useState(false);
 
     const { baseUrl } = useAppContext();
     const { showSnackbar } = useSnackbar();
@@ -113,7 +114,7 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
             { baseUrl },
         ).then((response) => {
             setSendingSms(false);
-            if (response.httpStatus === 'OK') {
+            if (response.httpStatusCode === 200) {
                 showSnackbar({
                     key: 'sms-send-success',
                     message: i18n.t('Event sent to SMS Printer.'),
@@ -135,61 +136,63 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
             return <CircularLoader />;
         }
         const { trackedEntities: teis } = printerTEIs;
+        const smsPrinterRefs = printerRefsQuery.data.results;
+
         const printersList = teis?.trackedEntities?.filter(tei => orgUnitsMap[tei.orgUnit]);
-        if (!printersList || printersList.length === 0) {
+        let sortedPrintersList = printersList?.map((tei) => {
+            tei.serialNumber = getAttributeValue(
+                smsPrinterRefs.smsPrinterSerialNumber,
+                tei.attributes,
+                i18n.t('Unknown'));
+            tei.isActivePrinter = (orgUnitsMap[tei.orgUnit]?.attributeValues || [])
+                .find(attr =>
+                    attr.attribute.id === smsPrinterRefs.defaultSmsPrinterAttributeId,
+                )?.value === tei.serialNumber;
+            if (tei.isActivePrinter && orgUnitsMap[tei.orgUnit]?.id === orgUnit && !selectedPrinter) {
+                setSelectedPrinter(tei.trackedEntity);
+            }
+            return tei;
+        })?.sort((a, b) => b.isActivePrinter - a.isActivePrinter);
+
+        if (!showAllPrinters) {
+            sortedPrintersList = sortedPrintersList.filter(tei => tei.isActivePrinter);
+        }
+
+        if (!sortedPrintersList || sortedPrintersList.length === 0) {
             return <div>{i18n.t('No SMS Printers found')}</div>;
         }
-        const smsPrinterRefs = printerRefsQuery.data.results;
         return (<DataTable layout="fixed" scrollHeight="70vh">
             <TableHead>
                 <DataTableRow>
                     <DataTableColumnHeader>{i18n.t('Select')}</DataTableColumnHeader>
                     <DataTableColumnHeader>{i18n.t('Serial Number')}</DataTableColumnHeader>
                     <DataTableColumnHeader>{i18n.t('Location')}</DataTableColumnHeader>
-                    <DataTableColumnHeader>{i18n.t('Default')}</DataTableColumnHeader>
                     <DataTableColumnHeader>{i18n.t('Last Seen')}</DataTableColumnHeader>
                 </DataTableRow>
             </TableHead>
             <TableBody>
-                {printersList.map((tei) => {
-                    tei.serialNumber = getAttributeValue(
-                        smsPrinterRefs.smsPrinterSerialNumber,
-                        tei.attributes,
-                        i18n.t('Unknown'));
-                    tei.isDefaultPrinter = (orgUnitsMap[tei.orgUnit]?.attributeValues || [])
-                        .find(attr =>
-                            attr.attribute.id === smsPrinterRefs.defaultSmsPrinterAttributeId,
-                        )?.value === tei.serialNumber;
-                    if (tei.isDefaultPrinter && orgUnitsMap[tei.orgUnit]?.id === orgUnit && !selectedPrinter) {
+                {sortedPrintersList.map((tei, index) => {
+                    if (index === 0 && !selectedPrinter) {
                         setSelectedPrinter(tei.trackedEntity);
                     }
-                    return tei;
-                }).sort((a, b) => b.isDefaultPrinter - a.isDefaultPrinter)
-                    .map((tei, index) => {
-                        if (index === 0 && !selectedPrinter) {
-                            setSelectedPrinter(tei.trackedEntity);
-                        }
-                        return (<DataTableRow key={tei.trackedEntity} selected={selectedPrinter === tei.trackedEntity}>
-                            <DataTableCell>
-                                <Checkbox
-                                    checked={selectedPrinter === tei.trackedEntity}
-                                    onChange={({ checked }) => {
-                                        if (checked) {
-                                            setSelectedPrinter(tei.trackedEntity);
-                                        } else {
-                                            setSelectedPrinter(null);
-                                        }
-                                    }}
-                                />
-                            </DataTableCell>
-                            <DataTableCell>{tei.serialNumber}</DataTableCell>
-                            <DataTableCell>{orgUnitsMap[tei.orgUnit]?.displayName || tei.orgUnit}</DataTableCell>
-                            <DataTableCell>{tei.isDefaultPrinter ? i18n.t('Yes') : i18n.t('No')}</DataTableCell>
-                            <DataTableCell>
-                                {getAttributeValue(smsPrinterRefs.smsPrinterLastSeen, tei.attributes, '-')}
-                            </DataTableCell>
-                        </DataTableRow>);
-                    })}
+                    return (<DataTableRow key={tei.trackedEntity} selected={selectedPrinter === tei.trackedEntity}>
+                        <DataTableCell>
+                            <Checkbox
+                                checked={selectedPrinter === tei.trackedEntity}
+                                onChange={({ checked }) => {
+                                    if (checked) {
+                                        setSelectedPrinter(tei.trackedEntity);
+                                    }
+                                }}
+                            />
+                        </DataTableCell>
+                        <DataTableCell>{tei.serialNumber}</DataTableCell>
+                        <DataTableCell>{orgUnitsMap[tei.orgUnit]?.displayName || tei.orgUnit}</DataTableCell>
+                        <DataTableCell>
+                            {getAttributeValue(smsPrinterRefs.smsPrinterLastSeen, tei.attributes, '-')}
+                        </DataTableCell>
+                    </DataTableRow>);
+                })}
             </TableBody>
         </DataTable>);
     };
@@ -224,6 +227,12 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
         setProcessingOUs(false);
     }, [orgUnitsMap]);
 
+    useEffect(() => {
+        if (!showAllPrinters) {
+            setSelectedPrinter(null);
+        }
+    }, [showAllPrinters]);
+
     return (<>
         {!disabled && <Button
             secondary
@@ -243,7 +252,14 @@ export const SMSPrinterSelector = ({ disabled, eventId, orgUnit }: Props) => {
             large
         >
             <ModalTitle>{i18n.t('Send selected Event to SMS Printer')}</ModalTitle>
-            <ModalContent >
+            <ModalContent>
+                <div style={{ marginBottom: '1em' }}>
+                    <Checkbox
+                        checked={showAllPrinters}
+                        onChange={({ checked }) => setShowAllPrinters(checked)}
+                        label={i18n.t('Show all printers')}
+                    />
+                </div>
                 {renderPrinterList()}
             </ModalContent>
             <ModalActions>

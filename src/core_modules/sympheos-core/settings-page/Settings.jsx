@@ -245,7 +245,7 @@ export const Settings = () => {
                         <PluginsRestorer
                             basePluginSettings={baseDeviceSettings}
                             buttonIcon={<FiCpu />}
-                            buttonText={i18n.t('Device Programs Overwrite plugins configuration')}
+                            buttonText={i18n.t('Device Programs - Overwrite plugins configuration')}
                             warningText={
                                 i18n.t('Are you sure that you want to overwrite plugins configuration for all Device Programs? This action cannot be undone and the current configuration will be lost.')
                             }
@@ -254,7 +254,7 @@ export const Settings = () => {
                         <PluginsRestorer
                             basePluginSettings={baseStockSettings}
                             buttonIcon={<FiBox />}
-                            buttonText={i18n.t('Stock Programs Overwrite plugins configuration')}
+                            buttonText={i18n.t('Stock Programs - Overwrite plugins configuration')}
                             warningText={
                                 i18n.t('Are you sure that you want to overwrite plugins configuration for all Stock Programs? This action cannot be undone and the current configuration will be lost.')
                             }

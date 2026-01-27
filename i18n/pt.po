@@ -2321,8 +2321,8 @@ msgstr "Definições de listas de trabalho"
 msgid "Danger Zone"
 msgstr "Zona de perigo"
 
-msgid "Device Programs Overwrite plugins configuration"
-msgstr "Programas dos dispositivos: Sobregravar a configuração dos plugins"
+msgid "Device Programs - Overwrite plugins configuration"
+msgstr "Programas dos dispositivos - Sobregravar a configuração dos plugins"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Device "
@@ -2333,8 +2333,8 @@ msgstr ""
 "os programas do dispositivo? Esta acção não pode ser desfeita e a "
 "configuração actual será perdida."
 
-msgid "Stock Programs Overwrite plugins configuration"
-msgstr "Programas de stock: Sobregravar a configuração dos plugins"
+msgid "Stock Programs - Overwrite plugins configuration"
+msgstr "Programas de stock - Sobregravar a configuração dos plugins"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
