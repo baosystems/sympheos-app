@@ -9,6 +9,7 @@ import { FEATURES, useFeature } from 'capture-core-utils';
 import { useAuthorities } from 'capture-core/utils/authority/useAuthorities';
 import { ConditionalTooltip } from 'capture-core/components/Tooltips/ConditionalTooltip';
 import { useEnrollmentEditEventPageMode } from 'capture-core/hooks';
+import { SMSPrinterSelector } from 'sympheos-core/sms-printer/SMSPrinterSelector';
 import { startShowEditEventDataEntry } from '../WidgetEventEdit.actions';
 import { NonBundledDhis2Icon } from '../../NonBundledDhis2Icon';
 import { getProgramEventAccess } from '../../../metaData';
@@ -16,6 +17,7 @@ import { useCategoryCombinations } from '../../DataEntryDhis2Helpers/AOC/useCate
 import { OverflowButton } from '../../Buttons';
 import { inMemoryFileStore } from '../../DataEntry/file/inMemoryFileStore';
 import { eventStatuses } from '../constants/status.const';
+import { useDataStore } from '../../../../../hooks/useDataStore';
 import type { PlainProps, Props } from './WidgetHeader.types';
 
 const styles = {
@@ -36,6 +38,7 @@ const styles = {
 };
 
 export const WidgetHeaderPlain = ({
+    eventId,
     eventStatus,
     stage,
     programId,
@@ -46,14 +49,23 @@ export const WidgetHeaderPlain = ({
     useEffect(() => inMemoryFileStore.clear, []);
     const dispatch = useDispatch();
 
+    const {
+        storeQuery: psSettingsStoreQuery,
+    } = useDataStore({ key: 'programStagesSettings', lazyGet: false });
+
     const supportsChangelog = useFeature(FEATURES.changelogs);
     const { currentPageMode } = useEnrollmentEditEventPageMode(eventStatus);
     const [actionsIsOpen, setActionsIsOpen] = useState(false);
 
     const eventAccess = getProgramEventAccess(programId, stage.id);
+
     const { hasAuthority } = useAuthorities({ authorities: ['F_UNCOMPLETE_EVENT'] });
     const blockEntryForm = stage.blockEntryForm && !hasAuthority && eventStatus === eventStatuses.COMPLETED;
-    const disableEdit = !eventAccess?.write || blockEntryForm;
+
+    const checkEditDisabled = () =>
+        !eventAccess?.write ||
+        blockEntryForm ||
+        psSettingsStoreQuery.data?.results?.[stage.id]?.enableEdit !== true;
 
     const tooltipContent = blockEntryForm
         ? i18n.t('The event cannot be edited after it has been completed')
@@ -80,15 +92,20 @@ export const WidgetHeaderPlain = ({
             <div className={classes.menu}>
                 {currentPageMode === dataEntryKeys.VIEW && (
                     <div className={classes.menuActions}>
+                        <SMSPrinterSelector
+                            disabled={psSettingsStoreQuery.data?.results?.[stage.id]?.enablePrint !== true}
+                            eventId={eventId}
+                            orgUnit={orgUnit.id}
+                        />
                         <ConditionalTooltip
                             content={tooltipContent}
-                            enabled={disableEdit}
+                            enabled={checkEditDisabled()}
                             wrapperClassName={classes.tooltip}
                         >
                             <Button
                                 small
                                 secondary
-                                disabled={disableEdit}
+                                disabled={checkEditDisabled()}
                                 icon={<IconEdit24 />}
                                 onClick={() => dispatch(startShowEditEventDataEntry(orgUnit, programCategory))}
                                 data-test="widget-enrollment-event-edit-button"

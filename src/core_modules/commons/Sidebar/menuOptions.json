@@ -30,8 +30,8 @@
                     "id": "results_mpima_overview",
                     "link": "/dashboard/mPimaOverview",
                     "title": {
-                        "default": "M-PIMA Overview",
-                        "fr": "Vue d'ensemble M-PIMA"
+                        "default": "m-PIMA™ Overview",
+                        "fr": "Vue d'ensemble m-PIMA™"
                     },
                     "type": "SUPERSET",
                     "userGroups": [
@@ -45,8 +45,8 @@
                     "key": "Fbb3mcEPeqP",
                     "link": "/?programId=Fbb3mcEPeqP&all",
                     "title": {
-                        "default": "M-PIMA Data",
-                        "fr": "Données M-PIMA"
+                        "default": "m-PIMA™ Results",
+                        "fr": "Résultats m-PIMA™"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
@@ -59,8 +59,8 @@
                     "id": "results_pima_overview",
                     "link": "/dashboard/pimaOverview",
                     "title": {
-                        "default": "PIMA Overview",
-                        "fr": "Vue d'ensemble PIMA"
+                        "default": "Pima™ Overview",
+                        "fr": "Vue d'ensemble Pima™"
                     },
                     "type": "SUPERSET",
                     "userGroups": [
@@ -74,8 +74,8 @@
                     "key": "wlOqXvONeU4",
                     "link": "/?programId=wlOqXvONeU4&all",
                     "title": {
-                        "default": "PIMA Data",
-                        "fr": "Données PIMA"
+                        "default": "Pima™ Results",
+                        "fr": "Résultats Pima™"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
@@ -116,12 +116,27 @@
                     ]
                 },
                 {
+                    "id": "device_r2",
+                    "key": "hPiqPnwjPGL",
+                    "link": "/?programId=hPiqPnwjPGL&all",
+                    "title": {
+                        "default": "CONNECT Universal Gateway R2",
+                        "fr": "Passerelle universelle CONNECT R2"
+                    },
+                    "type": "CAPTURE",
+                    "userGroups": [
+                        "dsjDVYKkq2a",
+                        "ZBgruZLU1ys",
+                        "O36vdYF6D5d"
+                    ]
+                },
+                {
                     "id": "device_r1",
                     "key": "emmnFREJ5n4",
                     "link": "/?programId=emmnFREJ5n4&all",
                     "title": {
-                        "default": "Connect R1",
-                        "fr": "Connect R1"
+                        "default": "CONNECT Universal Gateway R1",
+                        "fr": "Passerelle universelle CONNECT R1"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
@@ -135,8 +150,8 @@
                     "key": "WoLFKfl21Om",
                     "link": "/?programId=WoLFKfl21Om&all",
                     "title": {
-                        "default": "NetCom",
-                        "fr": "NetCom"
+                        "default": "Netcomm Gateway",
+                        "fr": "Passerelle Netcomm"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
@@ -165,8 +180,8 @@
                     "key": "vEK0nUEtkI6",
                     "link": "/?programId=vEK0nUEtkI6&all",
                     "title": {
-                        "default": "PIMA",
-                        "fr": "PIMA"
+                        "default": "Pima™ Analyser",
+                        "fr": "Analyseur Pima™"
                     },
                     "type": "CAPTURE",
                     "userGroups": [
@@ -181,8 +196,8 @@
                     "key": "H8gFGCN7pgf",
                     "link": "/?programId=H8gFGCN7pgf&all",
                     "title": {
-                        "default": "M-PIMA",
-                        "fr": "M-PIMA"
+                        "default": "m-PIMA™ Analyser",
+                        "fr": "Analyseur m-PIMA™"
                     },
                     "type": "CAPTURE",
                     "userGroups": [

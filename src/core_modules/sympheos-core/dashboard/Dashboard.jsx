@@ -50,7 +50,15 @@ const DashboardContainer = ({
             return;
         }
 
-        const dashboardId = storeQuery?.data?.results?.dashboardKeys?.[dashboardKey];
+        const dataStoreSettings = storeQuery?.data?.results;
+
+        if (!dataStoreSettings) {
+            handleError(i18n.t('Dashboard not found'));
+            return;
+        }
+
+        const dashboardId = dataStoreSettings.supersetDashboards?.[dashboardKey]?.id
+            || dataStoreSettings.dashboardKeys?.[dashboardKey];
 
         if (!dashboardId) {
             handleError(i18n.t('Dashboard not found'));

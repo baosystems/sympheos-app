@@ -27,7 +27,18 @@ const rulesEffectHideProgramStage = (ruleEffects, stageId) => (
     Boolean(ruleEffects?.find(ruleEffect => ruleEffect.type === 'HIDEPROGRAMSTAGE' && ruleEffect.id === stageId))
 );
 
-export const StagePlain = ({ stage, events, classes, className, onCreateNew, ruleEffects, ...passOnProps }: Props) => {
+export const StagePlain = (
+    {
+        stage,
+        events,
+        classes,
+        className,
+        onCreateNew,
+        ruleEffects,
+        enableCreate,
+        ...passOnProps
+    }: Props,
+) => {
     const [open, setOpenStatus] = useState(true);
     const { id, name, icon, description, dataElements, hideDueDate, repeatable, enableUserAssignment } = stage;
     const preventAddingNewEvents = rulesEffectHideProgramStage(ruleEffects, id);
@@ -64,6 +75,7 @@ export const StagePlain = ({ stage, events, classes, className, onCreateNew, rul
                     enableUserAssignment={enableUserAssignment}
                     onCreateNew={onCreateNew}
                     hiddenProgramStage={preventAddingNewEvents}
+                    enableCreate={enableCreate}
                     {...passOnProps}
                 /> : (
                     <div className={classes.buttonContainer}>
@@ -74,6 +86,7 @@ export const StagePlain = ({ stage, events, classes, className, onCreateNew, rul
                             repeatable={repeatable}
                             preventAddingEventActionInEffect={preventAddingNewEvents}
                             eventName={name}
+                            enableCreate={enableCreate}
                         />
                     </div>
                 )}

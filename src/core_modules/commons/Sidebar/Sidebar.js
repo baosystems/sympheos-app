@@ -205,7 +205,7 @@ export const Sidebar = () => {
                 }}
             >
                 {!isCollapsed && <p>
-                    Sympheos App
+                    Sympheos™ App
                 </p>}
                 <button
                     onClick={toggleCollapse}

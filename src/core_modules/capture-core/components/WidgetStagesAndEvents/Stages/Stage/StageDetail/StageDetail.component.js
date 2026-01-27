@@ -107,6 +107,7 @@ const StageDetailPlain = (props: Props) => {
         onCreateNew,
         hiddenProgramStage,
         classes,
+        enableCreate,
     } = props;
     const defaultSortState = {
         columnName: 'status',
@@ -268,6 +269,7 @@ const StageDetailPlain = (props: Props) => {
                     repeatable={repeatable}
                     stageWriteAccess={stage?.access?.data?.write}
                     eventName={eventName}
+                    enableCreate={enableCreate}
                 />
             </div>
         );

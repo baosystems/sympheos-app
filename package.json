@@ -1,7 +1,7 @@
 {
     "name": "sympheos",
     "homepage": "/dashboard/overview",
-    "version": "1.2.1-SNAPSHOT",
+    "version": "1.3.0-SNAPSHOT",
     "cacheVersion": "1",
     "license": "BSD-3-Clause",
     "private": true,
@@ -88,8 +88,9 @@
     },
     "devDependencies": {
         "@actions/core": "^1.9.1",
-        "@babel/core": "^7.17.8",
-        "@babel/eslint-parser": "^7.19.1",
+        "@babel/core": "^7.28.6",
+        "@babel/eslint-parser": "^7.28.6",
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
         "@babel/plugin-transform-flow-strip-types": "^7.16.7",
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-react": "^7.26.3",
@@ -104,6 +105,7 @@
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
         "@typescript-eslint/eslint-plugin": "^4.33.0",
+        "babel-eslint": "^10.1.0",
         "babel-plugin-module-resolver": "^5.0.0",
         "concurrently": "^8.2.2",
         "cypress": "12",
@@ -153,5 +155,6 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    }
+    },
+    "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

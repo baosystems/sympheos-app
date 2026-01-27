@@ -5,9 +5,14 @@ import { withStyles } from '@material-ui/core';
 import { Stage } from './Stage';
 import type { PlainProps, InputProps } from './stages.types';
 import { withLoadingIndicator } from '../../../HOC';
+import { useDataStore } from '../../../../../hooks/useDataStore';
 
 const styles = {};
 export const StagesPlain = ({ stages, events, classes, ...passOnProps }: PlainProps) => {
+    const {
+        storeQuery: psSettingsStoreQuery,
+    } = useDataStore({ key: 'programStagesSettings', lazyGet: false });
+
     const eventsByStage = useMemo(
         () => stages.reduce(
             (acc, stage) => {
@@ -31,7 +36,7 @@ export const StagesPlain = ({ stages, events, classes, ...passOnProps }: PlainPr
     );
 
     return (<>
-        {
+        {!psSettingsStoreQuery.loading &&
             stages
                 .filter(stage => stage.dataAccess.read)
                 .map(stage => (
@@ -40,6 +45,7 @@ export const StagesPlain = ({ stages, events, classes, ...passOnProps }: PlainPr
                         key={stage.id}
                         stage={stage}
                         className={classes.stage}
+                        enableCreate={psSettingsStoreQuery.data?.results?.[stage.id]?.enableCreate}
                         {...passOnProps}
                     />
                 ))

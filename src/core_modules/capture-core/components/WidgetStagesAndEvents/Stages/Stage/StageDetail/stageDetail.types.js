@@ -20,5 +20,6 @@ type ExtractedProps = {|
 export type Props = {|
     ...ExtractedProps,
     ...StageCommonProps,
+    enableCreate: boolean,
 |}
 

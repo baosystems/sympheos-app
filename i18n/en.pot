@@ -5,8 +5,8 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"POT-Creation-Date: 2025-10-09T16:55:43.871Z\n"
-"PO-Revision-Date: 2025-10-09T16:55:43.871Z\n"
+"POT-Creation-Date: 2026-01-26T22:56:25.577Z\n"
+"PO-Revision-Date: 2026-01-26T22:56:25.577Z\n"
 
 msgid "Choose one or more dates..."
 msgstr "Choose one or more dates..."
@@ -1981,6 +1981,9 @@ msgstr "Download as JSON"
 msgid "Download as CSV"
 msgstr "Download as CSV"
 
+msgid "Error generating CSV"
+msgstr "Error generating CSV"
+
 msgid "Error loading Working List"
 msgstr "Error loading Working List"
 
@@ -2149,8 +2152,8 @@ msgstr "DHIS2 Core"
 msgid "The DHIS2 version running in this instance."
 msgstr "The DHIS2 version running in this instance."
 
-msgid "Sympheos App"
-msgstr "Sympheos App"
+msgid "Sympheos™ App"
+msgstr "Sympheos™ App"
 
 msgid "The Sympheos application running in this DHIS2 instance."
 msgstr "The Sympheos application running in this DHIS2 instance."
@@ -2158,8 +2161,8 @@ msgstr "The Sympheos application running in this DHIS2 instance."
 msgid "Device Gateway API"
 msgstr "Device Gateway API"
 
-msgid "Sympheos Plugins and Dependencies"
-msgstr "Sympheos Plugins and Dependencies"
+msgid "Sympheos™ System"
+msgstr "Sympheos™ System"
 
 msgid "Component"
 msgstr "Component"
@@ -2194,6 +2197,25 @@ msgstr "Allow create records"
 msgid "Disable create records"
 msgstr "Disable create records"
 
+msgid "An error occurred while updating the App Menu labels."
+msgstr "An error occurred while updating the App Menu labels."
+
+msgid "Confirmation"
+msgstr "Confirmation"
+
+msgid ""
+"Are you sure you want to update the labels of the App Menu to the latest "
+"version?"
+msgstr ""
+"Are you sure you want to update the labels of the App Menu to the latest "
+"version?"
+
+msgid "Continue"
+msgstr "Continue"
+
+msgid "Update App Menu labels"
+msgstr "Update App Menu labels"
+
 msgid "No Programs available."
 msgstr "No Programs available."
 
@@ -2203,11 +2225,26 @@ msgstr "Plugins configuration restored successfully."
 msgid "Error updating Data Store."
 msgstr "Error updating Data Store."
 
-msgid "Confirmation"
-msgstr "Confirmation"
+msgid "Tracker"
+msgstr "Tracker"
 
-msgid "Continue"
-msgstr "Continue"
+msgid "Event"
+msgstr "Event"
+
+msgid "Filter by Program, Program Stage UID, name, ..."
+msgstr "Filter by Program, Program Stage UID, name, ..."
+
+msgid "Program | Program Stages"
+msgstr "Program | Program Stages"
+
+msgid "Enable Create"
+msgstr "Enable Create"
+
+msgid "Enable Edit"
+msgstr "Enable Edit"
+
+msgid "Enable Print"
+msgstr "Enable Print"
 
 msgid "Gateway Connectivity settings updated successfully."
 msgstr "Gateway Connectivity settings updated successfully."
@@ -2221,17 +2258,29 @@ msgstr "Instance Type"
 msgid "Default Profile"
 msgstr "Default Profile"
 
+msgid "Other Settings"
+msgstr "Other Settings"
+
+msgid "SampleID Satellite Org Unit Regex for SMS Printing"
+msgstr "SampleID Satellite Org Unit Regex for SMS Printing"
+
+msgid "App Settings"
+msgstr "App Settings"
+
 msgid "Capture Settings"
 msgstr "Capture Settings"
+
+msgid "Program Stage Settings"
+msgstr "Program Stage Settings"
 
 msgid "Working Lists Settings"
 msgstr "Working Lists Settings"
 
-msgid "Plugin Settings"
-msgstr "Plugin Settings"
+msgid "Danger Zone"
+msgstr "Danger Zone"
 
-msgid "Device Programs Overwrite plugins configuration"
-msgstr "Device Programs Overwrite plugins configuration"
+msgid "Device Programs - Overwrite plugins configuration"
+msgstr "Device Programs - Overwrite plugins configuration"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all "
@@ -2242,8 +2291,8 @@ msgstr ""
 "Device Programs? This action cannot be undone and the current configuration "
 "will be lost."
 
-msgid "Stock Programs Overwrite plugins configuration"
-msgstr "Stock Programs Overwrite plugins configuration"
+msgid "Stock Programs - Overwrite plugins configuration"
+msgstr "Stock Programs - Overwrite plugins configuration"
 
 msgid ""
 "Are you sure that you want to overwrite plugins configuration for all Stock "
@@ -2303,6 +2352,45 @@ msgstr "Line List"
 
 msgid "Time field for Date filters"
 msgstr "Time field for Date filters"
+
+msgid "Event sent to SMS Printer."
+msgstr "Event sent to SMS Printer."
+
+msgid "Error sending to SMS Printer."
+msgstr "Error sending to SMS Printer."
+
+msgid "Unknown"
+msgstr "Unknown"
+
+msgid "No SMS Printers found"
+msgstr "No SMS Printers found"
+
+msgid "Select"
+msgstr "Select"
+
+msgid "Serial Number"
+msgstr "Serial Number"
+
+msgid "Location"
+msgstr "Location"
+
+msgid "Last Seen"
+msgstr "Last Seen"
+
+msgid "Send to SMS Printer"
+msgstr "Send to SMS Printer"
+
+msgid "Send selected Event to SMS Printer"
+msgstr "Send selected Event to SMS Printer"
+
+msgid "Show all printers"
+msgstr "Show all printers"
+
+msgid "Close modal"
+msgstr "Close modal"
+
+msgid "Print"
+msgstr "Print"
 
 msgid "Compatibility mode"
 msgstr "Compatibility mode"

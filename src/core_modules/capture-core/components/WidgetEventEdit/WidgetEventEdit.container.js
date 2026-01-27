@@ -118,6 +118,7 @@ const WidgetEventEditPlain = ({
                 <Widget
                     header={
                         <WidgetHeader
+                            eventId={eventId}
                             eventStatus={eventStatus}
                             stage={stage}
                             programId={programId}
